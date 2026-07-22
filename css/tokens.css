@@ -1,0 +1,118 @@
+/*
+  JT Digital Studio — Design Tokens
+  Fuente única de verdad para color, tipografía, espaciado, radios,
+  sombras, z-index y timing de animación. No se define ningún estilo
+  visual acá — solo variables consumidas por reset.css, base.css y
+  los componentes en css/components/.
+*/
+
+:root {
+  /* ---------- Color: marca ---------- */
+  --color-primary: #fd6502;
+  --color-primary-hover: #e55800;
+  --color-dark: #262a2b;      /* CTA final, headings */
+  --color-darker: #17191a;    /* footer — distinto de --color-dark a propósito, ver nota abajo */
+
+  /* ---------- Color: neutros ---------- */
+  --color-bg: #f8f8f8;          /* fondo general del sitio */
+  --color-bg-alt: #f2f2f2;      /* fondo alterno de sección (gris), para alternar con --color-bg */
+  --color-bg-warm: #f5f0e6;     /* fondo alterno cálido (beige) — alternativa a --color-bg-alt cuando
+                                    se quiere una separación de sección más perceptible que gris-sobre-gris */
+  --color-surface: #ffffff;     /* cards / superficies elevadas */
+
+  --color-text-heading: var(--color-dark);   /* #262a2b — títulos, CTA final, footer */
+  --color-text-body: #4d4e4e;                /* párrafos y UI copy */
+  --color-text-tertiary: #7f7f7f;            /* metadata / captions — ver nota de contraste abajo */
+  --color-text-on-dark: #ffffff;
+  --color-text-on-primary: var(--color-dark); /* texto oscuro sobre fondo naranja del botón primario.
+                                                  Blanco daba ~2.98:1 (reposo) / ~3.67:1 (hover), ambos
+                                                  por debajo del mínimo 4.5:1. Oscuro da 4.86:1 (reposo,
+                                                  cumple AA) y 3.95:1 (hover, por debajo de 4.5 pero muy
+                                                  por encima del piso de 3:1 para estados transitorios). */
+
+  --color-border-hairline: #e2e2e2; /* separadores 1px sobre fondo blanco (ej. acordeón) */
+  --color-border: #c7c8ca;          /* bordes generales de componentes */
+
+  /* ---------- Tipografía ---------- */
+  --font-heading: 'Space Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  --font-body: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+
+  /* Escala tipográfica — rem, base 16px */
+  --text-xs: 0.75rem;     /* 12px */
+  --text-sm: 0.875rem;    /* 14px */
+  --text-base: 1rem;      /* 16px — mínimo body en mobile */
+  --text-md: 1.125rem;    /* 18px */
+  --text-lg: 1.25rem;     /* 20px */
+  --text-xl: 1.5rem;      /* 24px */
+  --text-2xl: 1.875rem;   /* 30px */
+  --text-3xl: 2.25rem;    /* 36px */
+  --text-4xl: 2.75rem;    /* 44px */
+  --text-5xl: 3.5rem;     /* 56px */
+  --text-display: clamp(2.5rem, 1.6rem + 3.5vw, 4.5rem); /* hero / display, fluido */
+
+  --leading-tight: 1.15;    /* headings cortos */
+  --leading-snug: 1.3;      /* headings largos */
+  --leading-normal: 1.5;    /* UI copy */
+  --leading-relaxed: 1.7;   /* párrafos de body largo */
+
+  /* ---------- Espaciado (base 8px + medio paso 4px) ---------- */
+  --space-1: 0.25rem;   /* 4px */
+  --space-2: 0.5rem;    /* 8px */
+  --space-3: 0.75rem;   /* 12px */
+  --space-4: 1rem;      /* 16px */
+  --space-5: 1.5rem;    /* 24px */
+  --space-6: 2rem;      /* 32px */
+  --space-7: 3rem;      /* 48px */
+  --space-8: 4rem;      /* 64px */
+  --space-9: 6rem;      /* 96px */
+  --space-10: 8rem;     /* 128px */
+
+  /* ---------- Layout ---------- */
+  --container-max: 1280px;
+  --container-padding: clamp(1.25rem, 4vw, 3rem);
+  --header-height: 88px;
+
+  /* ---------- Bordes ---------- */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --radius-pill: 999px;
+
+  /* ---------- Sombras ---------- */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 6px 24px rgba(0, 0, 0, 0.09);
+  --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.12);
+  --shadow-orange: 0 6px 20px rgba(253, 101, 2, 0.25);
+
+  /* ---------- z-index scale ----------
+     Escala fija de 4 niveles (10/20/30/50). No usar valores fuera de esta escala. */
+  --z-base: 10;      /* elementos decorativos en capas dentro de una sección */
+  --z-elevated: 20;  /* tarjeta expandida por encima de sus hermanas, tooltips */
+  --z-sticky: 30;     /* header sticky + botón flotante de WhatsApp */
+  --z-overlay: 50;   /* drawer de menú mobile, overlay de tarjeta expandida en mobile */
+
+  /* ---------- Touch target ---------- */
+  --tap-min: 44px;
+
+  /* ---------- Motion ---------- */
+  --duration-micro: 200ms;    /* micro-interacciones: hover, toggle, acordeón (150-300ms) */
+  --duration-section: 600ms;  /* fade-in de sección al entrar en viewport */
+  --stagger-step: 100ms;      /* delay entre elementos de un mismo grupo (label → heading → body) */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in: cubic-bezier(0.7, 0, 0.84, 0);
+  --parallax-intensity: 0.15; /* multiplicador por defecto del desplazamiento parallax */
+}
+
+/*
+  Nota de contraste — --color-text-tertiary (#7f7f7f):
+  Sobre fondo blanco/#f8f8f8 da ~3.96:1, por debajo del mínimo 4.5:1 para texto normal.
+  Usarlo solo en texto ≥18px regular o ≥14px bold (donde el mínimo baja a 3:1),
+  o para elementos decorativos no esenciales. Para metadata pequeña (<18px) preferir
+  --color-text-body.
+*/

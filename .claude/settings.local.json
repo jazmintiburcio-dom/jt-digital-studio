@@ -1,0 +1,26 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find / -iname \"*ui-ux-pro-max*\" -not -path \"*/node_modules/*\" 2>/dev/null | head -50)",
+      "Bash(python3 \"C:\\\\Users\\\\jazmint\\\\.claude\\\\skills\\\\ui-ux-pro-max\\\\scripts\\\\search.py\" \"agencia boutique diseño web estrategico B2B profesionales independientes pymes\" --design-system --persist -p \"JT Digital Studio\")",
+      "Bash(python3 \"C:\\\\Users\\\\jazmint\\\\.claude\\\\skills\\\\ui-ux-pro-max\\\\scripts\\\\search.py\" \"z-index scale sticky header mobile menu overlay accessibility\" --domain ux -n 15)",
+      "Bash(python3 \"C:\\\\Users\\\\jazmint\\\\.claude\\\\skills\\\\ui-ux-pro-max\\\\scripts\\\\search.py\" \"scroll animation stagger fade parallax reduced motion accordion\" --domain ux -n 12)",
+      "Bash(where python3 *)",
+      "Bash(where python *)",
+      "Bash(where node *)",
+      "Bash(where npx *)",
+      "Bash(where npm *)",
+      "Bash(where py *)",
+      "Bash(python3 -c \"from PIL import Image; print\\('pillow ok'\\)\")",
+      "Bash(where cwebp *)",
+      "Bash(where magick *)",
+      "mcp__visualize__read_me",
+      "mcp__visualize__show_widget",
+      "Bash(git init *)",
+      "Bash(git branch *)",
+      "Bash(git symbolic-ref *)",
+      "Bash(git config *)",
+      "Bash(git add *)"
+    ]
+  }
+}

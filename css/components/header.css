@@ -1,0 +1,170 @@
+/*
+  JT Digital Studio — Header
+  Sticky simple (sin shrink ni hide-on-scroll). Breakpoint único de
+  nav → drawer en 900px, compartido con mobile-menu.css.
+*/
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-sticky);
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border-hairline);
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+  min-height: var(--header-height);
+}
+
+/* ---------- Logo ---------- */
+.site-header__logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  cursor: pointer;
+  margin-right: auto;
+}
+
+.site-header__logo-icon {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+}
+
+.site-header__wordmark {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.site-header__brand {
+  font-family: var(--font-heading);
+  font-weight: var(--fw-bold);
+  font-size: var(--text-lg);
+  color: var(--color-dark);
+}
+
+.site-header__tagline {
+  font-family: var(--font-body);
+  font-weight: var(--fw-regular);
+  font-size: var(--text-xs);
+  color: var(--color-text-tertiary);
+}
+
+/* ---------- Nav (desktop) ---------- */
+.site-header__nav-list {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+}
+
+.site-header__nav-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap-min);
+  font-family: var(--font-body);
+  font-weight: var(--fw-medium);
+  font-size: var(--text-base);
+  color: var(--color-text-body);
+  cursor: pointer;
+  transition: color var(--duration-micro) var(--ease-out);
+}
+
+.site-header__nav-link:hover {
+  color: var(--color-dark);
+}
+
+.site-header__nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 8px;
+  height: 2px;
+  background: var(--color-primary);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--duration-micro) var(--ease-out);
+}
+
+.site-header__nav-link:hover::after {
+  transform: scaleX(1);
+}
+
+.site-header__nav-link[aria-current='page'] {
+  color: var(--color-dark);
+  font-weight: var(--fw-semibold);
+}
+
+.site-header__nav-link[aria-current='page']::after {
+  transform: scaleX(1);
+  background: var(--color-dark);
+}
+
+/* ---------- CTA (desktop) ---------- */
+.site-header__cta {
+  flex-shrink: 0;
+}
+
+/* ---------- Menu toggle (mobile) ---------- */
+.site-header__menu-toggle {
+  display: none;
+  position: relative;
+  width: var(--tap-min);
+  height: var(--tap-min);
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--color-dark);
+}
+
+.site-header__menu-toggle svg {
+  position: absolute;
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.site-header__menu-toggle [data-icon-close] {
+  opacity: 0;
+}
+
+.site-header__menu-toggle[aria-expanded='true'] [data-icon-menu] {
+  opacity: 0;
+}
+
+.site-header__menu-toggle[aria-expanded='true'] [data-icon-close] {
+  opacity: 1;
+}
+
+/* ---------- Breakpoint: nav completo -> drawer ---------- */
+@media (max-width: 899px) {
+  .site-header__nav {
+    display: none;
+  }
+
+  .site-header__cta {
+    display: none;
+  }
+
+  .site-header__menu-toggle {
+    display: flex;
+  }
+}
+
+@media (max-width: 479px) {
+  .site-header__tagline {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-header__nav-link,
+  .site-header__nav-link::after {
+    transition: none;
+  }
+}

@@ -1,0 +1,364 @@
+/*
+  JT Digital Studio — Home
+  Estilos exclusivos de index.html: Hero, franja de prueba social,
+  cards de arquetipo, preview de servicios y preview de portafolio.
+  No se importan en otras páginas.
+*/
+
+/* ============ 01. Hero ============ */
+
+.hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 100%;
+  overflow: hidden;
+}
+
+.hero__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+/* Un solo gradiente radial (no dos capas superpuestas): se ve como un
+   velo suave centrado en el borde izquierdo, sin bordes rectos, en vez
+   de la "sombra" con forma de caja que daba la versión anterior
+   (gradiente panorámico + parche angosto detrás del texto). Ancla en
+   0% (borde izquierdo real del hero) con radio en píxeles fijos, así
+   que la cobertura de la columna de texto (560px) no depende de
+   porcentajes que cambian según el viewport. Valores de opacidad
+   verificados por contraste real contra el frame más claro del video
+   (0 fallas en desktop ancho, caso límite ~3.3:1 solo en el borde
+   extremo del texto en escritorio angosto de 800px). */
+.hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 1050px 900px at 0% 50%,
+    rgba(20, 20, 20, 0.88) 0%,
+    rgba(20, 20, 20, 0.82) 42%,
+    rgba(20, 20, 20, 0.56) 62%,
+    rgba(20, 20, 20, 0.18) 82%,
+    rgba(20, 20, 20, 0) 100%
+  );
+}
+
+.hero__content {
+  position: relative;
+  padding-block: var(--space-7);
+}
+
+/* Ancho del bloque de texto separado del .container que lo envuelve:
+   .container ya centra su caja de 1280px con margin-inline:auto: si el
+   max-width chico fuera directo sobre esa misma caja, quedaría
+   re-centrado en el medio del hero en vez de pegado al borde izquierdo
+   del padding del container. 560px para no invadir la pantalla del
+   iMac del video (pedido explícito del cliente). */
+.hero__text {
+  max-width: 560px;
+}
+
+.hero__overline {
+  font-family: var(--font-body);
+  font-weight: var(--fw-semibold);
+  font-size: var(--text-sm);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+}
+
+.hero__title {
+  margin-top: var(--space-3);
+  color: var(--color-text-on-dark);
+  /* Tamaño propio, más chico que --text-display (72px): evita que el
+     Hero empuje el CTA fuera de la primera pantalla en laptops. */
+  font-size: clamp(2rem, 1.3rem + 3vw, 3.25rem);
+  line-height: 1.05;
+}
+
+.hero__subtitle {
+  margin-top: var(--space-4);
+  font-size: var(--text-md);
+  line-height: var(--leading-relaxed);
+  color: rgba(255, 255, 255, 0.88);
+  max-width: 55ch;
+}
+
+.hero__cta {
+  margin-top: var(--space-5);
+}
+
+@media (max-width: 767px) {
+  .hero__overlay {
+    background: rgba(20, 20, 20, 0.82);
+  }
+
+  .hero__text {
+    max-width: none;
+  }
+}
+
+/* ============ 02. Prueba social ============ */
+
+/* Hairline: esta sección y la 03 (Para quién) comparten el mismo
+   --color-bg, así que sin esto quedan sin separación visible. */
+.social-proof {
+  border-bottom: 1px solid var(--color-border-hairline);
+}
+
+.social-proof__label {
+  text-align: center;
+  font-family: var(--font-body);
+  font-weight: var(--fw-medium);
+  font-size: var(--text-sm);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-text-tertiary);
+}
+
+/* ---------- Fila de estadísticas ---------- */
+.social-proof__stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-6);
+  max-width: 640px;
+  margin: var(--space-6) auto 0;
+  text-align: center;
+}
+
+.social-proof__stat-value {
+  font-family: var(--font-heading);
+  font-weight: var(--fw-bold);
+  font-size: var(--text-3xl);
+  color: var(--color-dark);
+}
+
+.social-proof__stat-value--accent {
+  color: var(--color-primary);
+}
+
+.social-proof__stat-label {
+  margin-top: var(--space-1);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--color-text-body);
+}
+
+.social-proof__divider {
+  height: 1px;
+  background: var(--color-border-hairline);
+  max-width: 640px;
+  margin: var(--space-7) auto;
+}
+
+/* ---------- Marquee de herramientas ---------- */
+.social-proof__logo-cloud {
+  margin-top: var(--space-5);
+}
+
+@media (max-width: 599px) {
+  .social-proof__stats {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+}
+
+/* ============ 03. Para quién diseñamos ============ */
+
+/* Fila fija de 4: a diferencia del resto de las grillas del sitio, acá
+   no se usa auto-fit — las 4 cards deben quedar siempre alineadas en
+   una sola fila en desktop, nunca reacomodarse a 3+1 según el ancho. */
+.archetype-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-5);
+  margin-top: var(--space-7);
+}
+
+@media (max-width: 899px) {
+  .archetype-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 479px) {
+  .archetype-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.archetype-card {
+  padding: var(--space-6);
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.archetype-card__number {
+  font-family: var(--font-body);
+  font-weight: var(--fw-semibold);
+  font-size: var(--text-sm);
+  color: var(--color-primary);
+}
+
+.archetype-card__title {
+  margin-top: var(--space-3);
+  font-size: var(--text-lg);
+}
+
+.archetype-card__description {
+  margin-top: var(--space-3);
+  font-size: var(--text-base);
+  color: var(--color-text-body);
+}
+
+/* ============ 04. Servicios (preview) ============ */
+
+.service-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--space-6);
+  margin-top: var(--space-7);
+}
+
+/* Fondo --color-surface (blanco) a propósito: la sección tiene
+   --color-bg-alt, si la card no tuviera su propio fondo quedaría
+   literalmente del mismo color que la sección — sin forma de
+   distinguir dónde empieza una card y termina otra. */
+.service-preview-card {
+  padding: var(--space-6);
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  transition:
+    box-shadow var(--duration-micro) var(--ease-out),
+    transform var(--duration-micro) var(--ease-out);
+}
+
+.service-preview-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-4px);
+}
+
+.service-preview-card__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-md);
+  background: rgba(253, 101, 2, 0.12);
+  color: var(--color-primary);
+}
+
+.service-preview-card__icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.service-preview-card__title {
+  margin-top: var(--space-4);
+  font-size: var(--text-lg);
+}
+
+.service-preview-card__description {
+  margin-top: var(--space-3);
+  color: var(--color-text-body);
+}
+
+/* ============ 05. Portafolio destacado (preview, sin expansión) ============ */
+
+.portfolio-preview-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: var(--space-6);
+  margin-top: var(--space-7);
+}
+
+.portfolio-preview-card {
+  display: block;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  transition: box-shadow var(--duration-micro) var(--ease-out);
+}
+
+.portfolio-preview-card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.portfolio-preview-card__media {
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: var(--color-bg-alt);
+}
+
+.portfolio-preview-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity var(--duration-micro) var(--ease-out);
+}
+
+.portfolio-preview-card:hover .portfolio-preview-card__media img {
+  opacity: 0.9;
+}
+
+.portfolio-preview-card__body {
+  padding: var(--space-5);
+}
+
+.portfolio-preview-card__title {
+  font-size: var(--text-lg);
+}
+
+.portfolio-preview-card__meta {
+  margin-top: var(--space-1);
+  font-size: var(--text-sm);
+  color: var(--color-text-tertiary);
+}
+
+/* ============ 06. Testimonios ============ */
+
+.testimonial-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-6);
+  margin-top: var(--space-7);
+}
+
+/* ============ Genérico: encabezado de sección centrado ============ */
+
+.section-heading {
+  max-width: 44rem;
+}
+
+.section-heading--center {
+  margin-inline: auto;
+  text-align: center;
+}
+
+.section-heading__subtitle {
+  margin-top: var(--space-4);
+  font-size: var(--text-md);
+  color: var(--color-text-body);
+}
+
+.section__cta-row {
+  text-align: center;
+  margin-top: var(--space-8);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .service-preview-card,
+  .portfolio-preview-card,
+  .portfolio-preview-card__media img {
+    transition: none;
+  }
+}

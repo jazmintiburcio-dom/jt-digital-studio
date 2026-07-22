@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Style Guide — JT Digital Studio (QA interna, no es una página del sitio)</title>
+  <meta name="robots" content="noindex, nofollow">
+
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/main.css">
+
+  <style>
+    /* Estilos exclusivos de esta página de QA — no forman parte del sistema de diseño */
+    .qa-block {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-5);
+      align-items: flex-start;
+      margin-top: var(--space-6);
+    }
+    .qa-swatch {
+      width: 140px;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      font-family: var(--font-body);
+      font-size: var(--text-xs);
+    }
+    .qa-swatch__color { height: 72px; }
+    .qa-swatch__label { padding: var(--space-2) var(--space-3); background: var(--color-surface); }
+    .qa-type-row { display: flex; align-items: baseline; gap: var(--space-4); margin-top: var(--space-3); }
+    .qa-type-row code { font-family: monospace; font-size: var(--text-xs); color: var(--color-text-tertiary); }
+    .qa-grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--space-6); margin-top: var(--space-6); }
+    .qa-placeholder-img { width: 100%; height: 100%; object-fit: cover; }
+    .qa-parallax-demo { position: relative; height: 60vh; border-radius: var(--radius-xl); overflow: hidden; margin-top: var(--space-6); }
+    .qa-sticky-demo .sticky-hero { display: flex; align-items: center; justify-content: center; background: var(--color-dark); color: var(--color-text-on-dark); }
+    .qa-sticky-demo .sticky-hero-next { padding: var(--space-9) 0; min-height: 60vh; }
+  </style>
+</head>
+<body>
+
+  <a class="skip-link" href="#main-content">Saltar al contenido</a>
+
+  <header class="site-header">
+    <div class="site-header__inner container">
+      <a href="style-guide.html" class="site-header__logo" aria-label="JT Digital Studio — Inicio">
+        <img src="assets/icono-negro.svg" alt="" class="site-header__logo-icon" width="32" height="32">
+        <span class="site-header__wordmark">
+          <span class="site-header__brand">JT Digital Studio</span>
+          <span class="site-header__tagline">Diseño Web &amp; Sistemas Digitales</span>
+        </span>
+      </a>
+
+      <nav class="site-header__nav" aria-label="Navegación principal">
+        <ul class="site-header__nav-list">
+          <li><a href="#" class="site-header__nav-link" aria-current="page">Home</a></li>
+          <li><a href="#" class="site-header__nav-link">Servicios</a></li>
+          <li><a href="#" class="site-header__nav-link">Proyectos</a></li>
+          <li><a href="#" class="site-header__nav-link">Nosotros</a></li>
+          <li><a href="#" class="site-header__nav-link">Contacto</a></li>
+        </ul>
+      </nav>
+
+      <a href="#" class="btn btn--primary site-header__cta">Diagnóstico gratis</a>
+
+      <button
+        type="button"
+        class="site-header__menu-toggle"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        aria-label="Abrir menú"
+        data-menu-toggle
+      >
+        <svg data-icon-menu viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="4" x2="20" y1="12" y2="12"/>
+          <line x1="4" x2="20" y1="6" y2="6"/>
+          <line x1="4" x2="20" y1="18" y2="18"/>
+        </svg>
+        <svg data-icon-close viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M18 6 6 18"/>
+          <path d="m6 6 12 12"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <div class="mobile-menu" id="mobile-menu" data-mobile-menu>
+    <div class="mobile-menu__overlay" data-mobile-menu-overlay></div>
+    <div class="mobile-menu__panel" data-mobile-menu-panel role="dialog" aria-modal="true" aria-label="Menú de navegación">
+      <div class="mobile-menu__header">
+        <button type="button" class="btn-icon mobile-menu__close" aria-label="Cerrar menú" data-mobile-menu-close>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M18 6 6 18"/>
+            <path d="m6 6 12 12"/>
+          </svg>
+        </button>
+      </div>
+      <nav aria-label="Navegación móvil">
+        <ul class="mobile-menu__list">
+          <li><a href="#" class="mobile-menu__link" aria-current="page">Home</a></li>
+          <li><a href="#" class="mobile-menu__link">Servicios</a></li>
+          <li><a href="#" class="mobile-menu__link">Proyectos</a></li>
+          <li><a href="#" class="mobile-menu__link">Nosotros</a></li>
+          <li><a href="#" class="mobile-menu__link">Contacto</a></li>
+        </ul>
+      </nav>
+      <a href="#" class="btn btn--primary mobile-menu__cta">Diagnóstico gratis</a>
+    </div>
+  </div>
+
+  <a
+    href="https://wa.me/5491165370820?text=Hola%2C%20vi%20su%20web%20y%20quiero%20informaci%C3%B3n%20sobre%20sus%20servicios"
+    class="whatsapp-float"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Chatear por WhatsApp"
+  >
+    <svg class="whatsapp-float__icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413"/>
+    </svg>
+  </a>
+
+  <main id="main-content">
+
+    <section class="section container">
+      <p style="color: var(--color-text-tertiary); font-size: var(--text-sm);">
+        Página interna de QA — verifica los componentes de la fundación. No es una página del sitio ni tiene contenido real.
+      </p>
+      <h1 style="font-size: var(--text-3xl); margin-top: var(--space-3);">Fundación — Style Guide</h1>
+    </section>
+
+    <!-- ============ COLOR ============ -->
+    <section class="section container">
+      <h2>Color</h2>
+      <div class="qa-block">
+        <div class="qa-swatch"><div class="qa-swatch__color" style="background:var(--color-primary)"></div><div class="qa-swatch__label">primary<br>#fd6502</div></div>
+        <div class="qa-swatch"><div class="qa-swatch__color" style="background:var(--color-primary-hover)"></div><div class="qa-swatch__label">primary-hover<br>#e55800</div></div>
+        <div class="qa-swatch"><div class="qa-swatch__color" style="background:var(--color-dark)"></div><div class="qa-swatch__label">dark<br>#262a2b</div></div>
+        <div class="qa-swatch"><div class="qa-swatch__color" style="background:var(--color-bg); border:1px solid var(--color-border-hairline)"></div><div class="qa-swatch__label">bg<br>#f8f8f8</div></div>
+        <div class="qa-swatch"><div class="qa-swatch__color" style="background:var(--color-bg-alt); border:1px solid var(--color-border-hairline)"></div><div class="qa-swatch__label">bg-alt<br>#f2f2f2</div></div>
+        <div class="qa-swatch"><div class="qa-swatch__color" style="background:var(--color-text-body)"></div><div class="qa-swatch__label">text-body<br>#4d4e4e</div></div>
+        <div class="qa-swatch"><div class="qa-swatch__color" style="background:var(--color-text-tertiary)"></div><div class="qa-swatch__label">text-tertiary<br>#7f7f7f</div></div>
+      </div>
+    </section>
+
+    <!-- ============ TYPOGRAPHY ============ -->
+    <section class="section container">
+      <h2>Typography</h2>
+      <div class="qa-type-row"><h1 style="font-size: var(--text-display); margin:0;">Display</h1><code>--text-display</code></div>
+      <div class="qa-type-row"><h2 style="margin:0;">Heading H2 — Space Grotesk</h2><code>--text-3xl</code></div>
+      <div class="qa-type-row"><h3 style="margin:0;">Heading H3</h3><code>--text-2xl</code></div>
+      <div class="qa-type-row"><p style="margin:0;">Body copy en Inter — line-height relaxed para párrafos largos.</p><code>--text-base / --leading-relaxed</code></div>
+      <div class="qa-type-row"><p style="margin:0; color:var(--color-text-tertiary); font-size: var(--text-sm);">Texto terciario / metadata</p><code>--color-text-tertiary</code></div>
+    </section>
+
+    <!-- ============ BUTTONS ============ -->
+    <section class="section container">
+      <h2>Botones</h2>
+      <div class="qa-block">
+        <button class="btn btn--primary">Primario</button>
+        <button class="btn btn--secondary">Secundario</button>
+        <button class="btn btn--ghost">Ghost</button>
+        <button class="btn btn--dark">Dark</button>
+        <button class="btn-icon" aria-label="Ejemplo de botón de ícono">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+        </button>
+      </div>
+    </section>
+
+    <!-- ============ SCROLL REVEAL ============ -->
+    <section class="section section--alt" data-scroll-reveal>
+      <div class="container">
+        <p data-reveal style="color: var(--color-primary); font-weight: var(--fw-semibold); text-transform: uppercase; letter-spacing: 0.04em; font-size: var(--text-sm);">Label</p>
+        <h2 data-reveal style="margin-top: var(--space-3);">Fade-in escalonado</h2>
+        <p data-reveal style="margin-top: var(--space-3); max-width: 60ch;">
+          Este bloque entra en el viewport y sus tres elementos (label, heading, body) aparecen uno a la vez con stagger. Hacé scroll para verlo.
+        </p>
+      </div>
+    </section>
+
+    <!-- ============ PARALLAX ============ -->
+    <section class="section container">
+      <h2>Parallax sutil</h2>
+      <div class="qa-parallax-demo">
+        <img
+          data-parallax
+          style="--parallax-intensity: 0.25; width: 110%; height: 130%; object-fit: cover; position:absolute; top:-15%; left:-5%;"
+          src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='600'%3E%3Crect width='800' height='600' fill='%23262a2b'/%3E%3Ccircle cx='400' cy='300' r='220' fill='%23fd6502' fill-opacity='0.35'/%3E%3C/svg%3E"
+          alt="Imagen de referencia para demo de parallax"
+        >
+      </div>
+    </section>
+
+    <!-- ============ STICKY HERO ============ -->
+    <section class="qa-sticky-demo">
+      <div class="sticky-hero-container">
+        <section class="sticky-hero">
+          <h2 style="color: var(--color-text-on-dark);">Sticky hero (opcional)</h2>
+        </section>
+        <section class="sticky-hero-next container">
+          <h3>La siguiente sección se desliza por encima</h3>
+          <p style="margin-top: var(--space-3); max-width: 60ch;">Patrón opt-in, solo CSS. Se usa envolviendo el hero y la sección siguiente en <code>.sticky-hero-container</code>.</p>
+        </section>
+      </div>
+    </section>
+
+    <!-- ============ ACCORDION ============ -->
+    <section class="section container">
+      <h2>Acordeón</h2>
+      <div class="accordion" data-accordion style="margin-top: var(--space-5);">
+
+        <div class="accordion__item">
+          <button class="accordion__trigger" aria-expanded="false" aria-controls="qa-panel-1" id="qa-trigger-1" data-accordion-trigger>
+            <span class="accordion__number">01.</span>
+            <span class="accordion__title">¿Cómo trabajan el diagnóstico inicial?</span>
+            <span class="accordion__icon" aria-hidden="true">
+              <svg data-icon-plus viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+              <svg data-icon-minus viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/></svg>
+            </span>
+          </button>
+          <div class="accordion__panel" id="qa-panel-1" role="region" aria-labelledby="qa-trigger-1" data-accordion-panel>
+            <div class="accordion__panel-inner">
+              <div class="accordion__panel-content">Contenido de ejemplo para verificar la transición de altura y el swap de ícono plus/minus.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion__item">
+          <button class="accordion__trigger" aria-expanded="false" aria-controls="qa-panel-2" id="qa-trigger-2" data-accordion-trigger>
+            <span class="accordion__number">02.</span>
+            <span class="accordion__title">¿Qué incluye cada proyecto?</span>
+            <span class="accordion__icon" aria-hidden="true">
+              <svg data-icon-plus viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+              <svg data-icon-minus viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/></svg>
+            </span>
+          </button>
+          <div class="accordion__panel" id="qa-panel-2" role="region" aria-labelledby="qa-trigger-2" data-accordion-panel>
+            <div class="accordion__panel-inner">
+              <div class="accordion__panel-content">Segundo ítem — abrir este debe cerrar automáticamente el primero (apertura única).</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion__item">
+          <button class="accordion__trigger" aria-expanded="false" aria-controls="qa-panel-3" id="qa-trigger-3" data-accordion-trigger>
+            <span class="accordion__number">03.</span>
+            <span class="accordion__title">¿Cuánto dura un proyecto típico?</span>
+            <span class="accordion__icon" aria-hidden="true">
+              <svg data-icon-plus viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+              <svg data-icon-minus viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/></svg>
+            </span>
+          </button>
+          <div class="accordion__panel" id="qa-panel-3" role="region" aria-labelledby="qa-trigger-3" data-accordion-panel>
+            <div class="accordion__panel-inner">
+              <div class="accordion__panel-content">Tercer ítem de ejemplo.</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============ EXPANDABLE CARDS ============ -->
+    <section class="section section--alt">
+      <div class="container">
+        <h2>Tarjetas expandibles (Proyectos)</h2>
+        <div class="qa-grid-3">
+
+          <article class="project-card" data-expandable-card>
+            <button class="project-card__trigger" data-expandable-trigger aria-expanded="false" aria-controls="qa-detail-1">
+              <div class="project-card__media">
+                <img class="qa-placeholder-img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect width='400' height='300' fill='%23f2f2f2'/%3E%3Ctext x='50%25' y='50%25' fill='%237f7f7f' font-family='sans-serif' font-size='16' text-anchor='middle'%3EProyecto 01%3C/text%3E%3C/svg%3E" alt="Proyecto de ejemplo 01">
+              </div>
+              <div class="project-card__summary">
+                <h3 class="project-card__title">Proyecto de ejemplo 01</h3>
+                <p class="project-card__meta">Identidad + sitio web</p>
+              </div>
+            </button>
+            <div class="project-card__detail" id="qa-detail-1" data-expandable-detail>
+              <div class="project-card__detail-inner">
+                <div class="project-card__detail-content" data-scroll-reveal>
+                  <button type="button" class="btn-icon project-card__close" aria-label="Cerrar detalle" data-expandable-close>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                  </button>
+                  <p class="project-card__label" data-reveal>Sobre el proyecto</p>
+                  <h4 class="project-card__heading" data-reveal>Rediseño de marca y sitio web</h4>
+                  <p class="project-card__description" data-reveal>Texto de ejemplo describiendo el proyecto, el problema y la solución entregada.</p>
+                  <p class="project-card__investment" data-reveal>Inversión orientativa: <strong>$XXX.XXX</strong></p>
+                  <blockquote class="project-card__testimonial" data-reveal>"Testimonio de ejemplo del cliente sobre el resultado del proyecto."</blockquote>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card" data-expandable-card>
+            <button class="project-card__trigger" data-expandable-trigger aria-expanded="false" aria-controls="qa-detail-2">
+              <div class="project-card__media">
+                <img class="qa-placeholder-img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect width='400' height='300' fill='%23262a2b'/%3E%3Ctext x='50%25' y='50%25' fill='%23ffffff' font-family='sans-serif' font-size='16' text-anchor='middle'%3EProyecto 02%3C/text%3E%3C/svg%3E" alt="Proyecto de ejemplo 02">
+              </div>
+              <div class="project-card__summary">
+                <h3 class="project-card__title">Proyecto de ejemplo 02</h3>
+                <p class="project-card__meta">Sistema digital</p>
+              </div>
+            </button>
+            <div class="project-card__detail" id="qa-detail-2" data-expandable-detail>
+              <div class="project-card__detail-inner">
+                <div class="project-card__detail-content" data-scroll-reveal>
+                  <button type="button" class="btn-icon project-card__close" aria-label="Cerrar detalle" data-expandable-close>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                  </button>
+                  <p class="project-card__label" data-reveal>Sobre el proyecto</p>
+                  <h4 class="project-card__heading" data-reveal>Sistema digital a medida</h4>
+                  <p class="project-card__description" data-reveal>Segunda tarjeta de ejemplo — verifica que ambas tarjetas se puedan abrir en simultáneo.</p>
+                  <p class="project-card__investment" data-reveal>Inversión orientativa: <strong>$XXX.XXX</strong></p>
+                  <blockquote class="project-card__testimonial" data-reveal>"Otro testimonio de ejemplo."</blockquote>
+                </div>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
