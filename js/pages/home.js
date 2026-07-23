@@ -68,7 +68,40 @@ function initCountUp(root = document) {
   elements.forEach((el) => observer.observe(el));
 }
 
+/*
+  Reveal de las cards de "Para quién diseñamos" y "Nuestros servicios"
+  (estilo Cliento — ver home.css para el fondo/hover/offset de cada
+  card). Agrega .is-revealed a cada card por separado la primera vez
+  que entra en viewport; el fade + slide-up + stagger por-card lo hace
+  el CSS a partir de esa clase.
+*/
+function initCardReveal(root = document) {
+  const cards = Array.from(root.querySelectorAll('.archetype-card, .service-preview-card'));
+  if (!cards.length) return;
+
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  if (prefersReducedMotion.matches) {
+    cards.forEach((card) => card.classList.add('is-revealed'));
+    return;
+  }
+
+  const observer = new IntersectionObserver(
+    (entries, obs) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('is-revealed');
+        obs.unobserve(entry.target);
+      });
+    },
+    { threshold: 0.2 }
+  );
+
+  cards.forEach((card) => observer.observe(card));
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   initHeroVideo();
   initCountUp();
+  initCardReveal();
 });
