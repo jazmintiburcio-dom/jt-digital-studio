@@ -52,21 +52,19 @@
 }
 
 /* Recorte por logo — por qué existe:
-   Los 4 PNG en assets/Clientes/ son de 100x50px de ORIGEN (confirmado
-   leyendo el header del archivo — no es un límite de CSS, es la
-   resolución real del asset). Cada uno además tiene una cantidad de
-   "aire" distinta alrededor de la marca real: el contenido visible
-   ocupa entre 16px y 37px de esos 50px de alto según el archivo. Estos
-   frames recortan cada imagen a su bounding box real de contenido
-   (medido con canvas + getImageData) y la escalan a una altura de
-   marca consistente de 40px — el extremo más chico del rango pedido,
-   porque a un archivo de 100x50px CUALQUIER tamaño de despliegue es
-   up-scaling; achicar acá reduce el pixelado pero no lo elimina.
-   El caso más forzado es "dreams" (contenido nativo de 16px, ~2.5x acá)
-   — es el que primero se nota borroso si se sube el tamaño.
-   Si se reemplazan los PNG por versiones de mayor resolución, este
-   bloque entero deja de hacer falta: alcanza con .logo-cloud__logo
-   { height: 40px; width: auto; object-fit: contain; }. */
+   Los 4 PNG en assets/Clientes/ ahora son de 280x192px (reemplazados;
+   antes eran 100x50px y necesitaban up-scaling agresivo). Cada uno
+   sigue teniendo una cantidad de "aire" distinta alrededor de la marca
+   real — el contenido visible ocupa entre 43px y 126px de esos 192px
+   de alto según el archivo. Estos frames recortan cada imagen a su
+   bounding box real de contenido (medido con canvas + getImageData) y
+   la escalan a una altura de marca consistente de 48px — con esta
+   resolución de origen, la mayoría de los logos ya no necesitan
+   up-scaling para llegar ahí (el único caso que sí, "dreams", es un
+   ~1.1x, no ~2.5x como antes).
+   Si algún logo se reemplaza de nuevo, hay que re-medir su bounding
+   box (no reusar estos valores — están calculados para el archivo
+   actual, no son un tamaño de marco fijo). */
 .logo-cloud__logo-frame {
   position: relative;
   display: block;
@@ -80,36 +78,36 @@
   max-width: none;
 }
 
-.logo-cloud__logo-frame--marciano { width: 163.5px; height: 40px; }
+.logo-cloud__logo-frame--marciano { width: 112.1px; height: 48px; }
 .logo-cloud__logo-frame--marciano .logo-cloud__logo {
-  width: 173.9px;
-  height: 87px;
-  top: -22.6px;
-  left: -3.5px;
+  width: 141.4px;
+  height: 97px;
+  top: -24.8px;
+  left: -12.6px;
 }
 
-.logo-cloud__logo-frame--dreams { width: 220px; height: 40px; }
+.logo-cloud__logo-frame--dreams { width: 253.4px; height: 48px; }
 .logo-cloud__logo-frame--dreams .logo-cloud__logo {
-  width: 250px;
-  height: 125px;
-  top: -40px;
-  left: -15px;
+  width: 312.6px;
+  height: 214.3px;
+  top: -79.2px;
+  left: -19px;
 }
 
-.logo-cloud__logo-frame--xblues { width: 156.5px; height: 40px; }
+.logo-cloud__logo-frame--xblues { width: 196.3px; height: 48px; }
 .logo-cloud__logo-frame--xblues .logo-cloud__logo {
-  width: 173.9px;
-  height: 87px;
-  top: -27.8px;
-  left: -7px;
+  width: 240px;
+  height: 164.6px;
+  top: -63.4px;
+  left: -19.7px;
 }
 
-.logo-cloud__logo-frame--yina { width: 70.3px; height: 40px; }
+.logo-cloud__logo-frame--yina { width: 93px; height: 48px; }
 .logo-cloud__logo-frame--yina .logo-cloud__logo {
-  width: 108.1px;
-  height: 54.1px;
-  top: -6.5px;
-  left: -20.5px;
+  width: 106.7px;
+  height: 73.1px;
+  top: -14.5px;
+  left: -7.2px;
 }
 
 .logo-cloud__name {
