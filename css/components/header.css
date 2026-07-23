@@ -37,23 +37,26 @@
   border-bottom-color: rgba(255, 255, 255, 0.12) !important;
 }
 
+/* !important en todo este bloque también: mismo motivo que el fondo
+   de arriba — dos estados excluyentes controlados por JS, no
+   cascada orgánica. */
 .site-header--glass .site-header__brand,
 .site-header--glass .site-header__tagline,
 .site-header--glass .site-header__nav-link,
 .site-header--glass .site-header__menu-toggle {
-  color: var(--color-text-on-dark);
+  color: var(--color-text-on-dark) !important;
 }
 
 .site-header--glass .site-header__nav-link::after,
 .site-header--glass .site-header__nav-link[aria-current='page']::after {
-  background: var(--color-text-on-dark);
+  background: var(--color-text-on-dark) !important;
 }
 
 /* icono-negro.svg es monocromático (negro sobre transparente): invertir
    a blanco puro es más robusto que mantener una segunda variante del
    SVG solo para este estado. */
 .site-header--glass .site-header__logo-icon {
-  filter: brightness(0) invert(1);
+  filter: brightness(0) invert(1) !important;
 }
 
 .site-header__inner {
@@ -89,7 +92,7 @@
   font-family: var(--font-heading);
   font-weight: var(--fw-bold);
   font-size: var(--text-lg);
-  color: var(--color-black);
+  color: var(--color-black) !important;
   transition: color var(--duration-micro) var(--ease-out);
 }
 
@@ -116,13 +119,13 @@
   font-family: var(--font-body);
   font-weight: var(--fw-medium);
   font-size: var(--text-base);
-  color: var(--color-black);
+  color: var(--color-black) !important;
   cursor: pointer;
   transition: color var(--duration-micro) var(--ease-out);
 }
 
 .site-header__nav-link:hover {
-  color: var(--color-primary);
+  color: var(--color-primary) !important;
 }
 
 .site-header__nav-link::after {
@@ -143,13 +146,13 @@
 }
 
 .site-header__nav-link[aria-current='page'] {
-  color: var(--color-black);
+  color: var(--color-black) !important;
   font-weight: var(--fw-semibold);
 }
 
 .site-header__nav-link[aria-current='page']::after {
   transform: scaleX(1);
-  background: var(--color-black);
+  background: var(--color-black) !important;
 }
 
 /* ---------- CTA (desktop) ---------- */
@@ -167,7 +170,7 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  color: var(--color-black);
+  color: var(--color-black) !important;
   transition: color var(--duration-micro) var(--ease-out);
 }
 
