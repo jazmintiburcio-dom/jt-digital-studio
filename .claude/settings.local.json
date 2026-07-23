@@ -29,7 +29,9 @@
       "Bash(git commit -m ' *)",
       "Bash(git status *)",
       "Bash(ls -la \"/c/Users/jazmint/.claude/skills/ui-ux-pro-max/scripts/\" 2>&1)",
-      "Bash(python3 \"/c/Users/jazmint/.claude/skills/ui-ux-pro-max/scripts/search.py\" \"web agency boutique conversion-focused latin america professional independent\" --design-system -p \"JT Digital Studio Home\")"
+      "Bash(python3 \"/c/Users/jazmint/.claude/skills/ui-ux-pro-max/scripts/search.py\" \"web agency boutique conversion-focused latin america professional independent\" --design-system -p \"JT Digital Studio Home\")",
+      "Bash(git push *)",
+      "Bash(git remote *)"
     ]
   }
 }

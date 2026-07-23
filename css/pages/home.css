@@ -304,46 +304,59 @@
   }
 }
 
+/* Estilo "Cliento" (ref. dribbble.com/shots/27029480): card oscura con
+   acento naranja, no card clara con borde de acento — reemplaza el
+   tratamiento anterior (fondo blanco + borde + overlay 4%) entero. */
 .archetype-card {
   position: relative;
+  overflow: hidden;
   padding: var(--space-6);
-  background: var(--color-surface);
-  border-top: 3px solid var(--color-primary);
-  border-left: 3px solid var(--color-primary);
+  background: var(--color-dark);
+  color: var(--color-bg);
   border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-sm);
-  transition: box-shadow var(--duration-micro) var(--ease-out);
+  transition:
+    transform var(--duration-section) var(--ease-out),
+    box-shadow var(--duration-section) var(--ease-out);
 }
 
+/* Banda superior de acento, no borde de card completo. */
 .archetype-card::before {
   content: '';
   position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: rgba(38, 42, 43, 0.04);
-  pointer-events: none;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--color-primary);
 }
 
 .archetype-card:hover {
-  box-shadow: var(--shadow-md);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(253, 101, 2, 0.15);
 }
 
 .archetype-card__number {
-  font-family: var(--font-body);
+  display: block;
+  margin-bottom: var(--space-4);
+  font-family: var(--font-heading);
   font-weight: var(--fw-bold);
-  font-size: var(--text-sm);
+  font-size: 3rem;
+  line-height: 1;
   color: var(--color-primary);
 }
 
 .archetype-card__title {
   margin-top: var(--space-3);
+  margin-bottom: var(--space-3);
   font-size: var(--text-lg);
+  font-weight: var(--fw-semibold);
+  color: var(--color-surface);
 }
 
 .archetype-card__description {
   margin-top: var(--space-3);
   font-size: var(--text-base);
-  color: var(--color-text-body);
+  color: rgba(248, 248, 248, 0.7);
 }
 
 /* ============ 04. Servicios (preview) ============ */
@@ -355,45 +368,35 @@
   margin-top: var(--space-7);
 }
 
-/* Fondo --color-surface (blanco) a propósito: la sección es
-   --color-bg (#f8f8f8) — sin fondo propio, la card se confundiría con
-   la sección. Sombra md en reposo (un escalón más que la sección
-   anterior, "Para quién diseñamos", en sm), lg al hover. */
+/* Estilo "Cliento" (ref. dribbble.com/shots/27029480): mismo giro que
+   .archetype-card — card oscura + acento naranja, no card clara con
+   borde. Reemplaza el fondo blanco + borde + overlay 4% anterior. */
 .service-preview-card {
   position: relative;
+  overflow: hidden;
   padding: var(--space-6);
-  background: var(--color-surface);
-  border-top: 3px solid var(--color-primary);
-  border-left: 3px solid var(--color-primary);
+  background: var(--color-dark);
+  color: var(--color-bg);
   border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-md);
   transition:
-    box-shadow var(--duration-micro) var(--ease-out),
-    transform var(--duration-micro) var(--ease-out);
-}
-
-.service-preview-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: rgba(38, 42, 43, 0.04);
-  pointer-events: none;
+    transform var(--duration-section) var(--ease-out),
+    box-shadow var(--duration-section) var(--ease-out);
 }
 
 .service-preview-card:hover {
-  box-shadow: var(--shadow-lg);
   transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(253, 101, 2, 0.15);
 }
 
 .service-preview-card__icon {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   width: 48px;
   height: 48px;
+  margin-bottom: var(--space-4);
   border-radius: var(--radius-md);
-  background: rgba(253, 101, 2, 0.12);
+  background: rgba(253, 101, 2, 0.15);
   color: var(--color-primary);
 }
 
@@ -404,12 +407,15 @@
 
 .service-preview-card__title {
   margin-top: var(--space-4);
+  margin-bottom: var(--space-3);
   font-size: var(--text-lg);
+  font-weight: var(--fw-semibold);
+  color: var(--color-surface);
 }
 
 .service-preview-card__description {
   margin-top: var(--space-3);
-  color: var(--color-text-body);
+  color: rgba(248, 248, 248, 0.7);
 }
 
 /* ============ 05. Portafolio destacado (preview, sin expansión) ============ */
