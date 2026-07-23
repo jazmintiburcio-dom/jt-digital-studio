@@ -7,20 +7,35 @@
 
 /* ============ 01. Hero ============ */
 
+/* margin-top negativo = alto del header: el Hero "sangra" por debajo
+   del header sticky en vez de quedar empujado después de él. Así el
+   header (transparente al tope de la página) tiene el video detrás
+   para mostrar, no el fondo de página. Sin este margen, un header
+   transparente no tendría nada de color contra qué contrastar: seguiría
+   viéndose como una franja lisa, porque el header ocupa su propio
+   espacio en el flujo normal en vez de superponerse al Hero. */
 .hero {
   position: relative;
   display: flex;
   align-items: center;
-  min-height: 100%;
+  height: 100svh;
+  margin-top: calc(-1 * var(--header-height));
   overflow: hidden;
 }
 
+/* scale + transform-origin sesgado arriba-izquierda: recorta el
+   watermark "KlingAI 3.0" de la esquina inferior-derecha del video
+   fuente. Un scale centrado agrandaría parejo por los 4 lados; con el
+   origen corrido, el excedente se "come" mucho más de esa esquina
+   que del resto del frame. */
 .hero__bg {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transform: scale(1.12);
+  transform-origin: 25% 25%;
   pointer-events: none;
 }
 
@@ -49,15 +64,25 @@
 
 .hero__content {
   position: relative;
-  padding-block: var(--space-7);
+  /* padding-top compensa el margin-top negativo de .hero: sin esto, el
+     bloque de texto (centrado verticalmente por align-items:center en
+     .hero) quedaría corrido hacia arriba, por debajo del header. */
+  padding-top: calc(var(--header-height) + var(--space-6));
+  padding-bottom: var(--space-7);
+  /* Padding izquierdo mínimo, muy por debajo de --container-padding
+     (hasta 3rem/48px en el resto del sitio): el Hero es un tratamiento
+     full-bleed — solo el respiro justo para que el texto no toque el
+     borde real de la pantalla, no el gutter estándar del sitio. */
+  padding-left: var(--space-4);
 }
 
 /* Ancho del bloque de texto separado del .container que lo envuelve:
    .container ya centra su caja de 1280px con margin-inline:auto: si el
    max-width chico fuera directo sobre esa misma caja, quedaría
    re-centrado en el medio del hero en vez de pegado al borde izquierdo
-   del padding del container. 560px para no invadir la pantalla del
-   iMac del video (pedido explícito del cliente). */
+   del padding del container. Pegado al borde del padding (sin
+   margin-left extra): hay aire de sobra antes de la pantalla del
+   iMac del video, así que el texto puede quedar más a la izquierda. */
 .hero__text {
   max-width: 560px;
 }
@@ -72,24 +97,42 @@
 }
 
 .hero__title {
-  margin-top: var(--space-3);
+  margin-top: var(--space-6);
   color: var(--color-text-on-dark);
-  /* Tamaño propio, más chico que --text-display (72px): evita que el
-     Hero empuje el CTA fuera de la primera pantalla en laptops. */
-  font-size: clamp(2rem, 1.3rem + 3vw, 3.25rem);
-  line-height: 1.05;
+  /* Tope de 2.625rem (42px), no 3.25rem: medido contra el ancho real
+     de .hero__text (560px) para que "Desarrollo web estratégico" (el
+     segmento más largo de los 3 <br> manuales de abajo) entre en una
+     sola línea sin volver a envolver — a 3.25rem necesitaba 654px,
+     más que el ancho disponible. */
+  font-size: clamp(2rem, 1.3rem + 3vw, 2.625rem);
+  /* Más liviano y compacto que el resto de los headings del sitio
+     (fw-semibold / leading-tight): a este tamaño, Bold + line-height
+     1.15 se sentía pesado sobre el video. Ajuste solo para el H1 del
+     Hero, no toca el resto de la tipografía. */
+  font-weight: var(--fw-medium);
+  line-height: 1.02;
+  letter-spacing: -0.015em;
 }
 
 .hero__subtitle {
-  margin-top: var(--space-4);
+  margin-top: var(--space-6);
   font-size: var(--text-md);
+  font-weight: var(--fw-regular);
   line-height: var(--leading-relaxed);
-  color: rgba(255, 255, 255, 0.88);
+  /* Opacidad reducida (no --color-text-on-dark sólido): a propósito,
+     para que se lea claramente como secundario frente al H1. */
+  color: rgba(255, 255, 255, 0.75);
   max-width: 55ch;
 }
 
 .hero__cta {
-  margin-top: var(--space-5);
+  margin-top: var(--space-6);
+}
+
+.hero__cta-microcopy {
+  margin-top: var(--space-3);
+  font-size: var(--text-sm);
+  color: rgba(255, 255, 255, 0.72);
 }
 
 @media (max-width: 767px) {
@@ -104,20 +147,31 @@
 
 /* ============ 02. Prueba social ============ */
 
-/* Hairline: esta sección y la 03 (Para quién) comparten el mismo
-   --color-bg, así que sin esto quedan sin separación visible. */
+/* El Hero ya no queda sticky/pineado: al vivir en flujo normal, el
+   scroll natural del documento ya lo retira de pantalla. El borde
+   redondeado superior es solo un remate visual (efecto "estante") de
+   la sección que le sigue — no depende de ningún posicionamiento
+   especial. Hairline necesario porque esta sección y la 03 (Para
+   quién) comparten el mismo --color-bg y quedarían sin separación
+   visible. */
 .social-proof {
+  position: relative;
+  background: var(--color-bg);
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
   border-bottom: 1px solid var(--color-border-hairline);
 }
 
+/* Mismo tratamiento que .hero__overline ("Agencia de diseño web"): el
+   overline es un patrón único del sitio, no dos estilos distintos.
+   Antes tenía su propio peso/letter-spacing/color más apagados. */
 .social-proof__label {
   text-align: center;
   font-family: var(--font-body);
-  font-weight: var(--fw-medium);
+  font-weight: var(--fw-semibold);
   font-size: var(--text-sm);
-  letter-spacing: 0.04em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--color-text-tertiary);
+  color: var(--color-primary);
 }
 
 /* ---------- Fila de estadísticas ---------- */
@@ -148,11 +202,14 @@
   color: var(--color-text-body);
 }
 
+/* margin space-8 (64px, no space-7): separa notoriamente la fila de
+   cifras del bloque "Trabajamos con" — con space-7 se sentían
+   pegados pese al hairline de por medio. */
 .social-proof__divider {
   height: 1px;
   background: var(--color-border-hairline);
   max-width: 640px;
-  margin: var(--space-7) auto;
+  margin: var(--space-8) auto;
 }
 
 /* ---------- Marquee de herramientas ---------- */

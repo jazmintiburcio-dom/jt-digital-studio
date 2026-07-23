@@ -80,3 +80,36 @@ export function initHeader(root = document) {
     link.addEventListener('click', () => close({ returnFocus: false }));
   });
 }
+
+/*
+  Header con efecto vidrio sobre el hero
+  Opt-in: solo se activa en páginas que tengan un [data-hero-fade] (hoy,
+  Home) Y un [data-header-sentinel] (hoy, el primer nodo del body). En
+  el resto de las páginas el header queda con su fondo sólido de
+  siempre — este comportamiento no las toca.
+
+  IntersectionObserver, no scroll+window.scrollY: un listener de scroll
+  leyendo window.scrollY resultó no disparar de forma confiable en
+  scroll real (quedaba pegado en "vidrio" pese a funcionar en pruebas
+  simuladas) — IntersectionObserver corre en el hilo del compositor del
+  navegador, no depende de que el hilo principal reciba/procese cada
+  evento de scroll. El sentinel está posicionado exactamente a 80px
+  del top del documento (position:absolute, sin rootMargin): deja de
+  intersectar apenas el scroll lo pasa, sin ambigüedad de signos ni
+  casos límite de un nodo de altura 0 pegado al borde.
+*/
+export function initHeaderTransparency(root = document) {
+  const header = root.querySelector('.site-header');
+  const hero = root.querySelector('[data-hero-fade]');
+  const sentinel = root.querySelector('[data-header-sentinel]');
+  if (!header || !hero || !sentinel) return;
+
+  const observer = new IntersectionObserver(
+    ([entry]) => {
+      header.classList.toggle('site-header--glass', entry.isIntersecting);
+    },
+    { threshold: 0 }
+  );
+
+  observer.observe(sentinel);
+}

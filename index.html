@@ -6,7 +6,7 @@
   <title>JT Digital Studio — Desarrollo web estratégico en Buenos Aires para profesionales y PyMEs</title>
   <meta name="description" content="Diseñamos sitios que trabajan para usted todos los días: lo encuentran en Google, generan consultas reales y muestran el nivel profesional que ya tiene. Diagnóstico gratuito.">
 
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/marca/favicon.svg" type="image/svg+xml">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -90,12 +90,14 @@
 </head>
 <body>
 
+  <div data-header-sentinel aria-hidden="true" style="position: absolute; top: 80px; left: 0; width: 1px; height: 1px; pointer-events: none;"></div>
+
   <a class="skip-link" href="#main-content">Saltar al contenido</a>
 
   <header class="site-header">
     <div class="site-header__inner container">
       <a href="index.html" class="site-header__logo" aria-label="JT Digital Studio — Inicio">
-        <img src="assets/icono-negro.svg" alt="" class="site-header__logo-icon" width="32" height="32">
+        <img src="assets/marca/icono-negro.svg" alt="" class="site-header__logo-icon" width="32" height="32">
         <span class="site-header__wordmark">
           <span class="site-header__brand">JT Digital Studio</span>
           <span class="site-header__tagline">Diseño Web &amp; Sistemas Digitales</span>
@@ -173,72 +175,109 @@
 
   <main id="main-content">
 
-    <div class="sticky-hero-container">
-      <!-- 01. Hero -->
-      <section class="sticky-hero hero" data-scroll-reveal>
-        <video
-          class="hero__bg"
-          data-hero-video
-          autoplay
-          muted
-          loop
-          playsinline
-          preload="metadata"
-          aria-hidden="true"
-        >
-          <source src="Visuals/home/hero-home.mp4" type="video/mp4">
-        </video>
-        <div class="hero__overlay"></div>
-        <div class="container hero__content">
-          <div class="hero__text">
-            <p class="hero__overline" data-reveal>Agencia de diseño web</p>
-            <h1 class="hero__title" data-reveal>Desarrollo web estratégico en Buenos Aires para profesionales y PyMEs</h1>
-            <p class="hero__subtitle" data-reveal>Creamos sitios web profesionales para que su negocio gane visibilidad en Google, genere confianza y convierta visitas en consultas reales.</p>
-            <a href="contacto.html" class="btn btn--primary hero__cta" data-reveal>Quiero mi diagnóstico</a>
+    <!-- 01. Hero -->
+    <section class="hero" data-scroll-reveal data-hero-fade>
+      <video
+        class="hero__bg"
+        data-hero-video
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="metadata"
+        aria-hidden="true"
+      >
+        <source src="Visuals/home/hero-loop.mp4" type="video/mp4">
+      </video>
+      <div class="hero__overlay"></div>
+      <div class="container hero__content">
+        <div class="hero__text">
+          <p class="hero__overline" data-reveal>Agencia de diseño web</p>
+          <h1 class="hero__title" data-reveal>Desarrollo web estratégico<br>en Buenos Aires para<br>profesionales y PyMEs</h1>
+          <p class="hero__subtitle" data-reveal>¿Todavía no tiene sitio o el suyo no le está generando resultados?</p>
+          <a href="contacto.html" class="btn btn--primary hero__cta" data-reveal>Diagnóstico gratis</a>
+          <p class="hero__cta-microcopy" data-reveal>Sin costo, sin compromiso</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02. Prueba social rápida -->
+    <section class="section social-proof" data-scroll-reveal>
+      <div class="container">
+        <p class="social-proof__label" data-reveal>Resultados que respaldan el trabajo</p>
+
+        <div class="social-proof__stats" data-reveal>
+          <div>
+            <p class="social-proof__stat-value">3 meses</p>
+            <p class="social-proof__stat-label">Soporte incluido post-lanzamiento</p>
+          </div>
+          <div>
+            <p class="social-proof__stat-value social-proof__stat-value--accent">15 días</p>
+            <p class="social-proof__stat-label">Tiempo de entrega</p>
+          </div>
+          <div>
+            <p class="social-proof__stat-value">100%</p>
+            <p class="social-proof__stat-label">Autonomía en WordPress</p>
           </div>
         </div>
-      </section>
 
-      <!-- 02. Prueba social rápida -->
-      <section class="sticky-hero-next section social-proof" data-scroll-reveal>
-        <div class="container">
-          <p class="social-proof__label" data-reveal>Resultados que respaldan el trabajo</p>
+        <div class="social-proof__divider"></div>
 
-          <div class="social-proof__stats" data-reveal>
-            <div>
-              <p class="social-proof__stat-value">+20</p>
-              <p class="social-proof__stat-label">Proyectos entregados</p>
+        <p class="social-proof__label" data-reveal>Trabajamos con</p>
+        <div class="logo-cloud social-proof__logo-cloud" data-reveal>
+          <div class="logo-cloud__track">
+            <div class="logo-cloud__item">
+              <span class="logo-cloud__logo-frame logo-cloud__logo-frame--xblues">
+                <img src="assets/Clientes/xblues-tek_logo.png" alt="Xblues.Tek" class="logo-cloud__logo" loading="lazy">
+              </span>
+              <span class="logo-cloud__name">Xblues.Tek</span>
             </div>
-            <div>
-              <p class="social-proof__stat-value social-proof__stat-value--accent">15 días</p>
-              <p class="social-proof__stat-label">Tiempo de entrega</p>
+            <div class="logo-cloud__item">
+              <span class="logo-cloud__logo-frame logo-cloud__logo-frame--dreams">
+                <img src="assets/Clientes/dreams-fusion-co_logo.png" alt="Dreams Fusion &amp; Co." class="logo-cloud__logo" loading="lazy">
+              </span>
+              <span class="logo-cloud__name">Dreams Fusion &amp; Co.</span>
             </div>
-            <div>
-              <p class="social-proof__stat-value">100%</p>
-              <p class="social-proof__stat-label">Autonomía en WordPress</p>
+            <div class="logo-cloud__item">
+              <span class="logo-cloud__logo-frame logo-cloud__logo-frame--yina">
+                <img src="assets/Clientes/yina-realotr_logo.png" alt="Yina Tiburcio Realtor" class="logo-cloud__logo" loading="lazy">
+              </span>
+              <span class="logo-cloud__name">Yina Tiburcio Realtor</span>
             </div>
-          </div>
-
-          <div class="social-proof__divider"></div>
-
-          <!-- Wordmarks de texto como placeholder: reemplazar por logos reales
-               (assets/) cuando estén disponibles -->
-          <p class="social-proof__label" data-reveal>Trabajamos con</p>
-          <div class="logo-cloud social-proof__logo-cloud" data-reveal>
-            <div class="logo-cloud__track">
-              <span class="logo-cloud__logo-text">WordPress</span>
-              <span class="logo-cloud__logo-text">WooCommerce</span>
-              <span class="logo-cloud__logo-text">Mercado Pago</span>
-              <span class="logo-cloud__logo-text">Google</span>
-              <span class="logo-cloud__logo-text" aria-hidden="true">WordPress</span>
-              <span class="logo-cloud__logo-text" aria-hidden="true">WooCommerce</span>
-              <span class="logo-cloud__logo-text" aria-hidden="true">Mercado Pago</span>
-              <span class="logo-cloud__logo-text" aria-hidden="true">Google</span>
+            <div class="logo-cloud__item">
+              <span class="logo-cloud__logo-frame logo-cloud__logo-frame--marciano">
+                <img src="assets/Clientes/Marciano.barber_logo.png" alt="Marciano Barber Studio" class="logo-cloud__logo" loading="lazy">
+              </span>
+              <span class="logo-cloud__name">Marciano Barber Studio</span>
+            </div>
+            <div class="logo-cloud__item" aria-hidden="true">
+              <span class="logo-cloud__logo-frame logo-cloud__logo-frame--xblues">
+                <img src="assets/Clientes/xblues-tek_logo.png" alt="" class="logo-cloud__logo" loading="lazy">
+              </span>
+              <span class="logo-cloud__name">Xblues.Tek</span>
+            </div>
+            <div class="logo-cloud__item" aria-hidden="true">
+              <span class="logo-cloud__logo-frame logo-cloud__logo-frame--dreams">
+                <img src="assets/Clientes/dreams-fusion-co_logo.png" alt="" class="logo-cloud__logo" loading="lazy">
+              </span>
+              <span class="logo-cloud__name">Dreams Fusion &amp; Co.</span>
+            </div>
+            <div class="logo-cloud__item" aria-hidden="true">
+              <span class="logo-cloud__logo-frame logo-cloud__logo-frame--yina">
+                <img src="assets/Clientes/yina-realotr_logo.png" alt="" class="logo-cloud__logo" loading="lazy">
+              </span>
+              <span class="logo-cloud__name">Yina Tiburcio Realtor</span>
+            </div>
+            <div class="logo-cloud__item" aria-hidden="true">
+              <span class="logo-cloud__logo-frame logo-cloud__logo-frame--marciano">
+                <img src="assets/Clientes/Marciano.barber_logo.png" alt="" class="logo-cloud__logo" loading="lazy">
+              </span>
+              <span class="logo-cloud__name">Marciano Barber Studio</span>
             </div>
           </div>
         </div>
-      </section>
-    </div>
+      </div>
+    </section>
 
     <!-- 03. Para quién diseñamos -->
     <section class="section" data-scroll-reveal>
@@ -343,7 +382,7 @@
             </div>
             <div class="portfolio-preview-card__body">
               <h3 class="portfolio-preview-card__title">XBlues.ar</h3>
-              <p class="portfolio-preview-card__meta">11 páginas</p>
+              <p class="portfolio-preview-card__meta">Consultoría TI en LATAM</p>
             </div>
           </a>
           <a href="proyectos.html" class="portfolio-preview-card">
@@ -352,7 +391,7 @@
             </div>
             <div class="portfolio-preview-card__body">
               <h3 class="portfolio-preview-card__title">Dreams Fusion &amp; Co.</h3>
-              <p class="portfolio-preview-card__meta">9 páginas</p>
+              <p class="portfolio-preview-card__meta">Editorial de e-books en Amazon</p>
             </div>
           </a>
         </div>
@@ -381,8 +420,8 @@
             <span class="testimonial-card__mark" aria-hidden="true">"</span>
             <p class="testimonial-card__quote">Necesitábamos una web que representara el nivel del negocio, no solo una tarjeta de presentación. El resultado fue justo eso.</p>
             <div class="testimonial-card__author">
-              <div class="testimonial-card__avatar" aria-hidden="true">
-                <span class="testimonial-card__avatar-initials">DR</span>
+              <div class="testimonial-card__avatar">
+                <img src="Visuals/home/testimonios/diego-rinaldi.jpg" alt="" class="testimonial-card__avatar-img" loading="lazy">
               </div>
               <div>
                 <p class="testimonial-card__name">Diego Rinaldi</p>
@@ -394,8 +433,8 @@
             <span class="testimonial-card__mark" aria-hidden="true">"</span>
             <p class="testimonial-card__quote">El proceso fue claro de punta a punta. Sabíamos en qué etapa estábamos en todo momento.</p>
             <div class="testimonial-card__author">
-              <div class="testimonial-card__avatar" aria-hidden="true">
-                <span class="testimonial-card__avatar-initials">JB</span>
+              <div class="testimonial-card__avatar">
+                <img src="Visuals/home/testimonios/javier-barabas.jpg" alt="" class="testimonial-card__avatar-img" loading="lazy">
               </div>
               <div>
                 <p class="testimonial-card__name">Javier Barabas</p>
@@ -407,8 +446,8 @@
             <span class="testimonial-card__mark" aria-hidden="true">"</span>
             <p class="testimonial-card__quote">Mis clientes ahora me encuentran directamente en Google, en español y en inglés.</p>
             <div class="testimonial-card__author">
-              <div class="testimonial-card__avatar" aria-hidden="true">
-                <span class="testimonial-card__avatar-initials">YT</span>
+              <div class="testimonial-card__avatar">
+                <img src="Visuals/home/testimonios/yina-tiburcio.jpg" alt="" class="testimonial-card__avatar-img" loading="lazy">
               </div>
               <div>
                 <p class="testimonial-card__name">Yina Tiburcio</p>
@@ -592,7 +631,7 @@
     <div class="container site-footer__top">
       <div>
         <div class="site-footer__brand">
-          <img src="assets/icono-negro.svg" alt="" class="site-footer__logo-icon" width="32" height="32">
+          <img src="assets/marca/icono-negro.svg" alt="" class="site-footer__logo-icon" width="32" height="32">
           <span class="site-footer__wordmark">
             <span class="site-footer__brand-name">JT Digital Studio</span>
             <span class="site-footer__tagline">Diseño Web &amp; Sistemas Digitales</span>
@@ -610,6 +649,9 @@
           </a>
           <a href="#" class="site-footer__social-link" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.03-1.85-3.03-1.85 0-2.14 1.45-2.14 2.94v5.66H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 110-4.12 2.06 2.06 0 010 4.12zM7.11 20.45H3.56V9h3.55v11.45z"/></svg>
+          </a>
+          <a href="https://ar.pinterest.com/jt_digitalstudio" class="site-footer__social-link" target="_blank" rel="noopener noreferrer" aria-label="Pinterest">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0a12 12 0 00-4.373 23.178c-.017-.888-.006-1.955.223-2.92.245-1.026 1.635-6.938 1.635-6.938s-.407-.816-.407-2.022c0-1.895 1.098-3.31 2.465-3.31 1.162 0 1.723.873 1.723 1.92 0 1.17-.744 2.92-1.129 4.544-.321 1.36.682 2.469 2.023 2.469 2.427 0 4.292-2.56 4.292-6.253 0-3.271-2.351-5.556-5.708-5.556-3.888 0-6.171 2.917-6.171 5.932 0 1.174.452 2.434 1.017 3.119a.41.41 0 01.095.393c-.104.433-.336 1.36-.382 1.55-.06.25-.199.303-.459.183-1.716-.799-2.788-3.31-2.788-5.324 0-4.335 3.15-8.318 9.081-8.318 4.766 0 8.47 3.396 8.47 7.938 0 4.736-2.987 8.545-7.133 8.545-1.393 0-2.703-.724-3.151-1.579l-.856 3.264c-.31 1.192-1.148 2.687-1.708 3.598A12 12 0 1012 0z"/></svg>
           </a>
         </div>
       </div>

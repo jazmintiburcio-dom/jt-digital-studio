@@ -11,7 +11,9 @@
   --color-primary: #fd6502;
   --color-primary-hover: #e55800;
   --color-dark: #262a2b;      /* CTA final, headings */
-  --color-darker: #17191a;    /* footer — distinto de --color-dark a propósito, ver nota abajo */
+  --color-black: #000000;     /* negro puro — navbar sobre fondo sólido, máximo contraste a propósito */
+  --color-darker: #1c1f20;    /* footer — un escalón más oscuro que --color-dark a propósito,
+                                  para que la costura entre el CTA final y el footer se note */
 
   /* ---------- Color: neutros ---------- */
   --color-bg: #f8f8f8;          /* fondo general del sitio */

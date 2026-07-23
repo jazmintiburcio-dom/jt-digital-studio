@@ -20,7 +20,12 @@
       "Bash(git branch *)",
       "Bash(git symbolic-ref *)",
       "Bash(git config *)",
-      "Bash(git add *)"
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git checkout *)",
+      "Bash(python3 -c ' *)",
+      "Bash(node -e ' *)",
+      "mcp__claude-in-chrome__tabs_context_mcp"
     ]
   }
 }

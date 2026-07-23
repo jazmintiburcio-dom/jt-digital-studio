@@ -2,6 +2,17 @@
   JT Digital Studio — Header
   Sticky simple (sin shrink ni hide-on-scroll). Breakpoint único de
   nav → drawer en 900px, compartido con mobile-menu.css.
+
+  .site-header--glass es opt-in (ver initHeaderTransparency en
+  header.js): solo se activa en páginas con hero de video, mientras el
+  scroll está por debajo del umbral. En el resto de las páginas el
+  header nunca recibe esta clase y queda sólido como siempre.
+
+  Dos estados con su propio juego de colores: vidrio oscuro + texto
+  claro sobre el video, sólido claro + texto negro puro en cuanto pasa
+  a las secciones de abajo. La transición (background, border, color,
+  filter) está declarada en las reglas BASE (no solo en --glass), así
+  anima suave en los dos sentidos, no solo al activarse.
 */
 
 .site-header {
@@ -10,6 +21,39 @@
   z-index: var(--z-sticky);
   background: var(--color-surface);
   border-bottom: 1px solid var(--color-border-hairline);
+  transition:
+    background-color var(--duration-micro) var(--ease-out),
+    border-color var(--duration-micro) var(--ease-out);
+}
+
+/* !important justificado: alterna entre dos estados excluyentes
+   controlados por JS (vidrio vs. sólido), no es cascada orgánica —
+   necesita ganar siempre, sin depender de dónde se importe este
+   archivo relativo a otros. */
+.site-header--glass {
+  background: rgba(0, 0, 0, 0.35) !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom-color: rgba(255, 255, 255, 0.12) !important;
+}
+
+.site-header--glass .site-header__brand,
+.site-header--glass .site-header__tagline,
+.site-header--glass .site-header__nav-link,
+.site-header--glass .site-header__menu-toggle {
+  color: var(--color-text-on-dark);
+}
+
+.site-header--glass .site-header__nav-link::after,
+.site-header--glass .site-header__nav-link[aria-current='page']::after {
+  background: var(--color-text-on-dark);
+}
+
+/* icono-negro.svg es monocromático (negro sobre transparente): invertir
+   a blanco puro es más robusto que mantener una segunda variante del
+   SVG solo para este estado. */
+.site-header--glass .site-header__logo-icon {
+  filter: brightness(0) invert(1);
 }
 
 .site-header__inner {
@@ -32,6 +76,7 @@
   width: 32px;
   height: 32px;
   flex-shrink: 0;
+  transition: filter var(--duration-micro) var(--ease-out);
 }
 
 .site-header__wordmark {
@@ -44,7 +89,8 @@
   font-family: var(--font-heading);
   font-weight: var(--fw-bold);
   font-size: var(--text-lg);
-  color: var(--color-dark);
+  color: var(--color-black);
+  transition: color var(--duration-micro) var(--ease-out);
 }
 
 .site-header__tagline {
@@ -52,6 +98,7 @@
   font-weight: var(--fw-regular);
   font-size: var(--text-xs);
   color: var(--color-text-tertiary);
+  transition: color var(--duration-micro) var(--ease-out);
 }
 
 /* ---------- Nav (desktop) ---------- */
@@ -69,13 +116,13 @@
   font-family: var(--font-body);
   font-weight: var(--fw-medium);
   font-size: var(--text-base);
-  color: var(--color-text-body);
+  color: var(--color-black);
   cursor: pointer;
   transition: color var(--duration-micro) var(--ease-out);
 }
 
 .site-header__nav-link:hover {
-  color: var(--color-dark);
+  color: var(--color-primary);
 }
 
 .site-header__nav-link::after {
@@ -96,13 +143,13 @@
 }
 
 .site-header__nav-link[aria-current='page'] {
-  color: var(--color-dark);
+  color: var(--color-black);
   font-weight: var(--fw-semibold);
 }
 
 .site-header__nav-link[aria-current='page']::after {
   transform: scaleX(1);
-  background: var(--color-dark);
+  background: var(--color-black);
 }
 
 /* ---------- CTA (desktop) ---------- */
@@ -120,7 +167,8 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  color: var(--color-dark);
+  color: var(--color-black);
+  transition: color var(--duration-micro) var(--ease-out);
 }
 
 .site-header__menu-toggle svg {
@@ -163,8 +211,13 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .site-header,
   .site-header__nav-link,
-  .site-header__nav-link::after {
+  .site-header__nav-link::after,
+  .site-header__brand,
+  .site-header__tagline,
+  .site-header__menu-toggle,
+  .site-header__logo-icon {
     transition: none;
   }
 }

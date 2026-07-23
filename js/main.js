@@ -8,17 +8,19 @@
   y no hace nada si no encuentra nodos que inicializar).
 */
 
-import { initHeader } from './components/header.js';
+import { initHeader, initHeaderTransparency } from './components/header.js';
 import { initAccordions } from './components/accordion.js';
 import { initExpandableCards } from './components/expandable-card.js';
 import { initFooter } from './components/footer.js';
-import { initScrollReveal, initParallax } from './scroll-animations.js';
+import { initScrollReveal, initParallax, initHeroFade } from './scroll-animations.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   initHeader();
+  initHeaderTransparency();
   initAccordions();
   initExpandableCards();
   initFooter();
   initScrollReveal();
   initParallax();
+  initHeroFade();
 });

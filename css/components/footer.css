@@ -1,27 +1,23 @@
 /*
   JT Digital Studio — Footer
-  Persistente en las 5 páginas del sitio. Fondo naranja (--color-primary).
-
-  NOTA DE CONTRASTE — mismo problema y misma solución que el botón
-  primario (ver tokens.css / buttons.css): sobre este naranja, texto
-  gris claro pierde MÁS contraste que texto oscuro, no menos (la
-  luminosidad del naranja está en un punto medio; acercarse a blanco
-  o a gris claro se acerca a esa misma luminosidad y el contraste cae).
-  Por eso todo el texto del footer usa --color-text-on-primary
-  (= --color-dark) de forma uniforme — la jerarquía visual se logra con
-  peso y tamaño de fuente, no con variaciones de color más claras.
+  Persistente en las 5 páginas del sitio. Fondo --color-darker: un
+  escalón más oscuro que el CTA final (--color-dark) que lo precede,
+  a propósito — el borde superior sutil + el padding-top extra marcan
+  la costura entre ambos bloques oscuros en vez de fundirse en uno solo.
 */
 
 .site-footer {
-  background: var(--color-primary);
-  color: var(--color-text-on-primary);
+  background: var(--color-darker);
+  color: var(--color-text-on-dark);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .site-footer__top {
   display: grid;
   grid-template-columns: 1.5fr 1fr 1fr;
   gap: var(--space-8);
-  padding-block: var(--space-9);
+  padding-top: var(--space-10);
+  padding-bottom: var(--space-9);
 }
 
 .site-footer__brand {
@@ -46,14 +42,14 @@
   font-family: var(--font-heading);
   font-weight: var(--fw-bold);
   font-size: var(--text-lg);
-  color: var(--color-text-on-primary);
+  color: var(--color-text-on-dark);
 }
 
 .site-footer__tagline {
   margin-top: var(--space-1);
   font-family: var(--font-body);
   font-size: var(--text-sm);
-  color: var(--color-text-on-primary);
+  color: var(--color-text-on-dark);
   max-width: 32ch;
 }
 
@@ -63,13 +59,17 @@
   font-size: var(--text-sm);
   text-transform: uppercase;
   letter-spacing: 0.04em;
-  color: var(--color-text-on-primary);
+  color: var(--color-text-on-dark);
 }
 
+/* gap space-2 (no space-3): con --tap-min (44px) ya dándole aire a
+   cada link para el touch target, un gap más chico entre ellos
+   empareja mejor el ritmo vertical de esta columna contra la de
+   Contacto (que solo tiene un link + el botón de WhatsApp). */
 .site-footer__list {
   display: flex;
   flex-direction: column;
-  gap: var(--space-3);
+  gap: var(--space-2);
   margin-top: var(--space-4);
 }
 
@@ -80,7 +80,7 @@
   font-family: var(--font-body);
   font-weight: var(--fw-medium);
   font-size: var(--text-base);
-  color: var(--color-text-on-primary);
+  color: var(--color-text-on-dark);
   cursor: pointer;
   text-decoration: none;
   transition: text-decoration-color var(--duration-micro) var(--ease-out);
@@ -93,9 +93,8 @@
 
 /* ---------- WhatsApp (footer) ----------
    Botón propio del footer, distinto del flotante global: mismo enlace
-   y verde de marca de WhatsApp (no de --color-primary, para que siga
-   siendo reconocible como WhatsApp y no se pierda contra el fondo
-   naranja, que ya es el color dominante de toda la banda). */
+   y verde de marca de WhatsApp, para que siga siendo reconocible como
+   WhatsApp en vez de fundirse con el resto de los enlaces del footer. */
 .site-footer__whatsapp {
   display: inline-flex;
   align-items: center;
@@ -137,23 +136,23 @@
   width: var(--tap-min);
   height: var(--tap-min);
   border-radius: 50%;
-  background: rgba(38, 42, 43, 0.12);
+  background: rgba(255, 255, 255, 0.1);
   cursor: pointer;
   transition: background-color var(--duration-micro) var(--ease-out);
 }
 
 .site-footer__social-link:hover {
-  background: var(--color-dark);
+  background: var(--color-primary);
 }
 
 .site-footer__social-link:hover svg {
-  fill: var(--color-text-on-dark);
+  fill: var(--color-text-on-primary);
 }
 
 .site-footer__social-link svg {
   width: 18px;
   height: 18px;
-  fill: var(--color-text-on-primary);
+  fill: var(--color-text-on-dark);
   transition: fill var(--duration-micro) var(--ease-out);
 }
 
@@ -164,10 +163,10 @@
   justify-content: space-between;
   gap: var(--space-3);
   padding-block: var(--space-5);
-  border-top: 1px solid rgba(38, 42, 43, 0.2);
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
   font-family: var(--font-body);
   font-size: var(--text-sm);
-  color: var(--color-text-on-primary);
+  color: var(--color-text-on-dark);
 }
 
 @media (max-width: 767px) {

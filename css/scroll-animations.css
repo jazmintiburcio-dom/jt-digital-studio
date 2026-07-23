@@ -1,10 +1,11 @@
 /*
   JT Digital Studio — Sistema de animación al scroll
-  Reutilizable en cualquier sección de cualquier página. Tres piezas:
+  Reutilizable en cualquier sección de cualquier página. Cuatro piezas:
 
-  1. Fade-in escalonado  → [data-scroll-reveal] + [data-reveal]
-  2. Parallax sutil      → [data-parallax]
-  3. Sticky-hero opcional → .sticky-hero-container / .sticky-hero / .sticky-hero-next
+  1. Fade-in escalonado    → [data-scroll-reveal] + [data-reveal]
+  2. Parallax sutil        → [data-parallax]
+  3. Sticky-hero opcional  → .sticky-hero-container / .sticky-hero / .sticky-hero-next
+  4. Hero fade-on-scroll   → [data-hero-fade]
 
   Toda animación usa transform/opacity (nunca width/height/top/left) y
   respeta prefers-reduced-motion — ver bloque final.
@@ -81,6 +82,26 @@
   z-index: var(--z-elevated);
   background: var(--color-bg);
   border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+}
+
+/* ==========================================================
+   4. Hero fade-on-scroll
+   Marcado esperado:
+   <section data-hero-fade>...video + texto del hero...</section>
+   A diferencia del sticky-hero, esta sección NO queda fija: vive en el
+   flujo normal del documento y el scroll ya la retira de pantalla por
+   sí solo. JS (initHeroFade) escribe --hero-fade-opacity y
+   --hero-fade-y en cada frame de scroll mientras la sección atraviesa
+   el viewport, con una curva ease-out — sin transition CSS superpuesta,
+   para no pelear contra el valor que ya llega interpolado por frame.
+   ========================================================== */
+
+[data-hero-fade] {
+  --hero-fade-opacity: 1;
+  --hero-fade-y: 0px;
+  opacity: var(--hero-fade-opacity);
+  transform: translateY(var(--hero-fade-y));
+  will-change: opacity, transform;
 }
 
 /* ==========================================================
