@@ -156,6 +156,10 @@
    visible. */
 .social-proof {
   position: relative;
+  /* padding-block a la mitad del --space-9 (96px) que trae .section:
+     esto es una franja de confianza compacta, no una sección de
+     contenido con el mismo peso que las de abajo. */
+  padding-block: var(--space-7);
   background: var(--color-bg);
   border-radius: var(--radius-xl) var(--radius-xl) 0 0;
   border-bottom: 1px solid var(--color-border-hairline);
@@ -184,6 +188,12 @@
   text-align: center;
 }
 
+/* Separador vertical fino entre cada métrica — no en la primera, que
+   no tiene nada a su izquierda. */
+.social-proof__stats > div:not(:first-child) {
+  border-left: 1px solid var(--color-border-hairline);
+}
+
 .social-proof__stat-value {
   font-family: var(--font-heading);
   font-weight: var(--fw-bold);
@@ -202,14 +212,13 @@
   color: var(--color-text-body);
 }
 
-/* margin space-8 (64px, no space-7): separa notoriamente la fila de
-   cifras del bloque "Trabajamos con" — con space-7 se sentían
-   pegados pese al hairline de por medio. */
+/* margin space-4 (16px, no space-8): la trust bar ahora es compacta —
+   ese espaciado grande quedaba fuera de lugar en una franja chica. */
 .social-proof__divider {
   height: 1px;
   background: var(--color-border-hairline);
   max-width: 640px;
-  margin: var(--space-8) auto;
+  margin: var(--space-4) auto;
 }
 
 /* ---------- Marquee de herramientas ---------- */
@@ -221,6 +230,15 @@
   .social-proof__stats {
     grid-template-columns: 1fr;
     gap: var(--space-4);
+  }
+
+  /* Apiladas en una columna: el separador pasa de vertical (izquierda)
+     a horizontal (arriba), si no quedaría una línea sin sentido al
+     costado de cada métrica. */
+  .social-proof__stats > div:not(:first-child) {
+    border-left: none;
+    border-top: 1px solid var(--color-border-hairline);
+    padding-top: var(--space-4);
   }
 }
 
@@ -282,22 +300,22 @@
   margin-top: var(--space-7);
 }
 
-/* Fondo --color-surface (blanco) a propósito: la sección tiene
-   --color-bg-alt, si la card no tuviera su propio fondo quedaría
-   literalmente del mismo color que la sección — sin forma de
-   distinguir dónde empieza una card y termina otra. */
+/* Fondo --color-surface (blanco) a propósito: la sección es
+   --color-bg (#f8f8f8) — sin fondo propio, la card se confundiría con
+   la sección. Sombra md en reposo (un escalón más que la sección
+   anterior, "Para quién diseñamos", en sm), lg al hover. */
 .service-preview-card {
   padding: var(--space-6);
   background: var(--color-surface);
   border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-sm);
+  box-shadow: var(--shadow-md);
   transition:
     box-shadow var(--duration-micro) var(--ease-out),
     transform var(--duration-micro) var(--ease-out);
 }
 
 .service-preview-card:hover {
-  box-shadow: var(--shadow-md);
+  box-shadow: var(--shadow-lg);
   transform: translateY(-4px);
 }
 
@@ -341,13 +359,13 @@
   border-radius: var(--radius-lg);
   overflow: hidden;
   background: var(--color-surface);
-  box-shadow: var(--shadow-sm);
+  box-shadow: var(--shadow-lg);
   cursor: pointer;
   transition: box-shadow var(--duration-micro) var(--ease-out);
 }
 
 .portfolio-preview-card:hover {
-  box-shadow: var(--shadow-md);
+  box-shadow: var(--shadow-orange);
 }
 
 .portfolio-preview-card__media {

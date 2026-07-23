@@ -17,9 +17,9 @@
 
   /* ---------- Color: neutros ---------- */
   --color-bg: #f8f8f8;          /* fondo general del sitio */
-  --color-bg-alt: #f2f2f2;      /* fondo alterno de sección (gris), para alternar con --color-bg */
-  --color-bg-warm: #f5f0e6;     /* fondo alterno cálido (beige) — alternativa a --color-bg-alt cuando
-                                    se quiere una separación de sección más perceptible que gris-sobre-gris */
+  --color-bg-alt: #f2f2f2;      /* uso en detalles de componente (placeholder de media, avatar) —
+                                    no usar como fondo de sección completa: la paleta de secciones
+                                    de Home se limita a #ffffff / #f8f8f8 / #262a2b */
   --color-surface: #ffffff;     /* cards / superficies elevadas */
 
   --color-text-heading: var(--color-dark);   /* #262a2b — títulos, CTA final, footer */

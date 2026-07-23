@@ -88,10 +88,6 @@ a {
   background: var(--color-bg-alt);
 }
 
-.section--warm {
-  background: var(--color-bg-warm);
-}
-
 .section--surface {
   background: var(--color-surface);
 }
