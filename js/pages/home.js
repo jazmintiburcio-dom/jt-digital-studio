@@ -20,9 +20,9 @@ function initHeroVideo(root = document) {
 }
 
 /*
-  Count-up de la cifra "+20 proyectos entregados"
-  Arranca desde data-count-from (no desde 0) al entrar en viewport, una
-  sola vez. Corto y sutil (800ms, ease-out) — no es un contador dramático.
+  Count-up de las 3 cifras de la trust bar (3 meses / 15 días / 100%)
+  Arranca desde data-count-from al entrar en viewport, una sola vez.
+  Corto y sutil (500ms, ease-out) — no es un contador dramático.
 */
 function initCountUp(root = document) {
   const elements = Array.from(root.querySelectorAll('[data-count-up]'));
@@ -37,7 +37,7 @@ function initCountUp(root = document) {
     return;
   }
 
-  const duration = 800;
+  const duration = 500;
   const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
 
   const animate = (el) => {

@@ -52,16 +52,11 @@
 }
 
 /* Recorte por logo — por qué existe:
-   Los 4 PNG en assets/Clientes/ ahora son de 280x192px (reemplazados;
-   antes eran 100x50px y necesitaban up-scaling agresivo). Cada uno
-   sigue teniendo una cantidad de "aire" distinta alrededor de la marca
-   real — el contenido visible ocupa entre 43px y 126px de esos 192px
-   de alto según el archivo. Estos frames recortan cada imagen a su
-   bounding box real de contenido (medido con canvas + getImageData) y
-   la escalan a una altura de marca consistente de 48px — con esta
-   resolución de origen, la mayoría de los logos ya no necesitan
-   up-scaling para llegar ahí (el único caso que sí, "dreams", es un
-   ~1.1x, no ~2.5x como antes).
+   Los 4 PNG en assets/Clientes/ son de 280x192px, cada uno con una
+   cantidad de "aire" distinta alrededor de la marca real. Estos
+   frames recortan cada imagen a su bounding box real de contenido
+   (medido con canvas + getImageData) y la escalan a una altura de
+   marca consistente de 64px.
    Si algún logo se reemplaza de nuevo, hay que re-medir su bounding
    box (no reusar estos valores — están calculados para el archivo
    actual, no son un tamaño de marco fijo). */
@@ -78,36 +73,36 @@
   max-width: none;
 }
 
-.logo-cloud__logo-frame--marciano { width: 112.1px; height: 48px; }
+.logo-cloud__logo-frame--marciano { width: 149.6px; height: 64px; }
 .logo-cloud__logo-frame--marciano .logo-cloud__logo {
-  width: 141.4px;
-  height: 97px;
-  top: -24.8px;
-  left: -12.6px;
+  width: 188.6px;
+  height: 129.4px;
+  top: -33px;
+  left: -16.8px;
 }
 
-.logo-cloud__logo-frame--dreams { width: 253.4px; height: 48px; }
+.logo-cloud__logo-frame--dreams { width: 337.9px; height: 64px; }
 .logo-cloud__logo-frame--dreams .logo-cloud__logo {
-  width: 312.6px;
-  height: 214.3px;
-  top: -79.2px;
-  left: -19px;
+  width: 416.8px;
+  height: 285.8px;
+  top: -105.7px;
+  left: -25.3px;
 }
 
-.logo-cloud__logo-frame--xblues { width: 196.3px; height: 48px; }
+.logo-cloud__logo-frame--xblues { width: 261.7px; height: 64px; }
 .logo-cloud__logo-frame--xblues .logo-cloud__logo {
-  width: 240px;
-  height: 164.6px;
-  top: -63.4px;
-  left: -19.7px;
+  width: 320px;
+  height: 219.4px;
+  top: -84.6px;
+  left: -26.3px;
 }
 
-.logo-cloud__logo-frame--yina { width: 93px; height: 48px; }
+.logo-cloud__logo-frame--yina { width: 123.9px; height: 64px; }
 .logo-cloud__logo-frame--yina .logo-cloud__logo {
-  width: 106.7px;
-  height: 73.1px;
-  top: -14.5px;
-  left: -7.2px;
+  width: 142.2px;
+  height: 97.5px;
+  top: -19.3px;
+  left: -9.7px;
 }
 
 .logo-cloud__name {
