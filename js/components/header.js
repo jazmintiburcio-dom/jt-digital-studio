@@ -83,37 +83,26 @@ export function initHeader(root = document) {
 
 /*
   Header con efecto vidrio sobre el hero
-  Opt-in: solo se activa en páginas que tengan un [data-hero-fade] (hoy,
-  Home) Y un [data-header-sentinel] (hoy, el primer nodo del body). En
-  el resto de las páginas el header queda con su fondo sólido de
-  siempre — este comportamiento no las toca.
+  Opt-in: solo se activa en páginas que tengan un [data-hero-fade] Y un
+  [data-header-sentinel] (hoy, Home). En el resto de las páginas el
+  header queda con su fondo sólido de siempre — este comportamiento no
+  las toca.
 
-  Dos mecanismos redundantes, no uno solo: IntersectionObserver sobre
-  el sentinel (a 80px del top, position:absolute, sin rootMargin) más
-  un scroll listener clásico con window.scrollY como respaldo — mismo
-  patrón que ya usa initHeroFade en scroll-animations.js en esta misma
-  página. Cualquiera de los dos alcanza para mantener la clase
-  correcta; si alguno fallara en algún navegador/entorno puntual, el
-  otro la sostiene.
+  El sentinel vive en flujo normal justo al cierre de la sección Hero
+  (ver index.html), no a un offset fijo en píxeles: "dejó de
+  intersectar" significa exactamente "el usuario pasó el Hero
+  completo", sin importar cuánto mida el Hero en cada viewport.
 */
-const GLASS_HEADER_THRESHOLD = 80;
-
 export function initHeaderTransparency(root = document) {
   const header = root.querySelector('.site-header');
   const hero = root.querySelector('[data-hero-fade]');
   const sentinel = root.querySelector('[data-header-sentinel]');
-  if (!header || !hero) return;
+  if (!header || !hero || !sentinel) return;
 
-  const setGlass = (isGlass) => header.classList.toggle('site-header--glass', isGlass);
+  const observer = new IntersectionObserver(
+    ([entry]) => header.classList.toggle('site-header--glass', entry.isIntersecting),
+    { threshold: 0 }
+  );
 
-  if (sentinel && 'IntersectionObserver' in window) {
-    const observer = new IntersectionObserver(([entry]) => setGlass(entry.isIntersecting), {
-      threshold: 0,
-    });
-    observer.observe(sentinel);
-  }
-
-  const onScroll = () => setGlass(window.scrollY <= GLASS_HEADER_THRESHOLD);
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
+  observer.observe(sentinel);
 }
