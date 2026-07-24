@@ -718,6 +718,45 @@
   margin-top: var(--space-7);
 }
 
+/* ============ 08. FAQ ============ */
+
+/* Reveal por ítem del acordeón, disparado por GSAP ScrollTrigger (ver
+   initScrollTriggerReveal en home.js). Escapado como #faq .accordion__item
+   (no .accordion__item a secas en accordion.css): ese archivo es un
+   componente compartido por todo el sitio — si el opacity:0 inicial
+   viviera ahí, un acordeón en una página futura sin GSAP cargado
+   quedaría invisible para siempre. Acá, en home.css (que index.html es
+   la única página que importa), no hay ese riesgo. */
+#faq .accordion__item {
+  opacity: 0;
+  transform: translateY(30px);
+  transition:
+    opacity var(--duration-section) var(--ease-out),
+    transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+#faq .accordion__item.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#faq .accordion__item:nth-child(1) { transition-delay: 0ms; }
+#faq .accordion__item:nth-child(2) { transition-delay: 100ms; }
+#faq .accordion__item:nth-child(3) { transition-delay: 200ms; }
+#faq .accordion__item:nth-child(4) { transition-delay: 300ms; }
+#faq .accordion__item:nth-child(5) { transition-delay: 400ms; }
+#faq .accordion__item:nth-child(6) { transition-delay: 0ms; }
+#faq .accordion__item:nth-child(7) { transition-delay: 100ms; }
+#faq .accordion__item:nth-child(8) { transition-delay: 200ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  #faq .accordion__item {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
 /* ============ Genérico: encabezado de sección centrado ============ */
 
 .section-heading {

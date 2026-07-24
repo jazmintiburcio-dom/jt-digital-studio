@@ -87,6 +87,13 @@
     ]
   }
   </script>
+
+  <!-- defer (no bloqueante), no en el ejemplo original: mismo orden de
+       carga relativo a los <script type="module"> del final del body
+       (ambos se ejecutan en orden de documento, después de parsear el
+       HTML), sin trabar el render mientras se descargan desde el CDN. -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
 </head>
 <body>
 
@@ -520,7 +527,7 @@
     </section>
 
     <!-- 08. FAQ -->
-    <section class="section section--surface" data-scroll-reveal>
+    <section class="section section--surface" data-scroll-reveal id="faq">
       <div class="container">
         <div class="section-heading section-heading--center">
           <h2 data-reveal>Preguntas frecuentes</h2>

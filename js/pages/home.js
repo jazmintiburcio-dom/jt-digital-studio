@@ -21,90 +21,93 @@ function initHeroVideo(root = document) {
 
 /*
   Count-up de las 3 cifras de la trust bar (3 meses / 15 días / 100%)
-  Arranca desde data-count-from al entrar en viewport, una sola vez.
-  Corto y sutil (500ms, ease-out) — no es un contador dramático.
+  Vía GSAP + ScrollTrigger (antes: rAF manual + IntersectionObserver).
+  2s con easing — deliberadamente más largo que el diseño original
+  (500ms, "breve y sutil"): pedido explícito para un efecto más
+  perceptible/profesional.
 */
 function initCountUp(root = document) {
+  if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+
   const elements = Array.from(root.querySelectorAll('[data-count-up]'));
   if (!elements.length) return;
 
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-  if (prefersReducedMotion.matches) {
-    elements.forEach((el) => {
-      el.textContent = el.dataset.countTo;
+  elements.forEach((el) => {
+    const from = parseFloat(el.dataset.countFrom) || 0;
+    const to = parseFloat(el.dataset.countTo);
+
+    if (prefersReducedMotion.matches) {
+      el.textContent = Math.round(to);
+      return;
+    }
+
+    const counter = { value: from };
+    gsap.to(counter, {
+      value: to,
+      duration: 2,
+      ease: 'power2.out',
+      scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none none' },
+      onUpdate: () => {
+        el.textContent = Math.round(counter.value);
+      },
     });
-    return;
-  }
-
-  const duration = 500;
-  const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
-
-  const animate = (el) => {
-    const from = parseInt(el.dataset.countFrom, 10);
-    const to = parseInt(el.dataset.countTo, 10);
-    const start = performance.now();
-
-    const step = (now) => {
-      const progress = Math.min((now - start) / duration, 1);
-      el.textContent = Math.round(from + (to - from) * easeOutCubic(progress));
-      if (progress < 1) window.requestAnimationFrame(step);
-    };
-
-    window.requestAnimationFrame(step);
-  };
-
-  const observer = new IntersectionObserver(
-    (entries, obs) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        animate(entry.target);
-        obs.unobserve(entry.target);
-      });
-    },
-    { threshold: 0.5 }
-  );
-
-  elements.forEach((el) => observer.observe(el));
+  });
 }
 
 /*
-  Reveal de las cards de "Para quién diseñamos", "Nuestros servicios"
-  (estilo Cliento — ver home.css para el fondo/hover/offset de cada
-  card) y los 5 pasos de "El proceso, sin sorpresas". Agrega
-  .is-revealed a cada elemento por separado la primera vez que entra
-  en viewport; el fade + slide-up + stagger por-elemento lo hace el
-  CSS a partir de esa clase.
+  Reveal de cards/pasos/testimonios/FAQ vía GSAP ScrollTrigger — antes
+  era un único IntersectionObserver agregando .is-revealed; acá,
+  ScrollTrigger.create hace exactamente lo mismo (agregar la clase la
+  primera vez que el elemento entra 85% del viewport) y el CSS existente
+  sigue manejando la animación real (opacity/transform/transition-delay
+  por elemento, ver home.css/testimonial-card.css/accordion.css).
+
+  Por qué no usar gsap.fromTo() escribiendo opacity/transform
+  directamente (como en el pedido original): esos estilos quedarían
+  inline en el elemento, con más prioridad que cualquier regla CSS sin
+  !important — rompería el :hover (rotación + sombra) de las cards
+  Cliento y el offset permanente de la card #2 (--rest-y), que están
+  definidos en CSS. Dejar que ScrollTrigger solo dispare la clase, y que
+  el CSS siga resolviendo el resto, logra el mismo objetivo (reveal
+  suave vía ScrollTrigger en vez de IntersectionObserver) sin ese riesgo.
 */
-function initCardReveal(root = document) {
-  const cards = Array.from(
-    root.querySelectorAll('.archetype-card, .service-preview-card, .process-step')
+function initScrollTriggerReveal(root = document) {
+  if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+  gsap.registerPlugin(ScrollTrigger);
+
+  // .social-proof__stats > div queda afuera a propósito: ya tiene su
+  // propio reveal andando vía .social-proof.is-in-view (initScrollReveal
+  // en scroll-animations.css/js, sitio entero) — agregarlo acá solo
+  // sumaría una clase .is-revealed que ningún CSS escucha, sin cambiar
+  // nada visible.
+  const elements = Array.from(
+    root.querySelectorAll(
+      '.archetype-card, .service-preview-card, .process-step, .testimonial-card, .accordion__item'
+    )
   );
-  if (!cards.length) return;
+  if (!elements.length) return;
 
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
   if (prefersReducedMotion.matches) {
-    cards.forEach((card) => card.classList.add('is-revealed'));
+    elements.forEach((el) => el.classList.add('is-revealed'));
     return;
   }
 
-  const observer = new IntersectionObserver(
-    (entries, obs) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        entry.target.classList.add('is-revealed');
-        obs.unobserve(entry.target);
-      });
-    },
-    { threshold: 0.2 }
-  );
-
-  cards.forEach((card) => observer.observe(card));
+  elements.forEach((el) => {
+    ScrollTrigger.create({
+      trigger: el,
+      start: 'top 85%',
+      once: true,
+      onEnter: () => el.classList.add('is-revealed'),
+    });
+  });
 }
 
 document.addEventListener('DOMContentLoaded', () => {
   initHeroVideo();
   initCountUp();
-  initCardReveal();
+  initScrollTriggerReveal();
 });
