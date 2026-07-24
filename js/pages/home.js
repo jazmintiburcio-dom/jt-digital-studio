@@ -69,14 +69,17 @@ function initCountUp(root = document) {
 }
 
 /*
-  Reveal de las cards de "Para quién diseñamos" y "Nuestros servicios"
+  Reveal de las cards de "Para quién diseñamos", "Nuestros servicios"
   (estilo Cliento — ver home.css para el fondo/hover/offset de cada
-  card). Agrega .is-revealed a cada card por separado la primera vez
-  que entra en viewport; el fade + slide-up + stagger por-card lo hace
-  el CSS a partir de esa clase.
+  card) y los 5 pasos de "El proceso, sin sorpresas". Agrega
+  .is-revealed a cada elemento por separado la primera vez que entra
+  en viewport; el fade + slide-up + stagger por-elemento lo hace el
+  CSS a partir de esa clase.
 */
 function initCardReveal(root = document) {
-  const cards = Array.from(root.querySelectorAll('.archetype-card, .service-preview-card'));
+  const cards = Array.from(
+    root.querySelectorAll('.archetype-card, .service-preview-card, .process-step')
+  );
   if (!cards.length) return;
 
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');

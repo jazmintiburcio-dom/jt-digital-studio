@@ -567,7 +567,149 @@
   color: var(--color-text-tertiary);
 }
 
-/* ============ 06. Testimonios ============ */
+/* ============ 06. El proceso ============ */
+
+.process-overline {
+  text-align: center;
+  font-family: var(--font-body);
+  font-weight: var(--fw-semibold);
+  font-size: var(--text-sm);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+}
+
+.process-timeline {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--space-3);
+  position: relative;
+  margin-top: var(--space-8);
+}
+
+/* Línea conectora: primer tramo (hasta el paso 01) sólido en naranja,
+   el resto apagado — mismo lenguaje que "paso activo" del círculo. */
+.process-timeline__line {
+  position: absolute;
+  top: 30px;
+  left: 10%;
+  right: 10%;
+  height: 2px;
+  background: linear-gradient(
+    to right,
+    var(--color-primary) 0%,
+    var(--color-primary) 20%,
+    rgba(38, 42, 43, 0.15) 20%
+  );
+  z-index: 0;
+}
+
+.process-step {
+  position: relative;
+  z-index: 1;
+  padding-inline: var(--space-2);
+  text-align: center;
+  opacity: 0;
+  transform: translateY(30px);
+  transition:
+    opacity var(--duration-section) var(--ease-out),
+    transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.process-step.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.process-step:nth-child(1) { transition-delay: 0ms; }
+.process-step:nth-child(2) { transition-delay: 100ms; }
+.process-step:nth-child(3) { transition-delay: 200ms; }
+.process-step:nth-child(4) { transition-delay: 300ms; }
+.process-step:nth-child(5) { transition-delay: 400ms; }
+
+.process-step__circle {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto var(--space-4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--color-dark);
+  color: var(--color-text-on-dark);
+  font-family: var(--font-heading);
+  font-weight: var(--fw-bold);
+  font-size: 1.2rem;
+  transition:
+    transform 0.3s var(--ease-out),
+    background-color 0.3s var(--ease-out);
+}
+
+/* Paso activo (01): único destacado en naranja al cargar, sin esperar
+   al hover — marca "acá empieza". */
+.process-step--active .process-step__circle {
+  background: var(--color-primary);
+  box-shadow: 0 6px 20px rgba(253, 101, 2, 0.35);
+}
+
+.process-step:hover .process-step__circle {
+  transform: scale(1.1);
+  background: var(--color-primary);
+}
+
+.process-step__title {
+  margin-bottom: var(--space-2);
+  font-size: var(--text-base);
+  font-weight: var(--fw-bold);
+  color: var(--color-dark);
+}
+
+.process-step__desc {
+  margin-bottom: var(--space-3);
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: #4a4a4a;
+}
+
+.process-step__time {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  background: rgba(253, 101, 2, 0.1);
+  color: var(--color-primary);
+  font-size: 0.75rem;
+  font-weight: var(--fw-semibold);
+}
+
+.process-cta {
+  margin-top: var(--space-8);
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .process-timeline {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+
+  .process-timeline__line {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .process-step {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .process-step__circle {
+    transition: none;
+  }
+}
+
+/* ============ 07. Testimonios ============ */
 
 .testimonial-grid {
   display: grid;
