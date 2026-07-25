@@ -47,11 +47,11 @@
   flex-shrink: 0;
 }
 
-/* Logos de herramientas (SVG): siempre a color de marca, sin
-   escala de grises — decisión explícita, no aplicar filtro acá. */
+/* Logos de herramientas (PNG transparente): siempre a color de marca,
+   sin escala de grises — decisión explícita, no aplicar filtro acá. */
 .logo-cloud__logo {
   display: block;
-  height: 32px;
+  height: 48px;
   width: auto;
   object-fit: contain;
 }
