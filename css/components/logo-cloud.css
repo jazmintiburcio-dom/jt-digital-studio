@@ -34,82 +34,34 @@
   align-items: center;
   gap: var(--space-8);
   width: max-content;
-  animation: logo-cloud-scroll 28s linear infinite;
+  animation: logo-cloud-scroll 30s linear infinite;
 }
 
 .logo-cloud:hover .logo-cloud__track {
   animation-play-state: paused;
 }
 
-/* Logo + nombre del cliente apilados: usada cuando sí hay archivo de
-   logo real (ver marquee "Trabajamos con" en Home). */
 .logo-cloud__item {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: var(--space-2);
   flex-shrink: 0;
 }
 
-/* Recorte por logo — por qué existe:
-   Los 4 PNG en assets/Clientes/ son de 280x192px, cada uno con una
-   cantidad de "aire" distinta alrededor de la marca real. Estos
-   frames recortan cada imagen a su bounding box real de contenido
-   (medido con canvas + getImageData) y la escalan a una altura de
-   marca consistente de 64px.
-   Si algún logo se reemplaza de nuevo, hay que re-medir su bounding
-   box (no reusar estos valores — están calculados para el archivo
-   actual, no son un tamaño de marco fijo). */
-.logo-cloud__logo-frame {
-  position: relative;
-  display: block;
-  overflow: hidden;
-  flex-shrink: 0;
-}
-
+/* Logos de herramientas (SVG): en escala de grises para no competir
+   con el naranja de marca, color real al hover. */
 .logo-cloud__logo {
-  position: absolute;
   display: block;
-  max-width: none;
+  height: 32px;
+  width: auto;
+  object-fit: contain;
+  filter: grayscale(100%);
+  opacity: 0.55;
+  transition: opacity var(--duration-micro) var(--ease-out), filter var(--duration-micro) var(--ease-out);
 }
 
-.logo-cloud__logo-frame--marciano { width: 149.6px; height: 64px; }
-.logo-cloud__logo-frame--marciano .logo-cloud__logo {
-  width: 188.6px;
-  height: 129.4px;
-  top: -33px;
-  left: -16.8px;
-}
-
-.logo-cloud__logo-frame--dreams { width: 337.9px; height: 64px; }
-.logo-cloud__logo-frame--dreams .logo-cloud__logo {
-  width: 416.8px;
-  height: 285.8px;
-  top: -105.7px;
-  left: -25.3px;
-}
-
-.logo-cloud__logo-frame--xblues { width: 261.7px; height: 64px; }
-.logo-cloud__logo-frame--xblues .logo-cloud__logo {
-  width: 320px;
-  height: 219.4px;
-  top: -84.6px;
-  left: -26.3px;
-}
-
-.logo-cloud__logo-frame--yina { width: 123.9px; height: 64px; }
-.logo-cloud__logo-frame--yina .logo-cloud__logo {
-  width: 142.2px;
-  height: 97.5px;
-  top: -19.3px;
-  left: -9.7px;
-}
-
-.logo-cloud__name {
-  font-family: var(--font-body);
-  font-size: var(--text-xs);
-  color: var(--color-text-tertiary);
-  white-space: nowrap;
+.logo-cloud__logo:hover {
+  filter: grayscale(0%);
+  opacity: 1;
 }
 
 /* Variante en texto: para wordmarks sin archivo de logo todavía (ver
