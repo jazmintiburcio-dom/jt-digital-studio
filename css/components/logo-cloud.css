@@ -47,21 +47,13 @@
   flex-shrink: 0;
 }
 
-/* Logos de herramientas (SVG): en escala de grises para no competir
-   con el naranja de marca, color real al hover. */
+/* Logos de herramientas (SVG): siempre a color de marca, sin
+   escala de grises — decisión explícita, no aplicar filtro acá. */
 .logo-cloud__logo {
   display: block;
   height: 32px;
   width: auto;
   object-fit: contain;
-  filter: grayscale(100%);
-  opacity: 0.55;
-  transition: opacity var(--duration-micro) var(--ease-out), filter var(--duration-micro) var(--ease-out);
-}
-
-.logo-cloud__logo:hover {
-  filter: grayscale(0%);
-  opacity: 1;
 }
 
 /* Variante en texto: para wordmarks sin archivo de logo todavía (ver
