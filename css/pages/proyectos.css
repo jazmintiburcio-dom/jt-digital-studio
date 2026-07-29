@@ -11,11 +11,30 @@
 /* ============ S1. Hero ============ */
 
 .projects-hero {
+  position: relative;
   padding-block: var(--space-9) var(--space-7);
   text-align: center;
+  overflow: hidden;
+}
+
+.projects-hero__logos {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  align-items: center;
+  opacity: 0.06;
+  pointer-events: none;
+}
+
+.projects-hero__logos img {
+  width: 70%;
+  margin-inline: auto;
+  filter: grayscale(1);
 }
 
 .projects-hero__inner {
+  position: relative;
   max-width: 44rem;
   margin-inline: auto;
 }
@@ -68,6 +87,56 @@
   color: var(--color-text-heading);
 }
 
+/* ============ Índice de navegación fijo (01-04) ============ */
+
+.case-nav {
+  position: fixed;
+  top: 50%;
+  right: var(--space-5);
+  transform: translateY(-50%);
+  z-index: var(--z-sticky);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.case-nav__dot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  font-family: var(--font-heading);
+  font-size: 0.7rem;
+  font-weight: var(--fw-semibold);
+  color: var(--color-text-tertiary);
+  text-decoration: none;
+  box-shadow: var(--shadow-sm);
+  transition:
+    background-color var(--duration-micro) var(--ease-out),
+    color var(--duration-micro) var(--ease-out),
+    transform var(--duration-micro) var(--ease-out);
+}
+
+.case-nav__dot:hover {
+  transform: scale(1.1);
+}
+
+.case-nav__dot.is-active {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: var(--color-text-on-primary);
+}
+
+@media (max-width: 900px) {
+  .case-nav {
+    display: none;
+  }
+}
+
 /* ============ S3-S6. Casos — secciones inmersivas ============ */
 
 .case-study {
@@ -93,14 +162,25 @@
 .case-study__media {
   position: relative;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-8);
   background: var(--color-bg-alt);
 }
 
 .case-study__img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top center;
+  max-width: 100%;
+  max-height: 82vh;
+  width: auto;
+  height: auto;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  transition: transform 0.5s var(--ease-out);
+}
+
+.case-study__media:hover .case-study__img {
+  transform: scale(1.02);
 }
 
 .case-study__content {

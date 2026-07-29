@@ -90,6 +90,12 @@
 
     <!-- S1. Hero -->
     <section class="projects-hero" data-scroll-reveal>
+      <div class="projects-hero__logos" aria-hidden="true">
+        <img src="assets/Clientes/Marciano.barber_logo.png" alt="" loading="eager">
+        <img src="assets/Clientes/yina-realtor_logo.png" alt="" loading="eager">
+        <img src="assets/Clientes/xblues-tek_logo.png" alt="" loading="eager">
+        <img src="assets/Clientes/dreams-fusion-co_logo.png" alt="" loading="eager">
+      </div>
       <div class="container projects-hero__inner">
         <p class="projects-hero__overline" data-reveal>Proyectos · Nuestro trabajo en acción</p>
         <h1 class="projects-hero__title" data-reveal>Portafolio digital y casos de éxito en diseño web</h1>
@@ -112,6 +118,13 @@
     </section>
 
     <!-- S3-S6. Casos — secciones inmersivas -->
+
+    <nav class="case-nav" aria-label="Navegación entre proyectos" data-case-nav>
+      <a href="#caso-marciano" class="case-nav__dot" data-case-nav-link aria-label="Marciano Barber Studio">01</a>
+      <a href="#caso-yina" class="case-nav__dot" data-case-nav-link aria-label="Yina Tiburcio Realtor">02</a>
+      <a href="#caso-xblues" class="case-nav__dot" data-case-nav-link aria-label="XBlues.Tek">03</a>
+      <a href="#caso-dreamsfusion" class="case-nav__dot" data-case-nav-link aria-label="Dreams Fusion &amp; Co.">04</a>
+    </nav>
 
     <!-- Caso 1 — Marciano Barber Studio -->
     <section class="case-study" data-expandable-card data-scroll-reveal id="caso-marciano">
@@ -519,5 +532,6 @@
   </footer>
 
   <script type="module" src="js/main.js"></script>
+  <script type="module" src="js/pages/proyectos.js"></script>
 </body>
 </html>
