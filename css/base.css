@@ -30,6 +30,16 @@ h6 {
   font-weight: var(--fw-semibold);
 }
 
+/* text-wrap:balance en H1/H2: evita viudas (una sola palabra sola en
+   la última línea) de forma responsiva en cualquier ancho de viewport,
+   sin <br> fijos que solo funcionan en un breakpoint puntual. Soporte
+   evergreen (Chrome/Edge 114+, Safari 17.4+, Firefox 121+); en
+   navegadores sin soporte cae a wrap normal, sin romper nada. */
+h1,
+h2 {
+  text-wrap: balance;
+}
+
 h1 {
   font-size: var(--text-display);
 }
