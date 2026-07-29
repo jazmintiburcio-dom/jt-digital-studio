@@ -1,0 +1,392 @@
+/*
+  JT Digital Studio — Nosotros
+  Reveal al scroll vía GSAP ScrollTrigger — mismo patrón validado en
+  Servicios y Home.
+*/
+
+/* ============ S1. Hero ============ */
+
+.about-hero {
+  padding-block: var(--space-9) var(--space-7);
+  text-align: center;
+}
+
+.about-hero__inner {
+  max-width: 46rem;
+  margin-inline: auto;
+}
+
+.about-hero__overline {
+  margin-bottom: var(--space-3);
+  font-weight: var(--fw-semibold);
+  font-size: var(--text-sm);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+}
+
+.about-hero__title {
+  margin-bottom: var(--space-4);
+  font-size: var(--text-4xl);
+  line-height: var(--leading-tight);
+  color: var(--color-text-heading);
+}
+
+.about-hero__subtitle {
+  margin-bottom: var(--space-6);
+  font-size: var(--text-md);
+  color: var(--color-text-body);
+}
+
+/* ============ S2. Historia ============ */
+
+.about-story {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: var(--space-9);
+  align-items: start;
+}
+
+.about-story__overline {
+  font-weight: var(--fw-semibold);
+  font-size: var(--text-sm);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+}
+
+.about-story__text h2 {
+  margin-top: var(--space-2);
+  margin-bottom: var(--space-5);
+}
+
+.about-story__text p {
+  margin-bottom: var(--space-4);
+  line-height: var(--leading-relaxed);
+  color: var(--color-text-body);
+}
+
+.credibility-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-4);
+  align-content: start;
+}
+
+.credibility-card {
+  padding: var(--space-5);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-hairline);
+  box-shadow: var(--shadow-sm);
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity var(--duration-section) var(--ease-out),
+    transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.credibility-card.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.credibility-card__stat {
+  margin-bottom: var(--space-2);
+  font-family: var(--font-heading);
+  font-size: var(--text-lg);
+  font-weight: var(--fw-bold);
+  color: var(--color-primary);
+}
+
+.credibility-card__label {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--color-text-body);
+}
+
+/* ============ S3. Metodología (timeline 5 pasos) ============ */
+
+.process-overline {
+  font-weight: var(--fw-semibold);
+  font-size: var(--text-sm);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+}
+
+.process-timeline {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--space-3);
+  position: relative;
+  margin-top: var(--space-8);
+}
+
+.process-timeline__line {
+  position: absolute;
+  top: 30px;
+  left: 10%;
+  right: 10%;
+  height: 2px;
+  background: linear-gradient(
+    to right,
+    var(--color-primary) 0%,
+    var(--color-primary) 20%,
+    rgba(38, 42, 43, 0.15) 20%
+  );
+  z-index: 0;
+}
+
+.process-step {
+  position: relative;
+  z-index: 1;
+  padding-inline: var(--space-2);
+  text-align: center;
+  opacity: 0;
+  transform: translateY(30px);
+  transition:
+    opacity var(--duration-section) var(--ease-out),
+    transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.process-step.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.process-step:nth-child(1) { transition-delay: 0ms; }
+.process-step:nth-child(2) { transition-delay: 100ms; }
+.process-step:nth-child(3) { transition-delay: 200ms; }
+.process-step:nth-child(4) { transition-delay: 300ms; }
+.process-step:nth-child(5) { transition-delay: 400ms; }
+
+.process-step__circle {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto var(--space-4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--color-dark);
+  color: var(--color-text-on-dark);
+  font-family: var(--font-heading);
+  font-weight: var(--fw-bold);
+  font-size: 1.2rem;
+  transition:
+    transform 0.3s var(--ease-out),
+    background-color 0.3s var(--ease-out);
+}
+
+.process-step--active .process-step__circle {
+  background: var(--color-primary);
+  box-shadow: 0 6px 20px rgba(253, 101, 2, 0.35);
+}
+
+.process-step:hover .process-step__circle {
+  transform: scale(1.1);
+  background: var(--color-primary);
+}
+
+.process-step__title {
+  margin-bottom: var(--space-2);
+  font-size: var(--text-base);
+  font-weight: var(--fw-bold);
+  color: var(--color-dark);
+}
+
+.process-step__desc {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: #4a4a4a;
+}
+
+.process-step__desc strong {
+  color: var(--color-text-heading);
+}
+
+@media (max-width: 768px) {
+  .process-timeline {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+
+  .process-timeline__line {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .process-step {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .process-step__circle {
+    transition: none;
+  }
+}
+
+/* ============ S4. Valores ============ */
+
+.values-overline {
+  display: block;
+  margin-bottom: var(--space-3);
+  text-align: center;
+  font-weight: var(--fw-semibold);
+  font-size: var(--text-sm);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+}
+
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-6);
+  margin-top: var(--space-8);
+}
+
+.value-card {
+  padding: var(--space-6);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-hairline);
+  box-shadow: var(--shadow-sm);
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity var(--duration-section) var(--ease-out),
+    transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.value-card.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.value-card__title {
+  margin-bottom: var(--space-3);
+  font-size: var(--text-md);
+  font-weight: var(--fw-bold);
+  color: var(--color-text-heading);
+}
+
+.value-card__desc {
+  margin-bottom: var(--space-3);
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--color-text-body);
+}
+
+.value-card__desc:last-child {
+  margin-bottom: 0;
+}
+
+/* ============ S5. Espacio de trabajo ============ */
+
+.workspace-overline {
+  display: block;
+  margin-bottom: var(--space-3);
+  text-align: center;
+  font-weight: var(--fw-semibold);
+  font-size: var(--text-sm);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+}
+
+.workspace-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-5);
+  margin-top: var(--space-8);
+}
+
+.workspace-item {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity var(--duration-section) var(--ease-out),
+    transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.workspace-item.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.workspace-item__img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  margin-bottom: var(--space-3);
+  border-radius: var(--radius-md);
+  object-fit: cover;
+}
+
+.workspace-item__title {
+  margin-bottom: var(--space-1);
+  font-size: 0.95rem;
+  font-weight: var(--fw-bold);
+  color: var(--color-text-heading);
+}
+
+.workspace-item__desc {
+  font-size: 0.85rem;
+  color: var(--color-text-body);
+}
+
+/* ============ Genérico ============ */
+
+.section-heading {
+  max-width: 44rem;
+}
+
+.section-heading--center {
+  margin-inline: auto;
+  text-align: center;
+}
+
+.section-heading__subtitle {
+  margin-top: var(--space-4);
+  font-size: var(--text-md);
+  color: var(--color-text-body);
+}
+
+/* ============ Responsive ============ */
+
+@media (max-width: 900px) {
+  .about-story {
+    grid-template-columns: 1fr;
+  }
+
+  .credibility-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .values-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .workspace-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .credibility-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .credibility-card,
+  .value-card,
+  .workspace-item {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
