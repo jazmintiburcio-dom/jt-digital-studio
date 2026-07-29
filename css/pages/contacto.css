@@ -1,8 +1,8 @@
 /*
   JT Digital Studio — Contacto
-  Mismo patrón de reveal-al-scroll validado en Servicios: GSAP
-  ScrollTrigger agrega .is-revealed, el CSS de acá resuelve la
-  animación real (opacity/transform/transition-delay).
+  Reveal al entrar en viewport vía el sistema genérico del sitio
+  (data-scroll-reveal / data-reveal, ver js/scroll-animations.js) —
+  sin GSAP, para no depender de un CDN externo.
 */
 
 /* ============ S1. Hero corto, sin botón ============ */
@@ -234,21 +234,7 @@
 
 .after-step {
   text-align: center;
-  opacity: 0;
-  transform: translateY(30px);
-  transition:
-    opacity var(--duration-section) var(--ease-out),
-    transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
-
-.after-step.is-revealed {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.after-step:nth-child(1) { transition-delay: 0ms; }
-.after-step:nth-child(2) { transition-delay: 100ms; }
-.after-step:nth-child(3) { transition-delay: 200ms; }
 
 .after-step__circle {
   display: flex;
@@ -292,31 +278,6 @@
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--color-primary);
-}
-
-#faq-contacto .accordion__item {
-  opacity: 0;
-  transform: translateY(30px);
-  transition:
-    opacity var(--duration-section) var(--ease-out),
-    transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-#faq-contacto .accordion__item.is-revealed {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-#faq-contacto .accordion__item:nth-child(1) { transition-delay: 0ms; }
-#faq-contacto .accordion__item:nth-child(2) { transition-delay: 100ms; }
-#faq-contacto .accordion__item:nth-child(3) { transition-delay: 200ms; }
-
-@media (prefers-reduced-motion: reduce) {
-  #faq-contacto .accordion__item {
-    opacity: 1;
-    transform: none;
-    transition: none;
-  }
 }
 
 .trust-bar {

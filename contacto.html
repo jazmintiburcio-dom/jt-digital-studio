@@ -47,9 +47,6 @@
     ]
   }
   </script>
-
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
 </head>
 <body>
 
@@ -248,7 +245,7 @@
     <!-- S4. Testimonio + FAQ + trust bar -->
     <section class="section" data-scroll-reveal>
       <div class="container">
-        <article class="testimonial-card testimonial-card--solo">
+        <article class="testimonial-card testimonial-card--solo" data-reveal>
           <span class="testimonial-card__mark" aria-hidden="true">"</span>
           <p class="testimonial-card__quote">Es la primera vez que una web realmente me trae consultas nuevas, no solo gente que ya me conocía.</p>
           <div class="testimonial-card__author">
@@ -270,7 +267,7 @@
 
           <div class="accordion" data-accordion style="margin-top: var(--space-6);">
 
-            <div class="accordion__item">
+            <div class="accordion__item" data-reveal>
               <h3 class="accordion__heading">
                 <button class="accordion__trigger" aria-expanded="false" aria-controls="cfaq-panel-1" id="cfaq-trigger-1" data-accordion-trigger>
                   <span class="accordion__number">01.</span>
@@ -288,7 +285,7 @@
               </div>
             </div>
 
-            <div class="accordion__item">
+            <div class="accordion__item" data-reveal>
               <h3 class="accordion__heading">
                 <button class="accordion__trigger" aria-expanded="false" aria-controls="cfaq-panel-2" id="cfaq-trigger-2" data-accordion-trigger>
                   <span class="accordion__number">02.</span>
@@ -306,7 +303,7 @@
               </div>
             </div>
 
-            <div class="accordion__item">
+            <div class="accordion__item" data-reveal>
               <h3 class="accordion__heading">
                 <button class="accordion__trigger" aria-expanded="false" aria-controls="cfaq-panel-3" id="cfaq-trigger-3" data-accordion-trigger>
                   <span class="accordion__number">03.</span>
@@ -419,6 +416,5 @@
   </footer>
 
   <script type="module" src="js/main.js"></script>
-  <script type="module" src="js/pages/contacto.js"></script>
 </body>
 </html>

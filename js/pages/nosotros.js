@@ -1,35 +1,33 @@
 /*
   JT Digital Studio — Nosotros
-  Reveal al scroll vía GSAP ScrollTrigger — mismo patrón que Servicios
-  y Home (ver js/pages/servicios.js).
+  Tilt 3D sutil de la foto del hero, siguiendo el cursor — sin
+  librerías externas. Se desactiva en touch (no hay cursor) y con
+  prefers-reduced-motion.
 */
 
-function initScrollTriggerReveal(root = document) {
-  if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
-  gsap.registerPlugin(ScrollTrigger);
+function initHeroTilt(root = document) {
+  const media = root.querySelector('.about-hero__media');
+  const img = media?.querySelector('img');
+  if (!media || !img) return;
 
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const supportsHover = window.matchMedia('(hover: hover)');
+  if (prefersReducedMotion.matches || !supportsHover.matches) return;
 
-  const elements = Array.from(
-    root.querySelectorAll('.credibility-card, .process-step, .value-card, .workspace-item')
-  );
-  if (!elements.length) return;
+  const maxTilt = 8;
 
-  if (prefersReducedMotion.matches) {
-    elements.forEach((el) => el.classList.add('is-revealed'));
-    return;
-  }
+  media.addEventListener('mousemove', (event) => {
+    const rect = media.getBoundingClientRect();
+    const x = (event.clientX - rect.left) / rect.width - 0.5;
+    const y = (event.clientY - rect.top) / rect.height - 0.5;
+    img.style.transform = `rotateY(${x * maxTilt}deg) rotateX(${-y * maxTilt}deg) scale(1.02)`;
+  });
 
-  elements.forEach((el) => {
-    ScrollTrigger.create({
-      trigger: el,
-      start: 'top 85%',
-      once: true,
-      onEnter: () => el.classList.add('is-revealed'),
-    });
+  media.addEventListener('mouseleave', () => {
+    img.style.transform = '';
   });
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  initScrollTriggerReveal();
+  initHeroTilt();
 });

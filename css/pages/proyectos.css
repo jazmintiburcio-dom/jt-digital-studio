@@ -11,32 +11,33 @@
 /* ============ S1. Hero ============ */
 
 .projects-hero {
-  position: relative;
-  padding-block: var(--space-9) var(--space-7);
+  padding-top: var(--space-9);
   text-align: center;
-  overflow: hidden;
-}
-
-.projects-hero__logos {
-  position: absolute;
-  inset: 0;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  align-items: center;
-  opacity: 0.06;
-  pointer-events: none;
-}
-
-.projects-hero__logos img {
-  width: 70%;
-  margin-inline: auto;
-  filter: grayscale(1);
 }
 
 .projects-hero__inner {
-  position: relative;
   max-width: 44rem;
   margin-inline: auto;
+}
+
+.projects-hero__marquee {
+  margin-top: var(--space-8);
+  padding-block: var(--space-6);
+  background: var(--color-bg-alt);
+  border-top: 1px solid var(--color-border-hairline);
+  border-bottom: 1px solid var(--color-border-hairline);
+}
+
+.projects-hero__marquee .logo-cloud__logo {
+  height: 40px;
+  filter: grayscale(1);
+  opacity: 0.55;
+  transition: opacity var(--duration-micro) var(--ease-out), filter var(--duration-micro) var(--ease-out);
+}
+
+.projects-hero__marquee .logo-cloud__item:hover .logo-cloud__logo {
+  filter: grayscale(0);
+  opacity: 1;
 }
 
 .projects-hero__overline {
