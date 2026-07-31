@@ -98,42 +98,6 @@ function initFilmstrips(root = document) {
   });
 }
 
-function initCompareSliders(root = document) {
-  root.querySelectorAll('[data-compare-slider]').forEach((slider) => {
-    const handle = slider.querySelector('[data-compare-handle]');
-    const wrap = slider.querySelector('.compare-slider__before-wrap');
-    if (!handle || !wrap) return;
-
-    let dragging = false;
-
-    const setPosition = (clientX) => {
-      const rect = slider.getBoundingClientRect();
-      let pct = ((clientX - rect.left) / rect.width) * 100;
-      pct = Math.min(100, Math.max(0, pct));
-      wrap.style.clipPath = `inset(0 ${100 - pct}% 0 0)`;
-      handle.style.left = `${pct}%`;
-    };
-
-    handle.addEventListener('pointerdown', (event) => {
-      dragging = true;
-      handle.setPointerCapture(event.pointerId);
-    });
-
-    handle.addEventListener('pointerup', () => {
-      dragging = false;
-    });
-
-    handle.addEventListener('pointermove', (event) => {
-      if (dragging) setPosition(event.clientX);
-    });
-
-    slider.addEventListener('click', (event) => {
-      if (event.target.closest('[data-compare-handle]')) return;
-      setPosition(event.clientX);
-    });
-  });
-}
-
 function initPhotoFans(root = document) {
   root.querySelectorAll('[data-photo-fan]').forEach((fan) => {
     const cards = Array.from(fan.querySelectorAll('.photo-fan__card'));
@@ -150,6 +114,5 @@ document.addEventListener('DOMContentLoaded', () => {
   initCaseNav();
   initZoomLens();
   initFilmstrips();
-  initCompareSliders();
   initPhotoFans();
 });
