@@ -287,10 +287,57 @@
   color: var(--color-text-tertiary);
 }
 
-/* ============ Interacción 3: comparación apilada antes/después (XBlues) ============ */
+/* ============ Interacción 3: carrusel con crossfade (XBlues) ============ */
 
-.case-study__media--compare {
-  padding: var(--space-6);
+.img-carousel {
+  display: grid;
+}
+
+.img-carousel__img {
+  grid-area: 1 / 1;
+  animation: imgCarouselCrossfade 9s ease-in-out infinite;
+}
+
+.img-carousel__img:nth-child(2) {
+  animation-delay: 4.5s;
+}
+
+@keyframes imgCarouselCrossfade {
+  0%, 42% {
+    opacity: 1;
+  }
+  50%, 92% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .img-carousel__img {
+    animation: none;
+  }
+
+  .img-carousel__img:not(:first-child) {
+    display: none;
+  }
+}
+
+/* ============ Comparación apilada antes/después, dentro del detalle (XBlues) ============ */
+
+.project-card__compare-media {
+  margin: var(--space-2) 0 var(--space-7);
+}
+
+.project-card__compare-media figcaption {
+  margin-bottom: var(--space-3);
+  font-family: var(--font-heading);
+  font-weight: var(--fw-semibold);
+  font-size: var(--text-sm);
+  color: var(--color-text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 
 .compare-stack {
@@ -618,12 +665,6 @@
   font-size: 0.8rem;
   font-weight: var(--fw-semibold);
   transition: transform var(--duration-micro) var(--ease-out), background-color var(--duration-micro) var(--ease-out), color var(--duration-micro) var(--ease-out);
-}
-
-.project-card__scope-list li:nth-child(3n+2) {
-  border-color: rgba(38, 42, 43, 0.18);
-  background: rgba(38, 42, 43, 0.04);
-  color: var(--color-dark);
 }
 
 .project-card__scope-list li:hover {
