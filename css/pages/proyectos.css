@@ -536,6 +536,7 @@
 
 .case-study__detail-categories {
   max-width: 46rem;
+  margin-inline: auto;
 }
 
 .project-card__category-media {
