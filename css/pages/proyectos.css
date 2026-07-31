@@ -216,6 +216,266 @@
   transform: scale(1.02);
 }
 
+/* ============ Interacción 1: lupa de zoom (Marciano) ============ */
+
+.case-study__media--zoom {
+  cursor: none;
+}
+
+.case-study__media--zoom .case-study__img {
+  max-height: 82vh;
+}
+
+.zoom-lens {
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  border: 3px solid var(--color-surface);
+  box-shadow: var(--shadow-lg);
+  background-repeat: no-repeat;
+  pointer-events: none;
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  transition: opacity var(--duration-micro) var(--ease-out);
+  z-index: var(--z-elevated);
+}
+
+.zoom-lens.is-active {
+  opacity: 1;
+}
+
+.zoom-lens__hint {
+  position: absolute;
+  bottom: var(--space-4);
+  left: 50%;
+  transform: translateX(-50%);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-pill);
+  background: rgba(38, 42, 43, 0.8);
+  color: var(--color-text-on-dark);
+  font-size: 0.78rem;
+  font-weight: var(--fw-medium);
+  pointer-events: none;
+  transition: opacity var(--duration-micro) var(--ease-out);
+}
+
+.case-study__media--zoom:hover .zoom-lens__hint {
+  opacity: 0;
+}
+
+@media (hover: none) {
+  .case-study__media--zoom {
+    cursor: default;
+  }
+
+  .zoom-lens {
+    display: none;
+  }
+}
+
+/* ============ Interacción 2: filmstrip arrastrable (Yina) ============ */
+
+.case-study__media--filmstrip {
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.filmstrip {
+  width: 100%;
+  overflow-x: auto;
+  cursor: grab;
+  scroll-snap-type: x proximity;
+  scrollbar-width: thin;
+}
+
+.filmstrip.is-dragging {
+  cursor: grabbing;
+  scroll-snap-type: none;
+  user-select: none;
+}
+
+.filmstrip__track {
+  display: flex;
+  gap: var(--space-4);
+  width: max-content;
+}
+
+.filmstrip__track img {
+  height: 60vh;
+  max-height: 520px;
+  width: auto;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  scroll-snap-align: center;
+  -webkit-user-drag: none;
+  user-select: none;
+}
+
+.filmstrip__hint {
+  text-align: center;
+  font-size: 0.78rem;
+  color: var(--color-text-tertiary);
+}
+
+/* ============ Interacción 3: slider antes/después (XBlues) ============ */
+
+.case-study__media--compare {
+  padding: var(--space-6);
+}
+
+.compare-slider {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  aspect-ratio: 16 / 10;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  user-select: none;
+}
+
+.compare-slider__after,
+.compare-slider__before {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.compare-slider__before-wrap {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  clip-path: inset(0 50% 0 0);
+}
+
+.compare-slider__handle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 44px;
+  margin-left: -22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: ew-resize;
+  touch-action: none;
+}
+
+.compare-slider__handle::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  background: var(--color-surface);
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+}
+
+.compare-slider__handle svg {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  padding: 8px;
+  border-radius: 50%;
+  background: var(--color-surface);
+  color: var(--color-dark);
+  box-shadow: var(--shadow-md);
+}
+
+.compare-slider__label {
+  position: absolute;
+  top: var(--space-4);
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
+  background: rgba(0, 0, 0, 0.65);
+  color: var(--color-text-on-dark);
+  font-size: 0.75rem;
+  font-weight: var(--fw-semibold);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  pointer-events: none;
+}
+
+.compare-slider__label--before {
+  left: var(--space-4);
+}
+
+.compare-slider__label--after {
+  right: var(--space-4);
+}
+
+/* ============ Interacción 4: pila de fotos en abanico (Dreams Fusion) ============ */
+
+.case-study__media--fan {
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.photo-fan {
+  position: relative;
+  width: 100%;
+  max-width: 380px;
+  aspect-ratio: 4 / 3;
+  margin: var(--space-6) auto 0;
+}
+
+.photo-fan__card {
+  position: absolute;
+  inset: 0;
+  padding: 0;
+  border: none;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  cursor: pointer;
+  background: none;
+  transition: transform 0.4s var(--ease-out), box-shadow 0.3s var(--ease-out);
+}
+
+.photo-fan__card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.photo-fan__card[data-fan-index="0"] { transform: rotate(-8deg) translate(-18px, 10px); z-index: 1; }
+.photo-fan__card[data-fan-index="1"] { transform: rotate(-3deg) translate(-6px, 4px); z-index: 2; }
+.photo-fan__card[data-fan-index="2"] { transform: rotate(3deg) translate(6px, -4px); z-index: 3; }
+.photo-fan__card[data-fan-index="3"] { transform: rotate(8deg) translate(18px, -10px); z-index: 4; }
+
+.photo-fan__card:hover {
+  box-shadow: var(--shadow-lg);
+}
+
+.photo-fan__card.is-front {
+  transform: rotate(0deg) scale(1.08) !important;
+  z-index: 10;
+  box-shadow: var(--shadow-lg);
+}
+
+.photo-fan__hint {
+  text-align: center;
+  font-size: 0.78rem;
+  color: var(--color-text-tertiary);
+}
+
+@media (max-width: 900px) {
+  .filmstrip__track img {
+    height: 50vh;
+  }
+
+  .photo-fan {
+    max-width: 280px;
+  }
+}
+
 .case-study__content {
   display: flex;
   flex-direction: column;
