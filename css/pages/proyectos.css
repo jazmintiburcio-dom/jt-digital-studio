@@ -499,6 +499,12 @@
   box-shadow: var(--shadow-md);
 }
 
+.case-study__detail-media--pair {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
 .case-study__detail-categories {
   max-width: 46rem;
 }
