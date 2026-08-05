@@ -63,6 +63,63 @@
   color: rgba(255, 255, 255, 0.8);
 }
 
+/* ============ S1.5 Clientes ============ */
+
+.client-band {
+  padding-block: var(--space-6);
+  background: var(--color-surface);
+  border-top: 3px solid var(--color-primary);
+}
+
+.client-band__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-5);
+}
+
+.client-band__label {
+  font-family: var(--font-heading);
+  font-size: var(--text-sm);
+  font-weight: var(--fw-semibold);
+  color: var(--color-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.client-band__logos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-8);
+  flex-wrap: wrap;
+}
+
+.client-band__logo {
+  height: 44px;
+  width: auto;
+  object-fit: contain;
+  filter: grayscale(0.25);
+  opacity: 0.8;
+  transition: filter var(--duration-micro) var(--ease-out),
+              opacity var(--duration-micro) var(--ease-out);
+}
+
+.client-band__logo:hover {
+  filter: grayscale(0);
+  opacity: 1;
+}
+
+@media (max-width: 600px) {
+  .client-band__logos {
+    gap: var(--space-6);
+  }
+
+  .client-band__logo {
+    height: 36px;
+  }
+}
+
 /* ============ S2. Criterio ============ */
 
 .criteria-intro {
