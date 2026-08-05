@@ -9,9 +9,6 @@
 
 .about-hero {
   position: relative;
-  min-height: 90vh;
-  display: flex;
-  align-items: center;
   padding-block: var(--space-10) var(--space-9);
   text-align: center;
   overflow: hidden;
@@ -90,10 +87,6 @@
 }
 
 @media (max-width: 900px) {
-  .about-hero {
-    min-height: auto;
-  }
-
   .about-hero__badge {
     left: var(--space-4);
     bottom: var(--space-4);
