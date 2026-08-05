@@ -153,6 +153,14 @@
   color: var(--color-text-body);
 }
 
+.about-story__linkedin-cta {
+  margin-top: var(--space-6);
+  margin-bottom: var(--space-2);
+  font-size: var(--text-sm);
+  font-weight: var(--fw-semibold);
+  color: var(--color-text-heading);
+}
+
 .credibility-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
