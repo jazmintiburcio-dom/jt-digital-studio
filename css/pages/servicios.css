@@ -1,0 +1,1234 @@
+/*
+  JT Digital Studio — Servicios
+  Estilos exclusivos de servicios.html. No se importan en otras páginas.
+  El fondo oscuro (--color-dark) queda reservado a CTA Final y Footer —
+  el Hero de esta página es un split 2 columnas sobre fondo claro,
+  nunca un fondo sólido oscuro de sección.
+*/
+
+/* ============ 01. Hero — split 2 columnas ============ */
+
+/* Altura igualada a la del Hero de Home (100svh, ver .hero en
+   css/pages/home.css) para que la navegación entre páginas se sienta
+   consistente. El split 55/45 texto/imagen (.services-hero__grid) no
+   se toca — es la proporción propia de esta página, distinta a la de
+   Home. Mismo truco que Home (margin-top negativo = alto del header):
+   sin esto, min-height:100svh se suma DEBAJO del header en flujo
+   normal y el total supera el viewport inicial, empujando los badges
+   de confianza fuera del fold. El header acá no es transparente (sigue
+   con su fondo sólido de siempre), solo se superpone al hero. */
+.services-hero {
+  min-height: 100svh;
+  margin-top: calc(-1 * var(--header-height));
+  padding-top: calc(var(--header-height) + var(--space-4));
+  padding-bottom: var(--space-4);
+  display: flex;
+  align-items: center;
+  background: var(--color-bg);
+}
+
+.services-hero__grid {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: var(--space-8);
+  align-items: center;
+}
+
+@media (max-width: 899px) {
+  .services-hero__grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+}
+
+.services-hero__text {
+  max-width: 560px;
+}
+
+.services-hero__overline {
+  font-family: var(--font-body);
+  font-weight: var(--fw-semibold);
+  font-size: var(--text-sm);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+}
+
+.services-hero__title {
+  margin-top: var(--space-5);
+  font-size: clamp(2rem, 1.3rem + 2.8vw, 3rem);
+  line-height: 1.12;
+  letter-spacing: -0.015em;
+}
+
+.services-hero__subtitle {
+  margin-top: var(--space-4);
+  font-size: var(--text-md);
+  line-height: var(--leading-relaxed);
+  color: var(--color-text-body);
+  max-width: 52ch;
+}
+
+.services-hero__cta {
+  margin-top: var(--space-5);
+}
+
+.services-hero__pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-5);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--color-border-hairline);
+}
+
+.services-hero__pill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-pill);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  font-size: var(--text-sm);
+  color: var(--color-text-body);
+}
+
+.services-hero__pill svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  color: var(--color-primary);
+}
+
+.services-hero__media img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+}
+
+@media (max-width: 899px) {
+  .services-hero__media {
+    order: 2;
+  }
+}
+
+/* ============ 02. Para quién es (checkpoint) ============ */
+
+.who-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-4);
+  margin-top: var(--space-7);
+}
+
+@media (max-width: 899px) {
+  .who-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 479px) {
+  .who-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.who-card {
+  --rest-y: 0px;
+  position: relative;
+  padding: var(--space-6);
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  cursor: default;
+  opacity: 0;
+  transform: translateY(calc(var(--rest-y) + 40px));
+  transition:
+    opacity var(--duration-section) var(--ease-out),
+    transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.4s var(--ease-out);
+}
+
+.who-card.is-revealed {
+  opacity: 1;
+  transform: translateY(var(--rest-y));
+}
+
+/* Stagger ~80ms entre cards, según spec */
+.who-card:nth-child(1) { transition-delay: 0ms; }
+
+.who-card:nth-child(2) {
+  --rest-y: -16px;
+  background: var(--color-primary);
+  transition-delay: 80ms;
+}
+
+.who-card:nth-child(3) { transition-delay: 160ms; }
+.who-card:nth-child(4) { transition-delay: 240ms; }
+
+.who-card:nth-child(2) .who-card__title,
+.who-card:nth-child(2) .who-card__description {
+  color: var(--color-surface);
+}
+
+.who-card:nth-child(2) .who-card__icon {
+  background: rgba(255, 255, 255, 0.2);
+  color: var(--color-surface);
+}
+
+.who-card:hover {
+  transform: translateY(calc(var(--rest-y) - 8px)) rotate(-1deg);
+  box-shadow: 0 20px 40px rgba(253, 101, 2, 0.2);
+}
+
+.who-card:nth-child(2):hover {
+  transform: translateY(calc(var(--rest-y) - 8px)) rotate(1deg);
+  box-shadow: 0 24px 50px rgba(253, 101, 2, 0.4);
+}
+
+.who-card__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  margin-bottom: var(--space-4);
+  border-radius: var(--radius-md);
+  background: rgba(253, 101, 2, 0.12);
+  color: var(--color-primary);
+}
+
+.who-card__icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.who-card__title {
+  margin-bottom: var(--space-3);
+  font-size: 1.1rem;
+  font-weight: var(--fw-bold);
+  color: var(--color-dark);
+}
+
+.who-card__description {
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: #4a4a4a;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .who-card {
+    opacity: 1;
+    transform: translateY(var(--rest-y));
+    transition: none;
+  }
+}
+
+/* ============ 03. El proceso, 9 etapas — timeline (sin cards) ============ */
+/* Mismo lenguaje visual que index.html "Cómo trabajamos con usted":
+   línea conectora + círculo numerado + título + descripción + badge.
+   9 pasos partidos en 2 filas (5 + 4) en desktop para no perder legibilidad
+   del grid; en mobile se combinan en un único stack vertical con una sola
+   línea continua (ver .stage-timeline__line-mobile). */
+
+.process-overline {
+  text-align: center;
+  font-family: var(--font-body);
+  font-weight: var(--fw-semibold);
+  font-size: var(--text-sm);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+}
+
+.stage-timeline {
+  position: relative;
+  margin-top: var(--space-8);
+}
+
+.stage-timeline__line-mobile {
+  display: none;
+}
+
+.stage-timeline-row {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--space-3);
+  position: relative;
+}
+
+.stage-timeline-row--second {
+  grid-template-columns: repeat(4, 1fr);
+  margin-top: var(--space-8);
+}
+
+.stage-timeline-row__line {
+  position: absolute;
+  top: 30px;
+  left: 10%;
+  right: 10%;
+  height: 2px;
+  background: rgba(38, 42, 43, 0.15);
+  z-index: 0;
+}
+
+.stage-step {
+  position: relative;
+  z-index: 1;
+  padding-inline: var(--space-2);
+  text-align: center;
+  opacity: 0;
+  transform: translateY(30px);
+  transition:
+    opacity var(--duration-section) var(--ease-out),
+    transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.stage-step.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.stage-timeline-row .stage-step:nth-child(1) { transition-delay: 0ms; }
+.stage-timeline-row .stage-step:nth-child(2) { transition-delay: 100ms; }
+.stage-timeline-row .stage-step:nth-child(3) { transition-delay: 200ms; }
+.stage-timeline-row .stage-step:nth-child(4) { transition-delay: 300ms; }
+.stage-timeline-row .stage-step:nth-child(5) { transition-delay: 400ms; }
+
+.stage-timeline-row--second .stage-step:nth-child(1) { transition-delay: 0ms; }
+.stage-timeline-row--second .stage-step:nth-child(2) { transition-delay: 100ms; }
+.stage-timeline-row--second .stage-step:nth-child(3) { transition-delay: 200ms; }
+.stage-timeline-row--second .stage-step:nth-child(4) { transition-delay: 300ms; }
+
+.stage-step__circle {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto var(--space-3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--color-dark);
+  color: var(--color-text-on-dark);
+  font-family: var(--font-heading);
+  font-weight: var(--fw-bold);
+  font-size: 1.2rem;
+  transition:
+    transform 0.3s var(--ease-out),
+    box-shadow 0.3s var(--ease-out);
+}
+
+/* Código de color obligatorio: naranja = su acción/su aprobación,
+   oscuro = interno, mismo criterio que Home (Paso 01 activo vs. 02-05). */
+.stage-step--action .stage-step__circle {
+  background: var(--color-primary);
+  box-shadow: 0 6px 20px rgba(253, 101, 2, 0.35);
+}
+
+/* Efecto sutil al pasar el mouse: escala + glow en el círculo. Se
+   eligió hover (no un efecto disparado al entrar en viewport) para no
+   sumar una animación más al reveal ya existente, y porque es el mismo
+   criterio de "sin parallax ni scroll-jacking" ya acordado para esta
+   sección. */
+.stage-step:hover .stage-step__circle {
+  transform: scale(1.08);
+  box-shadow: 0 10px 24px rgba(253, 101, 2, 0.3);
+}
+
+.stage-step__title-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-2);
+}
+
+/* Ícono agrandado respecto a la v1 (16px, casi imperceptible): ahora
+   vive dentro de un chip propio, igual de legible que los íconos de
+   S2/S6, no un trazo suelto al lado del título. */
+.stage-step__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  border-radius: var(--radius-sm);
+  background: rgba(253, 101, 2, 0.1);
+  color: var(--color-primary);
+}
+
+.stage-step__icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.stage-step__title {
+  font-size: 0.92rem;
+  font-weight: var(--fw-bold);
+  color: var(--color-dark);
+}
+
+.stage-step__desc {
+  margin-bottom: var(--space-3);
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: #4a4a4a;
+}
+
+.stage-step__badge {
+  display: inline-block;
+  padding: 3px var(--space-3);
+  border-radius: var(--radius-pill);
+  font-size: 0.68rem;
+  font-weight: var(--fw-semibold);
+}
+
+.stage-step--action .stage-step__badge {
+  background: rgba(253, 101, 2, 0.12);
+  color: var(--color-primary-hover);
+}
+
+.stage-step:not(.stage-step--action) .stage-step__badge {
+  background: rgba(38, 42, 43, 0.08);
+  color: var(--color-text-tertiary);
+}
+
+.stage-legend {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-5);
+  margin-top: var(--space-6);
+  font-size: 0.85rem;
+  color: var(--color-text-tertiary);
+}
+
+.stage-legend__item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.stage-legend__dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.stage-legend__dot--action {
+  background: var(--color-primary);
+}
+
+.stage-legend__dot--internal {
+  background: var(--color-dark);
+}
+
+.stage-cta {
+  margin-top: var(--space-5);
+  text-align: center;
+}
+
+@media (max-width: 767px) {
+  .stage-timeline-row,
+  .stage-timeline-row--second {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+    margin-top: 0;
+  }
+
+  .stage-timeline-row--second {
+    margin-top: var(--space-6);
+  }
+
+  .stage-timeline-row__line {
+    display: none;
+  }
+
+  .stage-timeline__line-mobile {
+    display: block;
+    position: absolute;
+    left: 27px;
+    top: 28px;
+    bottom: 28px;
+    width: 2px;
+    background: rgba(38, 42, 43, 0.15);
+    z-index: 0;
+  }
+
+  .stage-step {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-4);
+    text-align: left;
+    padding-inline: 0;
+  }
+
+  .stage-step__circle {
+    margin: 0;
+    flex-shrink: 0;
+  }
+
+  .stage-step__title-row {
+    justify-content: flex-start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stage-step {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .stage-step__circle {
+    transition: none;
+  }
+
+  .stage-step:hover .stage-step__circle {
+    transform: none;
+  }
+}
+
+/* ============ 04. Planes — 4 cards abiertas, sin acordeón ============ */
+/* v2: se descartó el patrón de tarjetas expandibles ("ver detalle
+   completo") — acá el contenido completo de "Qué incluye" queda visible
+   de una, sin interacción de expandir/colapsar. */
+
+.plans-intro {
+  max-width: 44rem;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.plans-overline {
+  font-family: var(--font-body);
+  font-weight: var(--fw-semibold);
+  font-size: var(--text-sm);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+}
+
+/* Franja de resumen de precios — mismo lenguaje visual que la línea de
+   tiempo de S3 (línea + puntos), adaptada a 4 puntos de precio en vez
+   de etapas de proceso. */
+.price-strip {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  position: relative;
+  max-width: 640px;
+  margin: var(--space-7) auto 0;
+}
+
+.price-strip__line {
+  position: absolute;
+  top: 5px;
+  left: 6%;
+  right: 6%;
+  height: 2px;
+  background: rgba(38, 42, 43, 0.15);
+  z-index: 0;
+}
+
+.price-strip__node {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  flex: 1;
+}
+
+.price-strip__dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--color-primary);
+}
+
+.price-strip__price {
+  font-family: var(--font-heading);
+  font-weight: var(--fw-bold);
+  font-size: 1.05rem;
+  color: var(--color-dark);
+}
+
+.price-strip__name {
+  font-size: 0.68rem;
+  font-weight: var(--fw-semibold);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-tertiary);
+}
+
+@media (max-width: 599px) {
+  .price-strip__price {
+    font-size: 0.85rem;
+  }
+}
+
+/* Contenedor más ancho para esta sección: 4 cards con contenido completo
+   se ven angostas dentro del .container estándar (1280px + padding
+   clamp). Menos padding lateral, más ancho de trabajo real. */
+.plans-wide {
+  max-width: 1360px;
+  padding-inline: var(--space-5);
+}
+
+.plans-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-4);
+  margin-top: var(--space-8);
+  align-items: start;
+}
+
+@media (max-width: 1099px) {
+  .plans-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 639px) {
+  .plans-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Regla mobile obligatoria: el plan más elegido (Nivel 2) no puede
+     quedar enterrado en el scroll — se reordena primero visualmente. */
+  .plan-card--featured {
+    order: -1;
+  }
+}
+
+.plan-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-6);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  opacity: 0;
+  transform: translateY(30px);
+  transition:
+    opacity var(--duration-section) var(--ease-out),
+    transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow var(--duration-micro) var(--ease-out);
+}
+
+.plan-card.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger ~80ms entre las 4 cards, según spec. */
+.plan-card:nth-child(1) { transition-delay: 0ms; }
+.plan-card:nth-child(2) { transition-delay: 80ms; }
+.plan-card:nth-child(3) { transition-delay: 160ms; }
+.plan-card:nth-child(4) { transition-delay: 240ms; }
+
+.plan-card--featured {
+  border: 2px solid var(--color-primary);
+  box-shadow: var(--shadow-orange);
+}
+
+/* Pulso sutil de escala al entrar en viewport (solo Nivel 2), disparado
+   por JS (ver servicios.js) después de que termine la transición de
+   reveal — nunca simultáneo, para no pelear con el transform de
+   translateY del reveal. Sin hover 3D/tilt en ningún plan: el usuario
+   necesita comparar con calma. */
+@keyframes plan-card-pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.025); }
+  100% { transform: scale(1); }
+}
+
+.plan-card--featured.pulse {
+  animation: plan-card-pulse 700ms var(--ease-out);
+}
+
+.plan-card__badge {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 4px var(--space-4);
+  border-radius: var(--radius-pill);
+  background: var(--color-primary);
+  color: var(--color-text-on-primary);
+  font-size: 0.7rem;
+  font-weight: var(--fw-bold);
+  white-space: nowrap;
+}
+
+.plan-card__level {
+  font-size: 0.7rem;
+  font-weight: var(--fw-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-text-tertiary);
+}
+
+.plan-card--featured .plan-card__level {
+  color: var(--color-primary);
+}
+
+.plan-card__name {
+  margin-top: var(--space-2);
+  font-size: 1.2rem;
+  font-weight: var(--fw-bold);
+  color: var(--color-dark);
+}
+
+/* Frase de encaje (posicionamiento del nivel) — ya no es un descriptor
+   técnico corto, es la frase aprobada tal cual, por eso el tratamiento
+   es más legible (color de texto normal, no tertiary/metadata). */
+.plan-card__tag {
+  margin-top: var(--space-2);
+  font-size: 0.88rem;
+  line-height: 1.4;
+  color: var(--color-text-body);
+}
+
+.plan-card__price {
+  margin-top: var(--space-4);
+  font-family: var(--font-heading);
+  font-weight: var(--fw-bold);
+  font-size: 1.4rem;
+  color: var(--color-primary);
+}
+
+.plan-card__time {
+  margin-top: var(--space-1);
+  font-size: 0.78rem;
+  color: var(--color-text-tertiary);
+}
+
+.plan-card__list {
+  margin-top: var(--space-5);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--color-border-hairline);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  flex-grow: 1;
+}
+
+.plan-card__list-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  font-size: 0.85rem;
+  line-height: 1.4;
+  color: var(--color-text-body);
+}
+
+.plan-card__list-item svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: #22a86a;
+}
+
+.plan-card__cta {
+  width: 100%;
+  margin-top: var(--space-6);
+}
+
+/* Nota visualmente diferenciada del resto de la sección: contenedor
+   propio (fondo sutil + borde superior), ancho contenido y centrado,
+   con jerarquía clara entre el mensaje principal (guía + acompañamiento
+   + link a Mantenimiento) y las condiciones ("letra chica"). */
+.plans-footnote {
+  max-width: 44rem;
+  margin: var(--space-7) auto 0;
+  padding: var(--space-5) var(--space-6);
+  background: var(--color-bg-alt);
+  border-top: 2px solid var(--color-primary);
+  border-radius: 0 0 var(--radius-md) var(--radius-md);
+  text-align: center;
+}
+
+.plans-footnote__main {
+  font-size: 0.92rem;
+  color: var(--color-text-body);
+}
+
+.plans-footnote__link {
+  color: var(--color-primary);
+  font-weight: var(--fw-semibold);
+}
+
+.plans-footnote__link:hover {
+  color: var(--color-primary-hover);
+}
+
+.plans-footnote__fine {
+  margin-top: var(--space-3);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--color-border-hairline);
+  font-size: 0.72rem;
+  color: var(--color-text-tertiary);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .plan-card {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .plan-card--featured.pulse {
+    animation: none;
+  }
+}
+
+/* ============ Planes Care ============ */
+/* Sección propia entre Planes y Testimonios — visualmente separada,
+   sin CTA propio (Care se pregunta dentro del formulario de cotización
+   general, ver copy aprobado S7). Código de color por plan tomado tal
+   cual de catalogo_servicios_9pasos_v4.1.html (.care-dot.basic/.pro/.plus). */
+
+.care-overline {
+  text-align: center;
+  font-family: var(--font-body);
+  font-weight: var(--fw-semibold);
+  font-size: var(--text-sm);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+}
+
+/* .highlight-note: caja de nota destacada compartida por Planes de
+   Mantenimiento y Add-ons (mismo fondo, padding y radio en las dos
+   secciones, ver css/pages/servicios.css "Nota destacada compartida"
+   más abajo para la definición completa). */
+
+.care-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-4);
+  margin-top: var(--space-7);
+  align-items: start;
+}
+
+@media (max-width: 899px) {
+  .care-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.care-card {
+  position: relative;
+  overflow: hidden;
+  padding: var(--space-6);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  opacity: 0;
+  transform: translateY(30px);
+  transition:
+    opacity var(--duration-section) var(--ease-out),
+    transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.care-card.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.care-card:nth-child(1) { transition-delay: 0ms; }
+.care-card:nth-child(2) { transition-delay: 100ms; }
+.care-card:nth-child(3) { transition-delay: 200ms; }
+
+.care-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+}
+
+.care-card--basic::before { background: #2e7d32; }
+.care-card--pro::before { background: var(--color-primary); }
+.care-card--plus::before { background: var(--color-dark); }
+
+.care-card__badge {
+  position: absolute;
+  top: var(--space-4);
+  right: var(--space-4);
+  padding: 3px var(--space-3);
+  border-radius: var(--radius-pill);
+  background: var(--color-bg-alt);
+  color: var(--color-text-tertiary);
+  font-size: 0.68rem;
+  font-weight: var(--fw-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.care-card__name {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding-right: var(--space-8);
+  font-size: 1.05rem;
+  font-weight: var(--fw-bold);
+  color: var(--color-dark);
+}
+
+.care-card__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.care-card--basic .care-card__dot { background: #2e7d32; }
+.care-card--pro .care-card__dot { background: var(--color-primary); }
+.care-card--plus .care-card__dot { background: var(--color-dark); }
+
+.care-card__price {
+  margin-top: var(--space-4);
+  font-family: var(--font-heading);
+  font-weight: var(--fw-bold);
+  font-size: 1.5rem;
+  color: var(--color-dark);
+}
+
+.care-card__price span {
+  font-size: 0.85rem;
+  font-weight: var(--fw-regular);
+  color: var(--color-text-tertiary);
+}
+
+.care-card__for {
+  margin-top: var(--space-2);
+  padding-bottom: var(--space-4);
+  border-bottom: 1px solid var(--color-border-hairline);
+  font-size: 0.82rem;
+  color: var(--color-text-tertiary);
+}
+
+.care-card__list {
+  margin-top: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.care-card__list li {
+  position: relative;
+  padding-left: var(--space-4);
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--color-text-body);
+}
+
+.care-card__list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.6em;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--color-primary);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .care-card {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ============ 05. Testimonios ============ */
+/* .testimonial-card es un componente compartido (ver
+   css/components/testimonial-card.css) — acá se define el grid propio
+   de esta página (3 columnas, no el auto-fit genérico del componente,
+   que con 3 items de este ancho podía quedar en 2+1 según el viewport)
+   y un tratamiento más compacto: cards verticales angostas, no las
+   horizontales anchas de la v1. La v1 tenía además un bug real de
+   solape: font-size 3.5rem + line-height 0.6 en la comilla dejaba la
+   caja del carácter más baja que su tinta real, que se montaba sobre
+   la primera línea de la cita. Se corrige con line-height 1 y más
+   margen inferior. */
+
+.services-testimonials {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-5);
+  max-width: 1080px;
+  margin: var(--space-7) auto 0;
+}
+
+@media (max-width: 899px) {
+  .services-testimonials {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+}
+
+.services-testimonials .testimonial-card {
+  padding: var(--space-5);
+  box-shadow: var(--shadow-sm);
+}
+
+.services-testimonials .testimonial-card__mark {
+  font-size: 2.75rem;
+  line-height: 1;
+  margin-bottom: var(--space-2);
+}
+
+.services-testimonials .testimonial-card__quote {
+  font-size: 0.95rem;
+}
+
+.services-testimonials .testimonial-card__name {
+  font-size: 1rem;
+  font-weight: var(--fw-bold);
+}
+
+.section__cta-row {
+  text-align: center;
+  margin-top: var(--space-6);
+}
+
+/* Sección más compacta que el resto (a propósito): la página ya es
+   densa de contenido, Testimonios no necesita el mismo padding-block
+   que las demás secciones (var(--space-9), heredado de .section en
+   base.css). */
+.section--compact {
+  padding-block: var(--space-7);
+}
+
+/* ============ 06. Add-ons ============ */
+/* v3: grid 3×2 (antes 2×3) — cards más chicas todavía, para que las 6
+   entren cómodas en 3 columnas sin perder el aire exterior del grid
+   (gap + max-width centrado, no ocupa todo el ancho del container). */
+
+.addons-overline {
+  font-family: var(--font-body);
+  font-weight: var(--fw-semibold);
+  font-size: var(--text-sm);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+}
+
+.addons-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-5);
+  max-width: 1000px;
+  margin: var(--space-7) auto 0;
+}
+
+@media (max-width: 899px) {
+  .addons-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 559px) {
+  .addons-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+}
+
+.addon-card {
+  padding: var(--space-4);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.addon-card__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  margin-bottom: var(--space-3);
+  border-radius: var(--radius-sm);
+  background: rgba(253, 101, 2, 0.1);
+  color: var(--color-primary);
+}
+
+.addon-card__icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.addon-card__name {
+  margin-bottom: var(--space-2);
+  font-size: 0.88rem;
+  font-weight: var(--fw-bold);
+  color: var(--color-dark);
+}
+
+.addon-card__desc {
+  margin-bottom: var(--space-3);
+  font-size: 0.78rem;
+  line-height: 1.5;
+  color: var(--color-text-body);
+}
+
+.addon-card__prices {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.addon-card__price {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-heading);
+  font-weight: var(--fw-bold);
+  font-size: 0.85rem;
+}
+
+.addon-card__price small {
+  font-family: var(--font-body);
+  font-weight: var(--fw-regular);
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.addon-card__price--standalone {
+  background: var(--color-bg-alt);
+  color: var(--color-text-body);
+}
+
+.addon-card__price--bundle {
+  background: rgba(253, 101, 2, 0.1);
+  color: var(--color-primary-hover);
+}
+
+/* Nota destacada compartida: mismo formato en Planes de Mantenimiento
+   (.care-highlight, ver arriba) y acá, ambas usan esta clase. */
+.highlight-note {
+  max-width: 44rem;
+  margin: var(--space-7) auto 0;
+  padding: var(--space-5) var(--space-6);
+  background: var(--color-bg-alt);
+  border-radius: var(--radius-md);
+  text-align: center;
+  color: var(--color-text-body);
+}
+
+.highlight-note p {
+  font-size: 0.92rem;
+}
+
+/* La frase destacada usa la escala tipográfica de h4 ya definida en
+   base.css/tokens.css (text-xl), no un tamaño inventado ad hoc. */
+.highlight-note h4 {
+  margin-top: var(--space-3);
+}
+
+/* ---------- FAQ ---------- */
+
+.faq-wrap {
+  max-width: 48rem;
+  margin: 0 auto;
+}
+
+#faq-servicios .accordion__item {
+  opacity: 0;
+  transform: translateY(30px);
+  transition:
+    opacity var(--duration-section) var(--ease-out),
+    transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+#faq-servicios .accordion__item.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#faq-servicios .accordion__item:nth-child(1) { transition-delay: 0ms; }
+#faq-servicios .accordion__item:nth-child(2) { transition-delay: 100ms; }
+#faq-servicios .accordion__item:nth-child(3) { transition-delay: 200ms; }
+#faq-servicios .accordion__item:nth-child(4) { transition-delay: 300ms; }
+#faq-servicios .accordion__item:nth-child(5) { transition-delay: 0ms; }
+#faq-servicios .accordion__item:nth-child(6) { transition-delay: 100ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  #faq-servicios .accordion__item {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ============ Genérico: encabezado de sección centrado ============ */
+
+.section-heading {
+  max-width: 44rem;
+}
+
+.section-heading--center {
+  margin-inline: auto;
+  text-align: center;
+}
+
+.section-heading__subtitle {
+  margin-top: var(--space-4);
+  font-size: var(--text-md);
+  color: var(--color-text-body);
+}
+
+/* ============ 07. CTA Final ============ */
+/* .cta-band es el componente compartido (ver css/components/cta-band.css),
+   que a propósito trae un solo CTA para Home (WhatsApp cubierto por el
+   flotante global). Servicios necesita el botón de WhatsApp explícito
+   al mismo nivel visual que el primario (regla 03-A / S9) — se agrega
+   acá, scoped a esta página, sin tocar el contrato del componente. */
+
+.cta-band__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-4);
+}
+
+.btn--whatsapp {
+  background: #25d366;
+  color: #ffffff;
+  border-color: #25d366;
+}
+
+.btn--whatsapp:hover {
+  background: #1ebd5a;
+  border-color: #1ebd5a;
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.35);
+}
+
+.btn--whatsapp svg {
+  width: 20px;
+  height: 20px;
+}
+
+.cta-band__badge {
+  margin-top: var(--space-2);
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.55);
+}

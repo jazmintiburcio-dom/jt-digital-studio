@@ -1,0 +1,47 @@
+/*
+  JT Digital Studio — Banda de CTA final
+  Banda de cierre reutilizable al final de cualquier página (Home,
+  Servicios, Proyectos, Nosotros). Contacto no la usa: ya es la página
+  de conversión. Un solo CTA — WhatsApp queda cubierto por el flotante
+  global, nunca se duplica acá.
+*/
+
+/* Vidrio, no un bloque plano: --color-dark sólido quedaba idéntico al
+   footer que viene justo debajo — dos oscuros seguidos sin ninguna
+   diferencia. rgba(...,0.85) + blur da un tono translúcido propio;
+   border-top marca la costura contra el Footer (que sigue sólido, sin
+   glass, a propósito — así se diferencian entre sí). */
+.cta-band {
+  position: relative;
+  background: rgba(38, 42, 43, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  text-align: center;
+}
+
+/* El botón necesita su sombra naranja siempre, no solo al hover: sin
+   ella se pierde contra el fondo translúcido del band. */
+.cta-band .btn--primary {
+  box-shadow: var(--shadow-orange);
+}
+
+.cta-band__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-6);
+  max-width: 44rem;
+  margin-inline: auto;
+}
+
+.cta-band__title {
+  color: var(--color-text-on-dark);
+  font-size: var(--text-3xl);
+}
+
+.cta-band__badge {
+  margin-top: var(--space-2);
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.55);
+}

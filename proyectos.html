@@ -1,0 +1,594 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Casos de éxito en diseño web | JT Digital Studio</title>
+  <meta name="description" content="Cuatro proyectos reales de diseño web para profesionales y PyMEs en LATAM. Vea la estrategia, la implementación técnica y el diseño detrás de cada sitio.">
+
+  <link rel="icon" href="assets/marca/favicon.svg" type="image/svg+xml">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/pages/proyectos.css">
+</head>
+<body>
+
+  <a class="skip-link" href="#main-content">Saltar al contenido</a>
+
+  <header class="site-header">
+    <div class="site-header__inner container">
+      <a href="index.html" class="site-header__logo" aria-label="JT Digital Studio, Inicio">
+        <img src="assets/marca/icono-negro.svg" alt="" class="site-header__logo-icon" width="32" height="32">
+        <span class="site-header__wordmark">
+          <span class="site-header__brand">JT Digital Studio</span>
+          <span class="site-header__tagline">Diseño Web &amp; Sistemas Digitales</span>
+        </span>
+      </a>
+
+      <nav class="site-header__nav" aria-label="Navegación principal">
+        <ul class="site-header__nav-list">
+          <li><a href="index.html" class="site-header__nav-link">Home</a></li>
+          <li><a href="servicios.html" class="site-header__nav-link">Servicios</a></li>
+          <li><a href="proyectos.html" class="site-header__nav-link" aria-current="page">Proyectos</a></li>
+          <li><a href="nosotros.html" class="site-header__nav-link">Nosotros</a></li>
+          <li><a href="contacto.html" class="site-header__nav-link">Contacto</a></li>
+        </ul>
+      </nav>
+
+      <a href="contacto.html" class="btn btn--primary site-header__cta">Solicitar cotización</a>
+
+      <button
+        type="button"
+        class="site-header__menu-toggle"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        aria-label="Abrir menú"
+        data-menu-toggle
+      >
+        <svg data-icon-menu viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="4" x2="20" y1="12" y2="12"/>
+          <line x1="4" x2="20" y1="6" y2="6"/>
+          <line x1="4" x2="20" y1="18" y2="18"/>
+        </svg>
+        <svg data-icon-close viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M18 6 6 18"/>
+          <path d="m6 6 12 12"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <div class="mobile-menu" id="mobile-menu" data-mobile-menu>
+    <div class="mobile-menu__overlay" data-mobile-menu-overlay></div>
+    <div class="mobile-menu__panel" data-mobile-menu-panel role="dialog" aria-modal="true" aria-label="Menú de navegación">
+      <div class="mobile-menu__header">
+        <button type="button" class="btn-icon mobile-menu__close" aria-label="Cerrar menú" data-mobile-menu-close>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M18 6 6 18"/>
+            <path d="m6 6 12 12"/>
+          </svg>
+        </button>
+      </div>
+      <nav aria-label="Navegación móvil">
+        <ul class="mobile-menu__list">
+          <li><a href="index.html" class="mobile-menu__link">Home</a></li>
+          <li><a href="servicios.html" class="mobile-menu__link">Servicios</a></li>
+          <li><a href="proyectos.html" class="mobile-menu__link" aria-current="page">Proyectos</a></li>
+          <li><a href="nosotros.html" class="mobile-menu__link">Nosotros</a></li>
+          <li><a href="contacto.html" class="mobile-menu__link">Contacto</a></li>
+        </ul>
+      </nav>
+      <a href="contacto.html" class="btn btn--primary mobile-menu__cta">Solicitar cotización</a>
+    </div>
+  </div>
+
+  <main id="main-content">
+
+    <!-- S1. Hero -->
+    <section class="projects-hero" data-scroll-reveal data-hero-fade>
+      <img src="Visuals/proyectos/hero-proyectos.webp" alt="" class="projects-hero__bg" loading="eager" aria-hidden="true">
+      <div class="container projects-hero__inner">
+        <p class="projects-hero__overline" data-reveal>Proyectos · Nuestro trabajo en acción</p>
+        <h1 class="projects-hero__title" data-reveal>Portafolio digital y casos de éxito en diseño web</h1>
+        <p class="projects-hero__subtitle" data-reveal>Antes de construir, entendemos el negocio. Le mostramos cómo pensamos cada proyecto, no solo el resultado final.</p>
+        <a href="contacto.html" class="btn btn--primary" data-reveal>Solicitar cotización</a>
+      </div>
+    </section>
+
+    <!-- S2. Criterio -->
+    <section class="section section--surface" data-scroll-reveal>
+      <div class="container">
+        <p class="criteria-intro" data-reveal>Antes de ver cada proyecto, esto es lo que va a encontrar en los cuatro:</p>
+        <div class="criteria-pills" data-reveal>
+          <span class="criteria-pill">Estrategia de Negocios</span>
+          <span class="criteria-pill">Implementación Técnica</span>
+          <span class="criteria-pill">Experiencia e Identidad Visual</span>
+          <span class="criteria-pill">Alcance del Proyecto</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- S3-S6. Casos — secciones inmersivas -->
+
+    <nav class="case-nav" aria-label="Navegación entre proyectos" data-case-nav>
+      <a href="#caso-marciano" class="case-nav__dot" data-case-nav-link aria-label="Marciano Barber Studio">01</a>
+      <a href="#caso-yina" class="case-nav__dot" data-case-nav-link aria-label="Yina Tiburcio Realtor">02</a>
+      <a href="#caso-xblues" class="case-nav__dot" data-case-nav-link aria-label="XBlues.Tek">03</a>
+      <a href="#caso-dreamsfusion" class="case-nav__dot" data-case-nav-link aria-label="Dreams Fusion &amp; Co.">04</a>
+    </nav>
+
+    <!-- Caso 1 — Marciano Barber Studio -->
+    <section class="case-study" data-expandable-card data-scroll-reveal id="caso-marciano">
+      <div class="case-study__media case-study__media--zoom" data-reveal data-zoom-lens>
+        <img src="Visuals/proyectos/marciano-01.webp" alt="Marciano Barber Studio — sitio web" class="case-study__img" loading="lazy">
+        <div class="zoom-lens__hint">Mové el cursor para explorar</div>
+      </div>
+      <div class="case-study__content">
+        <span class="case-study__index" data-reveal>01</span>
+        <div class="project-card__tags" data-reveal>
+          <span class="project-card__tag">Barbería Premium</span>
+          <span class="project-card__tag">Primera Presencia Digital</span>
+          <span class="project-card__tag">Bilingüe ES/EN</span>
+        </div>
+        <h2 class="case-study__title" data-reveal>Marciano Barber Studio</h2>
+        <a href="https://marcianobarberstudio.com" class="project-card__site-link" target="_blank" rel="noopener noreferrer" data-reveal>marcianobarberstudio.com ↗</a>
+        <p class="case-study__summary" data-reveal>Desarrollo de la primera presencia digital del negocio, alineando la imagen online con el posicionamiento premium y expandiendo hacia el mercado angloparlante de Rhode Island mediante una experiencia completamente bilingüe.</p>
+        <p class="project-card__investment" data-reveal>Inversión orientativa: <strong>Desde USD 700</strong> <span class="project-card__investment-note">(el alcance final se define en su cotización personalizada)</span></p>
+        <button type="button" class="case-study__toggle" data-expandable-trigger aria-expanded="false" aria-controls="case-detail-1" data-reveal>Ver el caso completo</button>
+      </div>
+
+      <div class="case-study__detail project-card__detail" id="case-detail-1" data-expandable-detail>
+        <div class="case-study__detail-inner project-card__detail-inner">
+          <div class="case-study__detail-content project-card__detail-content" data-scroll-reveal>
+            <button type="button" class="btn-icon project-card__close" aria-label="Cerrar detalle" data-expandable-close>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+            </button>
+
+            <div class="case-study__detail-categories">
+              <div class="project-card__category" data-reveal>
+                <h4>Estrategia de Negocios</h4>
+                <ul>
+                  <li>Desarrollo de la primera presencia digital del negocio, alineando la imagen online con el posicionamiento premium y la calidad del servicio que la barbería ya ofrecía de forma presencial.</li>
+                  <li>Creación de un ecosistema digital centralizado que complementa las Redes Sociales, Google y Booksy, manteniendo el flujo de reservas existente sin modificar la operación del negocio.</li>
+                  <li>Expansión hacia el mercado angloparlante de Rhode Island mediante una experiencia completamente bilingüe, fortaleciendo el posicionamiento local de la marca.</li>
+                </ul>
+              </div>
+
+              <figure class="project-card__category-media" data-reveal>
+                <img src="Visuals/proyectos/marciano-03.webp" alt="Marciano Barber Studio — identidad de marca" loading="lazy">
+              </figure>
+
+              <div class="project-card__category" data-reveal>
+                <h4>Implementación Técnica</h4>
+                <ul>
+                  <li>Desarrollo de una presencia digital bilingüe (ES/EN) con cambio de idioma integrado y navegación optimizada para dispositivos móviles.</li>
+                  <li>Implementación de una estrategia SEO combinada con GEO y AEO mediante arquitectura de información, datos estructurados y contenido orientado tanto a buscadores tradicionales como a motores de búsqueda impulsados por inteligencia artificial.</li>
+                  <li>Integración con Booksy, Google Maps, WhatsApp y Redes Sociales para unificar la experiencia del usuario sin alterar el flujo de reservas existente.</li>
+                </ul>
+              </div>
+
+              <figure class="project-card__category-media project-card__category-media--right" data-reveal>
+                <img src="Visuals/proyectos/marciano-02.webp" alt="Marciano Barber Studio — servicios" loading="lazy">
+              </figure>
+
+              <div class="project-card__category" data-reveal>
+                <h4>Experiencia e Identidad Visual</h4>
+                <ul>
+                  <li>Desarrollo de un Sistema de Identidad de Marca, definiendo dirección visual, paleta cromática, tipografía y lineamientos gráficos para garantizar consistencia en todos los puntos de contacto digitales.</li>
+                  <li>Dirección de arte basada en una estética oscura con acentos cálidos para reforzar el posicionamiento premium y diferenciar la marca de la imagen tradicional del sector.</li>
+                  <li>Diseño Mobile First con navegación simplificada, un único objetivo por sección y selector de idioma visible desde el primer pantallazo para facilitar la experiencia del público bilingüe.</li>
+                </ul>
+              </div>
+
+              <figure class="project-card__category-media project-card__category-media--right" data-reveal>
+                <img src="Visuals/proyectos/marciano-04.webp" alt="Marciano Barber Studio — experiencia mobile" loading="lazy">
+              </figure>
+
+              <div class="project-card__category" data-reveal>
+                <h4>Alcance del Proyecto</h4>
+                <ul class="project-card__scope-list">
+                  <li>Sistema de Identidad de Marca</li>
+                  <li>Presencia Digital Bilingüe</li>
+                  <li>Arquitectura de Información</li>
+                  <li>SEO + GEO/AEO</li>
+                  <li>Mobile First &amp; Responsive</li>
+                </ul>
+              </div>
+
+              <a href="https://marcianobarberstudio.com" class="project-card__result-link" target="_blank" rel="noopener noreferrer" data-reveal>Resultado visual: Ver sitio en vivo →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Caso 2 — Yina Tiburcio Realtor -->
+    <section class="case-study case-study--reverse" data-expandable-card data-scroll-reveal id="caso-yina">
+      <div class="case-study__media" data-reveal>
+        <div class="dot-carousel" data-dot-carousel>
+          <div class="dot-carousel__track">
+            <img src="Visuals/proyectos/yinarealtor-01.webp" alt="Yina Tiburcio Realtor — home" class="dot-carousel__img is-active" loading="lazy">
+            <img src="Visuals/proyectos/yinarealtor-02.webp" alt="Yina Tiburcio Realtor — catálogo de propiedades" class="dot-carousel__img" loading="lazy">
+            <img src="Visuals/proyectos/yinarealtor-03.webp" alt="Yina Tiburcio Realtor — ficha de propiedad" class="dot-carousel__img" loading="lazy">
+            <img src="Visuals/proyectos/yinarealtor-04.webp" alt="Yina Tiburcio Realtor — contacto" class="dot-carousel__img" loading="lazy">
+          </div>
+          <div class="dot-carousel__dots" aria-hidden="true">
+            <button class="dot-carousel__dot is-active"></button>
+            <button class="dot-carousel__dot"></button>
+            <button class="dot-carousel__dot"></button>
+            <button class="dot-carousel__dot"></button>
+          </div>
+        </div>
+      </div>
+      <div class="case-study__content">
+        <span class="case-study__index" data-reveal>02</span>
+        <div class="project-card__tags" data-reveal>
+          <span class="project-card__tag">Bienes Raíces</span>
+          <span class="project-card__tag">Catálogo Inmobiliario</span>
+          <span class="project-card__tag">Bilingüe ES/EN</span>
+        </div>
+        <h2 class="case-study__title" data-reveal>Yina Tiburcio Realtor</h2>
+        <a href="https://yinatiburciorealtor.com" class="project-card__site-link" target="_blank" rel="noopener noreferrer" data-reveal>yinatiburciorealtor.com ↗</a>
+        <p class="case-study__summary" data-reveal>Presencia digital que posiciona a Yina como una Realtor de confianza para la comunidad latina de Rhode Island, con un canal inmobiliario propio que centraliza la publicación de propiedades en alquiler y venta.</p>
+        <p class="project-card__investment" data-reveal>Inversión orientativa: <strong>Desde USD 1,200</strong> <span class="project-card__investment-note">(el alcance final se define en su cotización personalizada)</span></p>
+        <button type="button" class="case-study__toggle" data-expandable-trigger aria-expanded="false" aria-controls="case-detail-2" data-reveal>Ver el caso completo</button>
+      </div>
+
+      <div class="case-study__detail project-card__detail" id="case-detail-2" data-expandable-detail>
+        <div class="case-study__detail-inner project-card__detail-inner">
+          <div class="case-study__detail-content project-card__detail-content" data-scroll-reveal>
+            <button type="button" class="btn-icon project-card__close" aria-label="Cerrar detalle" data-expandable-close>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+            </button>
+
+            <div class="case-study__detail-categories">
+              <div class="project-card__category" data-reveal>
+                <h4>Estrategia de Negocios</h4>
+                <ul>
+                  <li>Desarrollo de una presencia digital que posiciona a Yina como una Realtor de confianza para la comunidad latina de Rhode Island, combinando atención cercana, experiencia profesional y acompañamiento bilingüe.</li>
+                  <li>Creación de un canal inmobiliario propio para centralizar la publicación de propiedades en alquiler y venta, reduciendo la dependencia de anuncios aislados en portales y Redes Sociales.</li>
+                  <li>Diseño de un recorrido que conecta la historia, las credenciales y los servicios de Yina con un sistema de propiedades orientado a inquilinos, compradores y propietarios.</li>
+                </ul>
+              </div>
+
+              <figure class="project-card__category-media" data-reveal>
+                <img src="Visuals/proyectos/yinarealtor-03.webp" alt="Yina Tiburcio Realtor — ficha de propiedad" loading="lazy">
+              </figure>
+
+              <div class="project-card__category" data-reveal>
+                <h4>Implementación Técnica</h4>
+                <ul>
+                  <li>Desarrollo de una aplicación web bilingüe con cambio de idioma persistente, navegación responsive y contenido completo en español e inglés.</li>
+                  <li>Construcción de un catálogo inmobiliario estructurado con filtros por tipo de operación, tarjetas reutilizables y un modelo centralizado de datos para organizar el inventario de propiedades.</li>
+                  <li>Implementación de fichas dinámicas para cada inmueble, con galería fotográfica, características, datos destacados, lugares cercanos, mapa de ubicación, propiedades relacionadas y consultas personalizadas por WhatsApp.</li>
+                </ul>
+              </div>
+
+              <figure class="project-card__category-media project-card__category-media--right" data-reveal>
+                <img src="Visuals/proyectos/yinarealtor-04.webp" alt="Yina Tiburcio Realtor — contacto" loading="lazy">
+              </figure>
+
+              <div class="project-card__category" data-reveal>
+                <h4>Experiencia e Identidad Visual</h4>
+                <ul>
+                  <li>Desarrollo de un Sistema de Identidad de Marca basado en tonos cálidos y naturales, diseñado para comunicar cercanía, confianza y profesionalismo dentro del mercado inmobiliario.</li>
+                  <li>Diseño de una experiencia de exploración que permite diferenciar propiedades en alquiler y venta, revisar rápidamente sus datos principales y profundizar en una ficha individual organizada.</li>
+                  <li>Aplicación de un enfoque Mobile First con filtros accesibles, tarjetas escaneables, galerías adaptativas y llamados a la acción directos durante todo el recorrido.</li>
+                </ul>
+              </div>
+
+              <div class="project-card__category" data-reveal>
+                <h4>Alcance del Proyecto</h4>
+                <ul class="project-card__scope-list">
+                  <li>Sistema de Identidad de Marca</li>
+                  <li>Sitio Web Bilingüe ES/EN</li>
+                  <li>Arquitectura de Información</li>
+                  <li>Catálogo Inmobiliario para Alquiler y Venta</li>
+                  <li>Sistema de Fichas Dinámicas de Propiedades</li>
+                  <li>SEO Local + GEO/AEO</li>
+                  <li>Mobile First &amp; Responsive</li>
+                </ul>
+              </div>
+
+              <a href="https://yinatiburciorealtor.com" class="project-card__result-link" target="_blank" rel="noopener noreferrer" data-reveal>Resultado visual: Ver sitio en vivo →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Caso 3 — XBlues.Tek -->
+    <section class="case-study" data-expandable-card data-scroll-reveal id="caso-xblues">
+      <div class="case-study__media" data-reveal>
+        <div class="dot-carousel" data-dot-carousel>
+          <div class="dot-carousel__track">
+            <img src="Visuals/proyectos/xblues-despues.webp" alt="XBlues.Tek — sitio actual en WordPress" class="dot-carousel__img is-active" loading="lazy">
+            <img src="Visuals/proyectos/xblues-03.webp" alt="XBlues.Tek — guía de estilos de marca" class="dot-carousel__img" loading="lazy">
+            <img src="Visuals/proyectos/xblues-04.webp" alt="XBlues.Tek — página de servicios" class="dot-carousel__img" loading="lazy">
+            <img src="Visuals/proyectos/xblues-antes.webp" alt="XBlues.Tek — sitio anterior en Wix" class="dot-carousel__img" loading="lazy">
+          </div>
+          <div class="dot-carousel__dots" aria-hidden="true">
+            <button class="dot-carousel__dot is-active"></button>
+            <button class="dot-carousel__dot"></button>
+            <button class="dot-carousel__dot"></button>
+            <button class="dot-carousel__dot"></button>
+          </div>
+        </div>
+      </div>
+      <div class="case-study__content">
+        <span class="case-study__index" data-reveal>03</span>
+        <div class="project-card__tags" data-reveal>
+          <span class="project-card__tag">Consultoría IT B2B</span>
+          <span class="project-card__tag">Migración y Reconstrucción</span>
+          <span class="project-card__tag">SEO Estratégico</span>
+        </div>
+        <h2 class="case-study__title" data-reveal>XBlues.Tek</h2>
+        <a href="https://xblues.ar" class="project-card__site-link" target="_blank" rel="noopener noreferrer" data-reveal>xblues.ar ↗</a>
+        <p class="case-study__summary" data-reveal>Reconstrucción completa de la presencia digital de una consultora tecnológica B2B, migrando desde una plataforma que limitaba su visibilidad hacia una arquitectura profesional, organizada y preparada para crecer.</p>
+        <p class="project-card__investment" data-reveal>Inversión orientativa: <strong>Desde USD 2,500</strong> <span class="project-card__investment-note">(el alcance final se define en su cotización personalizada)</span></p>
+        <button type="button" class="case-study__toggle" data-expandable-trigger aria-expanded="false" aria-controls="case-detail-3" data-reveal>Ver el caso completo</button>
+      </div>
+
+      <div class="case-study__detail project-card__detail" id="case-detail-3" data-expandable-detail>
+        <div class="case-study__detail-inner project-card__detail-inner">
+          <div class="case-study__detail-content project-card__detail-content" data-scroll-reveal>
+            <button type="button" class="btn-icon project-card__close" aria-label="Cerrar detalle" data-expandable-close>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+            </button>
+
+            <div class="case-study__detail-categories">
+              <div class="project-card__category" data-reveal>
+                <h4>Estrategia de Negocios</h4>
+                <ul>
+                  <li>Reconstrucción completa de la presencia digital de una consultora tecnológica B2B, migrando desde una plataforma que limitaba su visibilidad hacia una arquitectura profesional, organizada y preparada para crecer.</li>
+                  <li>Reorganización de la oferta de servicios y del contenido del sitio para responder a las necesidades de los perfiles técnicos y ejecutivos que participan en la contratación de soluciones de tecnología para empresas.</li>
+                  <li>Desarrollo de una estrategia de posicionamiento basada en investigación del cliente ideal, keywords y competidores orgánicos, orientada a mejorar la visibilidad de la consultora y facilitar la generación de consultas comerciales.</li>
+                </ul>
+              </div>
+
+              <div class="project-card__category" data-reveal>
+                <h4>Implementación Técnica</h4>
+                <ul>
+                  <li>Migración integral desde Wix hacia WordPress con Elementor en Hostinger, incluyendo transferencia del dominio, configuración de DNS, continuidad del correo corporativo en Google Workspace y redirección de las antiguas URLs.</li>
+                  <li>Desarrollo de una arquitectura multipágina de 11 páginas, compuesta por inicio, página general de servicios, seis páginas individuales de soluciones, nosotros, clientes y contacto.</li>
+                  <li>Implementación de SEO técnico, corrección de la configuración que impedía la indexación, conexión con Google Analytics 4 y Search Console, y configuración del seguimiento de conversiones.</li>
+                </ul>
+              </div>
+
+              <figure class="project-card__compare-media" data-reveal>
+                <figcaption>Migración de Wix a WordPress</figcaption>
+                <div class="compare-stack">
+                  <div class="compare-stack__panel">
+                    <span class="compare-stack__label compare-stack__label--before">Antes</span>
+                    <img src="Visuals/proyectos/xblues-antes.webp" alt="XBlues.Tek — sitio anterior en Wix" class="compare-stack__img">
+                  </div>
+                  <div class="compare-stack__panel">
+                    <span class="compare-stack__label compare-stack__label--after">Después</span>
+                    <img src="Visuals/proyectos/xblues-despues.webp" alt="XBlues.Tek — sitio actual" class="compare-stack__img">
+                  </div>
+                </div>
+              </figure>
+
+              <div class="project-card__category" data-reveal>
+                <h4>Experiencia e Identidad Visual</h4>
+                <ul>
+                  <li>Creación de un Sistema de Identidad de Marca completo desde cero, incluyendo rediseño del logo, paleta cromática, tipografía y criterios visuales aplicados de manera consistente en todo el sitio.</li>
+                  <li>Dirección visual corporativa y tecnológica, diseñada para reflejar la experiencia de XBlues.Tek y transmitir confianza frente a empresas que evalúan proveedores para proyectos de tecnología.</li>
+                  <li>Diseño Mobile First y Responsive con navegación simplificada, jerarquía clara de contenidos y recorridos diferenciados para facilitar la evaluación de los servicios y el contacto comercial.</li>
+                </ul>
+              </div>
+
+              <div class="project-card__category" data-reveal>
+                <h4>Alcance del Proyecto</h4>
+                <ul class="project-card__scope-list">
+                  <li>Sistema de Identidad de Marca</li>
+                  <li>Migración y Reconstrucción de Plataforma</li>
+                  <li>Arquitectura de Información Multipágina</li>
+                  <li>Copywriting Estratégico B2B</li>
+                  <li>SEO Técnico y Corrección de Indexación</li>
+                  <li>Analítica y Seguimiento de Conversiones</li>
+                  <li>Mobile First &amp; Responsive</li>
+                </ul>
+              </div>
+
+              <a href="https://xblues.ar" class="project-card__result-link" target="_blank" rel="noopener noreferrer" data-reveal>Resultado visual: Ver sitio en vivo →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Caso 4 — Dreams Fusion & Co. -->
+    <section class="case-study case-study--reverse" data-expandable-card data-scroll-reveal id="caso-dreamsfusion">
+      <div class="case-study__media case-study__media--zoom" data-reveal data-zoom-lens>
+        <img src="Visuals/proyectos/dreamsfusion-01.webp" alt="Dreams Fusion &amp; Co. — home" class="case-study__img" loading="lazy">
+        <div class="zoom-lens__hint">Mové el cursor para explorar</div>
+      </div>
+      <div class="case-study__content">
+        <span class="case-study__index" data-reveal>04</span>
+        <div class="project-card__tags" data-reveal>
+          <span class="project-card__tag">Editorial de Bienestar</span>
+          <span class="project-card__tag">Reconstrucción Web</span>
+          <span class="project-card__tag">Catálogo y Contenido</span>
+        </div>
+        <h2 class="case-study__title" data-reveal>Dreams Fusion &amp; Co.</h2>
+        <a href="https://dreamsfusionco.com" class="project-card__site-link" target="_blank" rel="noopener noreferrer" data-reveal>dreamsfusionco.com ↗</a>
+        <p class="case-study__summary" data-reveal>Reconstrucción de la presencia digital de Dreams Fusion &amp; Co. para transformar una web limitada en una plataforma profesional que reúne el catálogo de libros, el blog y los recursos gratuitos en una experiencia centralizada.</p>
+        <p class="project-card__investment" data-reveal>Inversión orientativa: <strong>Desde USD 2,100</strong> <span class="project-card__investment-note">(el alcance final se define en su cotización personalizada)</span></p>
+        <button type="button" class="case-study__toggle" data-expandable-trigger aria-expanded="false" aria-controls="case-detail-4" data-reveal>Ver el caso completo</button>
+      </div>
+
+      <div class="case-study__detail project-card__detail" id="case-detail-4" data-expandable-detail>
+        <div class="case-study__detail-inner project-card__detail-inner">
+          <div class="case-study__detail-content project-card__detail-content" data-scroll-reveal>
+            <button type="button" class="btn-icon project-card__close" aria-label="Cerrar detalle" data-expandable-close>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+            </button>
+
+            <div class="case-study__detail-categories">
+              <div class="project-card__category" data-reveal>
+                <h4>Estrategia de Negocios</h4>
+                <ul>
+                  <li>Reconstrucción de la presencia digital de Dreams Fusion &amp; Co. para transformar una web limitada en una plataforma profesional, clara y preparada para acompañar el crecimiento de la marca.</li>
+                  <li>Creación de un espacio propio que reúne el catálogo de libros, la historia de la autora, el blog y los recursos gratuitos en una experiencia centralizada.</li>
+                  <li>Desarrollo de una estrategia para atraer visitas desde Google, dirigir ventas hacia Amazon y construir una comunidad propia de suscriptores.</li>
+                </ul>
+              </div>
+
+              <figure class="project-card__category-media" data-reveal>
+                <img src="Visuals/proyectos/dreamsfusion-02.webp" alt="Dreams Fusion &amp; Co. — catálogo de libros" loading="lazy">
+              </figure>
+
+              <div class="project-card__category" data-reveal>
+                <h4>Implementación Técnica</h4>
+                <ul>
+                  <li>Desarrollo de un sitio web de varias páginas con una navegación clara y una estructura fácil de administrar y ampliar.</li>
+                  <li>Integración del catálogo de libros con Amazon, junto con un blog y un portal de recursos gratuitos con entrega automática por email.</li>
+                  <li>Configuración de herramientas para mejorar la visibilidad en Google, medir resultados, proteger el sitio y mantener una experiencia rápida y confiable.</li>
+                </ul>
+              </div>
+
+              <figure class="project-card__category-media project-card__category-media--right" data-reveal>
+                <img src="Visuals/proyectos/dreamsfusion-03.webp" alt="Dreams Fusion &amp; Co. — blog" loading="lazy">
+              </figure>
+
+              <div class="project-card__category" data-reveal>
+                <h4>Experiencia e Identidad Visual</h4>
+                <ul>
+                  <li>Consolidación de una identidad visual suave y editorial, alineada con el bienestar emocional, el crecimiento personal y la creatividad.</li>
+                  <li>Organización del contenido para que cada visitante pueda encontrar fácilmente libros, artículos, recursos gratuitos o información sobre la autora.</li>
+                  <li>Diseño Mobile First con mensajes claros, llamados a la acción visibles y una experiencia cercana que transmite confianza desde el primer contacto.</li>
+                </ul>
+              </div>
+
+              <figure class="project-card__category-media" data-reveal>
+                <img src="Visuals/proyectos/dreamsfusion-04.webp" alt="Dreams Fusion &amp; Co. — sección del home" loading="lazy">
+              </figure>
+
+              <div class="project-card__category" data-reveal>
+                <h4>Alcance del Proyecto</h4>
+                <ul class="project-card__scope-list">
+                  <li>Sistema de Identidad Visual</li>
+                  <li>Reconstrucción del Sitio Web</li>
+                  <li>Arquitectura de Información</li>
+                  <li>Catálogo de Libros conectado con Amazon</li>
+                  <li>Blog y Portal de Recursos</li>
+                  <li>Captación de Suscriptores + Entrega Automática</li>
+                  <li>Posicionamiento en Google + Medición de Resultados</li>
+                </ul>
+              </div>
+
+              <figure class="project-card__category-media project-card__category-media--right" data-reveal>
+                <img src="Visuals/proyectos/dreamsfusion-05.webp" alt="Dreams Fusion &amp; Co. — recursos gratuitos" loading="lazy">
+              </figure>
+
+              <a href="https://dreamsfusionco.com" class="project-card__result-link" target="_blank" rel="noopener noreferrer" data-reveal>Resultado visual: Ver sitio en vivo →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--surface">
+      <div class="container section__cta-row">
+        <a href="servicios.html#planes" class="link-arrow">
+          Ver los 4 planes completos
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M5 12h14"/>
+            <path d="m12 5 7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+    </section>
+
+    <!-- S7. CTA final -->
+    <section class="section cta-band">
+      <div class="container cta-band__inner">
+        <h2 class="cta-band__title">¿Necesita una presencia digital que lleve su negocio al siguiente nivel?</h2>
+        <p style="color: rgba(255,255,255,0.75);">Estos son los negocios que ya lo lograron. Cuéntenos en qué etapa está el suyo y le mostramos cómo lo pensaríamos.</p>
+        <div class="cta-band__actions">
+          <a href="contacto.html" class="btn btn--primary">Hablemos de su proyecto</a>
+          <a
+            href="https://wa.me/5491165370820?text=Hola%2C%20vi%20su%20web%20y%20quiero%20informaci%C3%B3n%20sobre%20sus%20servicios"
+            class="btn btn--whatsapp"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413"/></svg>
+            Escribir por WhatsApp
+          </a>
+        </div>
+        <p class="cta-band__badge">Le respondemos a la brevedad</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container site-footer__top">
+      <div>
+        <div class="site-footer__brand">
+          <img src="assets/marca/icono-blanco.svg" alt="" class="site-footer__logo-icon" width="32" height="32">
+          <span class="site-footer__wordmark">
+            <span class="site-footer__brand-name">JT Digital Studio</span>
+            <span class="site-footer__tagline">Diseño Web &amp; Sistemas Digitales</span>
+          </span>
+        </div>
+
+        <div class="site-footer__social">
+          <a href="#" class="site-footer__social-link" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2c2.7 0 3.05.01 4.12.06 1.06.05 1.79.22 2.43.47.66.26 1.21.6 1.76 1.15.55.55.9 1.1 1.15 1.76.25.64.42 1.37.47 2.43.05 1.07.06 1.42.06 4.12s-.01 3.05-.06 4.12c-.05 1.06-.22 1.79-.47 2.43-.26.66-.6 1.21-1.15 1.76-.55.55-1.1.9-1.76 1.15-.64.25-1.37.42-2.43.47-1.07.05-1.42.06-4.12.06s-3.05-.01-4.12-.06c-1.06-.05-1.79-.22-2.43-.47-.66-.26-1.21-.6-1.76-1.15-.55-.55-.9-1.1-1.15-1.76-.25-.64-.42-1.37-.47-2.43C2.01 15.05 2 14.7 2 12s.01-3.05.06-4.12c.05-1.06.22-1.79.47-2.43.26-.66.6-1.21 1.15-1.76.55-.55 1.1-.9 1.76-1.15.64-.25 1.37-.42 2.43-.47C8.95 2.01 9.3 2 12 2zm0 1.8c-2.65 0-2.97.01-4.02.06-.86.04-1.33.18-1.64.3-.41.16-.71.35-1.02.66-.31.31-.5.61-.66 1.02-.12.31-.26.78-.3 1.64-.05 1.05-.06 1.37-.06 4.02s.01 2.97.06 4.02c.04.86.18 1.33.3 1.64.16.41.35.71.66 1.02.31.31.61.5 1.02.66.31.12.78.26 1.64.3 1.05.05 1.37.06 4.02.06s2.97-.01 4.02-.06c.86-.04 1.33-.18 1.64-.3.41-.16.71-.35 1.02-.66.31-.31.5-.61.66-1.02.12-.31.26-.78.3-1.64.05-1.05.06-1.37.06-4.02s-.01-2.97-.06-4.02c-.04-.86-.18-1.33-.3-1.64-.16-.41-.35-.71-.66-1.02-.31-.31-.61-.5-1.02-.66-.31-.12-.78-.26-1.64-.3C14.97 3.81 14.65 3.8 12 3.8zm0 3.05a5.15 5.15 0 110 10.3 5.15 5.15 0 010-10.3zm0 1.8a3.35 3.35 0 100 6.7 3.35 3.35 0 000-6.7zm5.35-1.99a1.2 1.2 0 11-2.4 0 1.2 1.2 0 012.4 0z"/></svg>
+          </a>
+          <a href="#" class="site-footer__social-link" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5.02 3.66 9.18 8.44 9.94v-7.03H7.9v-2.91h2.54V9.85c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.88h2.78l-.44 2.91h-2.34V22c4.78-.76 8.44-4.92 8.44-9.94z"/></svg>
+          </a>
+          <a href="#" class="site-footer__social-link" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.03-1.85-3.03-1.85 0-2.14 1.45-2.14 2.94v5.66H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 110-4.12 2.06 2.06 0 010 4.12zM7.11 20.45H3.56V9h3.55v11.45z"/></svg>
+          </a>
+          <a href="https://ar.pinterest.com/jt_digitalstudio" class="site-footer__social-link" target="_blank" rel="noopener noreferrer" aria-label="Pinterest">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0a12 12 0 00-4.373 23.178c-.017-.888-.006-1.955.223-2.92.245-1.026 1.635-6.938 1.635-6.938s-.407-.816-.407-2.022c0-1.895 1.098-3.31 2.465-3.31 1.162 0 1.723.873 1.723 1.92 0 1.17-.744 2.92-1.129 4.544-.321 1.36.682 2.469 2.023 2.469 2.427 0 4.292-2.56 4.292-6.253 0-3.271-2.351-5.556-5.708-5.556-3.888 0-6.171 2.917-6.171 5.932 0 1.174.452 2.434 1.017 3.119a.41.41 0 01.095.393c-.104.433-.336 1.36-.382 1.55-.06.25-.199.303-.459.183-1.716-.799-2.788-3.31-2.788-5.324 0-4.335 3.15-8.318 9.081-8.318 4.766 0 8.47 3.396 8.47 7.938 0 4.736-2.987 8.545-7.133 8.545-1.393 0-2.703-.724-3.151-1.579l-.856 3.264c-.31 1.192-1.148 2.687-1.708 3.598A12 12 0 1012 0z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <nav aria-label="Navegación secundaria">
+        <p class="site-footer__heading">Navegación</p>
+        <ul class="site-footer__list">
+          <li><a href="servicios.html" class="site-footer__link">Servicios</a></li>
+          <li><a href="proyectos.html" class="site-footer__link">Proyectos</a></li>
+          <li><a href="nosotros.html" class="site-footer__link">Nosotros</a></li>
+          <li><a href="contacto.html" class="site-footer__link">Contacto</a></li>
+        </ul>
+      </nav>
+
+      <div>
+        <p class="site-footer__heading">Contacto</p>
+        <ul class="site-footer__list">
+          <li><a href="tel:+5491165370820" class="site-footer__link">+54 9 11 6537-0820</a></li>
+        </ul>
+        <a
+          href="https://wa.me/5491165370820?text=Hola%2C%20vi%20su%20web%20y%20quiero%20informaci%C3%B3n%20sobre%20sus%20servicios"
+          class="site-footer__whatsapp"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413"/></svg>
+          Escribinos por WhatsApp
+        </a>
+      </div>
+    </div>
+
+    <div class="container site-footer__bottom">
+      <span>© <span data-current-year>2026</span> JT Digital Studio. Todos los derechos reservados.</span>
+    </div>
+  </footer>
+
+  <script type="module" src="js/main.js"></script>
+  <script type="module" src="js/pages/proyectos.js"></script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+/*
+  JT Digital Studio — Logo cloud (marquee infinito)
+  Loop sin salto: el track contiene la lista de logos DUPLICADA una vez
+  (ver markup) y se anima con translateX(-50%) — como el ancho total
+  del track es el doble de una sola pasada, -50% cae exactamente donde
+  empieza la copia, y el loop es invisible. CSS puro, sin JS ni
+  dependencias.
+*/
+
+/* Fade en píxeles fijos (80px), no porcentaje: un % se angosta o
+   ensancha según el ancho del contenedor: a veces corta un logo a la
+   mitad de forma abrupta en vez de desvanecerlo. 80px es el mismo
+   ancho de fade sin importar el viewport. */
+.logo-cloud {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent 0,
+    black 80px,
+    black calc(100% - 80px),
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    90deg,
+    transparent 0,
+    black 80px,
+    black calc(100% - 80px),
+    transparent 100%
+  );
+}
+
+.logo-cloud__track {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  width: max-content;
+  animation: logo-cloud-scroll 30s linear infinite;
+}
+
+.logo-cloud:hover .logo-cloud__track {
+  animation-play-state: paused;
+}
+
+.logo-cloud__item {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+/* Logos de herramientas (PNG transparente): siempre a color de marca,
+   sin escala de grises — decisión explícita, no aplicar filtro acá. */
+.logo-cloud__logo {
+  display: block;
+  height: 48px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* Variante en texto: para wordmarks sin archivo de logo todavía (ver
+   fila "Trabajamos con" en Home) — mismo track, mismo timing. */
+.logo-cloud__logo-text {
+  flex-shrink: 0;
+  font-family: var(--font-heading);
+  font-weight: var(--fw-semibold);
+  font-size: var(--text-lg);
+  color: var(--color-text-tertiary);
+  white-space: nowrap;
+}
+
+@keyframes logo-cloud-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logo-cloud__track {
+    animation: none;
+  }
+
+  .logo-cloud {
+    overflow-x: auto;
+    mask-image: none;
+    -webkit-mask-image: none;
+  }
+}
