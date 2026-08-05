@@ -572,6 +572,50 @@
   color: var(--color-text-tertiary);
 }
 
+/* ============ 05b. Fundadora ============ */
+
+.founder-block {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-12);
+  align-items: center;
+}
+
+.founder-block__media {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+}
+
+.founder-block__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.founder-block__overline {
+  font-weight: var(--fw-semibold);
+  font-size: var(--text-sm);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  margin-bottom: var(--space-3);
+}
+
+.founder-block__content h2 {
+  margin-top: var(--space-2);
+  margin-bottom: 0;
+}
+
+.founder-block__text {
+  margin-top: var(--space-5);
+  margin-bottom: var(--space-7);
+  font-size: var(--text-md);
+  line-height: 1.7;
+  color: var(--color-text-body);
+}
+
 /* ============ 06. El proceso ============ */
 
 .process-overline {
@@ -692,6 +736,17 @@
 }
 
 @media (max-width: 768px) {
+  .founder-block {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+
+  .founder-block__media {
+    aspect-ratio: 4 / 3;
+    max-width: 400px;
+    margin-inline: auto;
+  }
+
   .process-timeline {
     grid-template-columns: 1fr;
     gap: var(--space-6);
