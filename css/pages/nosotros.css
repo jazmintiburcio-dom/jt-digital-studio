@@ -94,18 +94,6 @@
     min-height: auto;
   }
 
-  .about-hero__grid {
-    grid-template-columns: 1fr;
-    min-height: auto;
-    text-align: center;
-  }
-
-  .about-hero__media {
-    order: -1;
-    height: 60vh;
-    margin-bottom: var(--space-6);
-  }
-
   .about-hero__badge {
     left: var(--space-4);
     bottom: var(--space-4);
