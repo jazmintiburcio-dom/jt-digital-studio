@@ -576,15 +576,16 @@
 
 .founder-block {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-12);
+  grid-template-columns: 340px 1fr;
+  gap: var(--space-10);
   align-items: center;
 }
 
 .founder-block__media {
   border-radius: var(--radius-lg);
   overflow: hidden;
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 3 / 4;
+  max-height: 380px;
 }
 
 .founder-block__media img {
@@ -609,10 +610,10 @@
 }
 
 .founder-block__text {
-  margin-top: var(--space-5);
-  margin-bottom: var(--space-7);
-  font-size: var(--text-md);
-  line-height: 1.7;
+  margin-top: var(--space-4);
+  margin-bottom: var(--space-5);
+  font-size: var(--text-base);
+  line-height: 1.6;
   color: var(--color-text-body);
 }
 
