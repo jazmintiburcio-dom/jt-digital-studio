@@ -100,94 +100,119 @@
   }
 }
 
-/* ============ S2. Historia ============ */
+/* ============ S2. Historia — Fundadora ============ */
 
-.about-story {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-12);
+.founder-story {
+  padding-block: 7rem;
 }
 
-.about-story__row {
+.founder-story__grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-9);
-  align-items: center;
+  grid-template-columns: 58fr 42fr;
+  column-gap: 4.5rem;
+  grid-template-areas:
+    "header  portrait"
+    "body    portrait";
 }
 
-.about-story__row--reverse .about-story__portrait {
-  order: -1;
+.founder-story__header {
+  grid-area: header;
+  align-self: start;
 }
 
-.about-story__portrait {
+.founder-story__portrait {
+  grid-area: portrait;
+  align-self: start;
   margin: 0;
   border-radius: var(--radius-lg);
   overflow: hidden;
   box-shadow: var(--shadow-lg);
 }
 
-.about-story__portrait img {
+.founder-story__portrait img {
   width: 100%;
-  height: 100%;
+  aspect-ratio: 4 / 5;
   object-fit: cover;
   display: block;
-  aspect-ratio: 4 / 5;
 }
 
-.about-story__overline {
+.founder-story__body {
+  grid-area: body;
+  align-self: start;
+}
+
+.founder-story__overline {
   font-weight: var(--fw-semibold);
   font-size: var(--text-sm);
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--color-primary);
+  margin-bottom: var(--space-2);
 }
 
-.about-story__text h2 {
+.founder-story__header h2 {
   margin-top: var(--space-2);
-  margin-bottom: var(--space-5);
+  margin-bottom: 0;
 }
 
-.about-story__text p {
+.founder-story__body p {
+  margin-top: var(--space-5);
   margin-bottom: var(--space-4);
   line-height: var(--leading-relaxed);
   color: var(--color-text-body);
 }
 
-.about-story__linkedin-cta {
+.founder-story__body p:first-child {
   margin-top: var(--space-6);
-  margin-bottom: var(--space-2);
+}
+
+/* Tags */
+.founder-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  list-style: none;
+  padding: 0;
+  margin: var(--space-6) 0 var(--space-5);
+}
+
+.founder-tags__item {
+  font-size: 0.8125rem;
+  color: #262a2b;
+  background: #f2f2f2;
+  border: 1px solid #c7c8ca;
+  border-radius: 24px;
+  padding: 8px 15px;
+  line-height: 1;
+}
+
+.founder-tags__item--featured {
+  background: rgba(253, 101, 2, 0.07);
+  color: #fd6502;
+  border-color: rgba(253, 101, 2, 0.28);
+}
+
+/* LinkedIn link */
+.founder-story__linkedin {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   font-size: var(--text-sm);
   font-weight: var(--fw-semibold);
   color: var(--color-text-heading);
+  text-decoration: none;
+  transition: color var(--duration-micro) var(--ease-out);
 }
 
-.credibility-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--space-4);
-  align-content: start;
-}
-
-.credibility-card {
-  padding: var(--space-5);
-  border-radius: var(--radius-md);
-  background: var(--color-surface);
-  border: 1px solid var(--color-border-hairline);
-  box-shadow: var(--shadow-sm);
-}
-
-.credibility-card__stat {
-  margin-bottom: var(--space-2);
-  font-family: var(--font-heading);
-  font-size: var(--text-lg);
-  font-weight: var(--fw-bold);
+.founder-story__linkedin:hover {
   color: var(--color-primary);
 }
 
-.credibility-card__label {
-  font-size: 0.85rem;
-  line-height: 1.5;
-  color: var(--color-text-body);
+.founder-story__linkedin svg {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+  flex-shrink: 0;
 }
 
 /* ============ S3. Metodología (timeline 5 pasos) ============ */
@@ -364,18 +389,6 @@
   margin-bottom: 0;
 }
 
-/* LinkedIn button in biography */
-.btn--linkedin {
-  margin-top: var(--space-2);
-  gap: var(--space-2);
-}
-
-.btn--linkedin svg {
-  width: 18px;
-  height: 18px;
-  fill: currentColor;
-  flex-shrink: 0;
-}
 
 /* ============ S5. Espacio de trabajo ============ */
 
@@ -438,16 +451,24 @@
 /* ============ Responsive ============ */
 
 @media (max-width: 900px) {
-  .about-story__row {
+  /* S2. Historia — orden mobile: overline/H2 → foto → cuerpo */
+  .founder-story__grid {
     grid-template-columns: 1fr;
+    grid-template-areas:
+      "header"
+      "portrait"
+      "body";
+    column-gap: 0;
+    row-gap: var(--space-6);
   }
 
-  .about-story__row--reverse .about-story__portrait {
-    order: unset;
+  .founder-story__portrait {
+    max-width: 320px;
+    margin-inline: auto;
   }
 
-  .credibility-grid {
-    grid-template-columns: repeat(2, 1fr);
+  .founder-story__body p:first-child {
+    margin-top: var(--space-4);
   }
 
   .values-grid {
@@ -456,11 +477,5 @@
 
   .workspace-grid {
     grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 560px) {
-  .credibility-grid {
-    grid-template-columns: 1fr;
   }
 }
