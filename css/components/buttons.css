@@ -105,8 +105,8 @@
 }
 
 .btn--dark:hover {
-  background: #14181a;
-  border-color: #14181a;
+  background: var(--color-dark-hover);
+  border-color: var(--color-dark-hover);
 }
 
 /* ---------- Botón de solo ícono ----------

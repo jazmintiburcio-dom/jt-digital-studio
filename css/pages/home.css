@@ -382,7 +382,7 @@
 .archetype-card__description {
   font-size: 0.9rem;
   line-height: 1.6;
-  color: #4a4a4a;
+  color: var(--color-text-body);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -498,7 +498,7 @@
 .service-preview-card__description {
   font-size: 0.95rem;
   line-height: 1.6;
-  color: #4a4a4a;
+  color: var(--color-text-body);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -668,7 +668,7 @@
   margin-bottom: var(--space-3);
   font-size: 0.85rem;
   line-height: 1.5;
-  color: #4a4a4a;
+  color: var(--color-text-body);
 }
 
 .process-step__time {
