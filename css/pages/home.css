@@ -720,8 +720,8 @@
 
 /* ============ 08. FAQ ============ */
 
-/* Reveal por ítem del acordeón, disparado por GSAP ScrollTrigger (ver
-   initScrollTriggerReveal en home.js). Escapado como #faq .accordion__item
+/* Reveal por ítem del acordeón, disparado por IntersectionObserver (ver
+   initScrollReveal en home.js). Escapado como #faq .accordion__item
    (no .accordion__item a secas en accordion.css): ese archivo es un
    componente compartido por todo el sitio — si el opacity:0 inicial
    viviera ahí, un acordeón en una página futura sin GSAP cargado

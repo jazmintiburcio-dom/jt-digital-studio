@@ -1,22 +1,15 @@
 /*
   JT Digital Studio — Servicios
-  Reveal al scroll vía GSAP ScrollTrigger — mismo patrón validado en
-  Home (ver js/pages/home.js): ScrollTrigger solo agrega .is-revealed
-  la primera vez que el elemento entra 85% del viewport, y el CSS
-  existente por página resuelve la animación real (opacity/transform/
-  transition-delay), para no pisar hover ni offsets permanentes con
-  estilos inline.
+  Reveal al scroll vía IntersectionObserver — agrega .is-revealed la
+  primera vez que el elemento entra al 85% del viewport. El CSS existente
+  por página resuelve la animación real (opacity/transform/transition-delay),
+  para no pisar hover ni offsets permanentes con estilos inline.
 
   Sin parallax ni scroll-jacking en S3/S4 (las secciones más densas de
-  texto): acá el scroll nunca se intercepta, solo se observa.
+  texto): el scroll nunca se intercepta, solo se observa.
 */
 
-function initScrollTriggerReveal(root = document) {
-  if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
-  gsap.registerPlugin(ScrollTrigger);
-
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-
+function initScrollReveal(root = document) {
   const elements = Array.from(
     root.querySelectorAll(
       '.who-card, .stage-step, .plan-card, .care-card, .testimonial-card, .accordion__item'
@@ -24,30 +17,35 @@ function initScrollTriggerReveal(root = document) {
   );
   if (!elements.length) return;
 
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
   if (prefersReducedMotion.matches) {
     elements.forEach((el) => el.classList.add('is-revealed'));
     return;
   }
 
-  elements.forEach((el) => {
-    ScrollTrigger.create({
-      trigger: el,
-      start: 'top 85%',
-      once: true,
-      onEnter: () => {
-        el.classList.add('is-revealed');
+  const observer = new IntersectionObserver(
+    (entries, obs) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('is-revealed');
 
         // Pulso sutil de escala en el plan destacado (Nivel 2), disparado
         // ~450ms después del reveal — nunca simultáneo con la transición
         // de translateY, para que ambos transforms no compitan entre sí.
-        if (el.classList.contains('plan-card--featured')) {
-          window.setTimeout(() => el.classList.add('pulse'), 450);
+        if (entry.target.classList.contains('plan-card--featured')) {
+          window.setTimeout(() => entry.target.classList.add('pulse'), 450);
         }
-      },
-    });
-  });
+
+        obs.unobserve(entry.target);
+      });
+    },
+    { threshold: 0.15 }
+  );
+
+  elements.forEach((el) => observer.observe(el));
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  initScrollTriggerReveal();
+  initScrollReveal();
 });
