@@ -89,7 +89,7 @@
   <main id="main-content">
 
     <!-- S1. Hero -->
-    <section class="projects-hero" data-scroll-reveal>
+    <section class="projects-hero" data-scroll-reveal data-hero-fade>
       <img src="Visuals/home/hero-home-still.png" alt="" class="projects-hero__bg" loading="eager" aria-hidden="true">
       <div class="container projects-hero__inner">
         <p class="projects-hero__overline" data-reveal>Proyectos · Nuestro trabajo en acción</p>
@@ -159,7 +159,7 @@
               </div>
 
               <figure class="project-card__category-media" data-reveal>
-                <img src="Visuals/proyectos/marciano-01.webp" alt="Marciano Barber Studio — home y reservas" loading="lazy">
+                <img src="Visuals/proyectos/marciano-03.webp" alt="Marciano Barber Studio — identidad de marca" loading="lazy">
               </figure>
 
               <div class="project-card__category" data-reveal>
@@ -184,6 +184,10 @@
                 </ul>
               </div>
 
+              <figure class="project-card__category-media project-card__category-media--right" data-reveal>
+                <img src="Visuals/proyectos/marciano-04.webp" alt="Marciano Barber Studio — experiencia mobile" loading="lazy">
+              </figure>
+
               <div class="project-card__category" data-reveal>
                 <h4>Alcance del Proyecto</h4>
                 <ul class="project-card__scope-list">
@@ -204,16 +208,21 @@
 
     <!-- Caso 2 — Yina Tiburcio Realtor -->
     <section class="case-study case-study--reverse" data-expandable-card data-scroll-reveal id="caso-yina">
-      <div class="case-study__media case-study__media--filmstrip" data-reveal>
-        <div class="filmstrip" data-filmstrip>
-          <div class="filmstrip__track">
-            <img src="Visuals/proyectos/yinarealtor-01.webp" alt="Yina Tiburcio Realtor — home" loading="lazy">
-            <img src="Visuals/proyectos/yinarealtor-02.webp" alt="Yina Tiburcio Realtor — catálogo de propiedades" loading="lazy">
-            <img src="Visuals/proyectos/yinarealtor-03.webp" alt="Yina Tiburcio Realtor — ficha de propiedad" loading="lazy">
-            <img src="Visuals/proyectos/yinarealtor-04.webp" alt="Yina Tiburcio Realtor — contacto" loading="lazy">
+      <div class="case-study__media" data-reveal>
+        <div class="dot-carousel" data-dot-carousel>
+          <div class="dot-carousel__track">
+            <img src="Visuals/proyectos/yinarealtor-01.webp" alt="Yina Tiburcio Realtor — home" class="dot-carousel__img is-active" loading="lazy">
+            <img src="Visuals/proyectos/yinarealtor-02.webp" alt="Yina Tiburcio Realtor — catálogo de propiedades" class="dot-carousel__img" loading="lazy">
+            <img src="Visuals/proyectos/yinarealtor-03.webp" alt="Yina Tiburcio Realtor — ficha de propiedad" class="dot-carousel__img" loading="lazy">
+            <img src="Visuals/proyectos/yinarealtor-04.webp" alt="Yina Tiburcio Realtor — contacto" class="dot-carousel__img" loading="lazy">
+          </div>
+          <div class="dot-carousel__dots" aria-hidden="true">
+            <button class="dot-carousel__dot is-active"></button>
+            <button class="dot-carousel__dot"></button>
+            <button class="dot-carousel__dot"></button>
+            <button class="dot-carousel__dot"></button>
           </div>
         </div>
-        <div class="filmstrip__hint">Arrastrá para ver más →</div>
       </div>
       <div class="case-study__content">
         <span class="case-study__index" data-reveal>02</span>
@@ -294,10 +303,20 @@
 
     <!-- Caso 3 — XBlues.Tek -->
     <section class="case-study" data-expandable-card data-scroll-reveal id="caso-xblues">
-      <div class="case-study__media case-study__media--carousel" data-reveal>
-        <div class="img-carousel">
-          <img src="Visuals/proyectos/xblues-03.webp" alt="XBlues.Tek — guía de estilos de marca" class="case-study__img img-carousel__img">
-          <img src="Visuals/proyectos/xblues-04.webp" alt="XBlues.Tek — página de servicios" class="case-study__img img-carousel__img">
+      <div class="case-study__media" data-reveal>
+        <div class="dot-carousel" data-dot-carousel>
+          <div class="dot-carousel__track">
+            <img src="Visuals/proyectos/xblues-despues.webp" alt="XBlues.Tek — sitio actual en WordPress" class="dot-carousel__img is-active" loading="lazy">
+            <img src="Visuals/proyectos/xblues-03.webp" alt="XBlues.Tek — guía de estilos de marca" class="dot-carousel__img" loading="lazy">
+            <img src="Visuals/proyectos/xblues-04.webp" alt="XBlues.Tek — página de servicios" class="dot-carousel__img" loading="lazy">
+            <img src="Visuals/proyectos/xblues-antes.webp" alt="XBlues.Tek — sitio anterior en Wix" class="dot-carousel__img" loading="lazy">
+          </div>
+          <div class="dot-carousel__dots" aria-hidden="true">
+            <button class="dot-carousel__dot is-active"></button>
+            <button class="dot-carousel__dot"></button>
+            <button class="dot-carousel__dot"></button>
+            <button class="dot-carousel__dot"></button>
+          </div>
         </div>
       </div>
       <div class="case-study__content">
@@ -385,14 +404,9 @@
 
     <!-- Caso 4 — Dreams Fusion & Co. -->
     <section class="case-study case-study--reverse" data-expandable-card data-scroll-reveal id="caso-dreamsfusion">
-      <div class="case-study__media case-study__media--fan" data-reveal>
-        <div class="photo-fan" data-photo-fan>
-          <button type="button" class="photo-fan__card" data-fan-index="0"><img src="Visuals/proyectos/dreamsfusion-04.webp" alt="Dreams Fusion & Co." loading="lazy"></button>
-          <button type="button" class="photo-fan__card" data-fan-index="1"><img src="Visuals/proyectos/dreamsfusion-03.webp" alt="Dreams Fusion & Co. — blog" loading="lazy"></button>
-          <button type="button" class="photo-fan__card" data-fan-index="2"><img src="Visuals/proyectos/dreamsfusion-02.webp" alt="Dreams Fusion & Co. — catálogo de libros" loading="lazy"></button>
-          <button type="button" class="photo-fan__card" data-fan-index="3"><img src="Visuals/proyectos/dreamsfusion-01.webp" alt="Dreams Fusion & Co. — home" loading="lazy"></button>
-        </div>
-        <div class="photo-fan__hint">Tocá una foto para verla</div>
+      <div class="case-study__media case-study__media--zoom" data-reveal data-zoom-lens>
+        <img src="Visuals/proyectos/dreamsfusion-01.webp" alt="Dreams Fusion &amp; Co. — home" class="case-study__img" loading="lazy">
+        <div class="zoom-lens__hint">Mové el cursor para explorar</div>
       </div>
       <div class="case-study__content">
         <span class="case-study__index" data-reveal>04</span>
@@ -426,7 +440,7 @@
               </div>
 
               <figure class="project-card__category-media" data-reveal>
-                <img src="Visuals/proyectos/dreamsfusion-05.webp" alt="Dreams Fusion &amp; Co. — recursos gratuitos" loading="lazy">
+                <img src="Visuals/proyectos/dreamsfusion-02.webp" alt="Dreams Fusion &amp; Co. — catálogo de libros" loading="lazy">
               </figure>
 
               <div class="project-card__category" data-reveal>
@@ -439,7 +453,7 @@
               </div>
 
               <figure class="project-card__category-media project-card__category-media--right" data-reveal>
-                <img src="Visuals/proyectos/dreamsfusion-02.webp" alt="Dreams Fusion &amp; Co. — catálogo de libros" loading="lazy">
+                <img src="Visuals/proyectos/dreamsfusion-03.webp" alt="Dreams Fusion &amp; Co. — blog" loading="lazy">
               </figure>
 
               <div class="project-card__category" data-reveal>
@@ -450,6 +464,10 @@
                   <li>Diseño Mobile First con mensajes claros, llamados a la acción visibles y una experiencia cercana que transmite confianza desde el primer contacto.</li>
                 </ul>
               </div>
+
+              <figure class="project-card__category-media" data-reveal>
+                <img src="Visuals/proyectos/dreamsfusion-04.webp" alt="Dreams Fusion &amp; Co. — sección del home" loading="lazy">
+              </figure>
 
               <div class="project-card__category" data-reveal>
                 <h4>Alcance del Proyecto</h4>
@@ -463,6 +481,10 @@
                   <li>Posicionamiento en Google + Medición de Resultados</li>
                 </ul>
               </div>
+
+              <figure class="project-card__category-media project-card__category-media--right" data-reveal>
+                <img src="Visuals/proyectos/dreamsfusion-05.webp" alt="Dreams Fusion &amp; Co. — recursos gratuitos" loading="lazy">
+              </figure>
 
               <a href="https://dreamsfusionco.com" class="project-card__result-link" target="_blank" rel="noopener noreferrer" data-reveal>Resultado visual: Ver sitio en vivo →</a>
             </div>

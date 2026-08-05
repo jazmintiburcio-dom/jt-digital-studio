@@ -69,32 +69,31 @@ function initZoomLens(root = document) {
   });
 }
 
-function initFilmstrips(root = document) {
-  root.querySelectorAll('[data-filmstrip]').forEach((strip) => {
-    let isDown = false;
-    let startX = 0;
-    let scrollStart = 0;
+function initDotCarousel(root = document) {
+  root.querySelectorAll('[data-dot-carousel]').forEach((carousel) => {
+    const imgs = Array.from(carousel.querySelectorAll('.dot-carousel__img'));
+    const dots = Array.from(carousel.querySelectorAll('.dot-carousel__dot'));
+    if (!imgs.length) return;
 
-    strip.addEventListener('mousedown', (event) => {
-      isDown = true;
-      strip.classList.add('is-dragging');
-      startX = event.pageX;
-      scrollStart = strip.scrollLeft;
-    });
+    let current = 0;
+    let timer;
 
-    ['mouseleave', 'mouseup'].forEach((evt) =>
-      strip.addEventListener(evt, () => {
-        isDown = false;
-        strip.classList.remove('is-dragging');
-      })
-    );
+    const show = (idx) => {
+      imgs[current].classList.remove('is-active');
+      dots[current]?.classList.remove('is-active');
+      current = idx;
+      imgs[current].classList.add('is-active');
+      dots[current]?.classList.add('is-active');
+    };
 
-    strip.addEventListener('mousemove', (event) => {
-      if (!isDown) return;
-      event.preventDefault();
-      const walk = event.pageX - startX;
-      strip.scrollLeft = scrollStart - walk;
-    });
+    const next = () => show((current + 1) % imgs.length);
+    const start = () => { timer = setInterval(next, 4000); };
+    const stop = () => clearInterval(timer);
+
+    dots.forEach((dot, i) => dot.addEventListener('click', () => { stop(); show(i); start(); }));
+    carousel.addEventListener('mouseenter', stop);
+    carousel.addEventListener('mouseleave', start);
+    start();
   });
 }
 
@@ -113,6 +112,6 @@ function initPhotoFans(root = document) {
 document.addEventListener('DOMContentLoaded', () => {
   initCaseNav();
   initZoomLens();
-  initFilmstrips();
+  initDotCarousel();
   initPhotoFans();
 });

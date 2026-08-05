@@ -78,6 +78,25 @@
   border-color: var(--color-primary-hover);
 }
 
+/* ---------- WhatsApp ---------- */
+.btn--whatsapp {
+  background: #25d366;
+  color: #ffffff;
+  border-color: #25d366;
+}
+
+.btn--whatsapp:hover {
+  background: #1ebd5a;
+  border-color: #1ebd5a;
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.35);
+}
+
+.btn--whatsapp svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
 /* ---------- Dark ---------- */
 .btn--dark {
   background: var(--color-dark);
