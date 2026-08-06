@@ -1,0 +1,221 @@
+/*
+  JT Digital Studio — Footer
+  Persistente en las 5 páginas del sitio. Fondo --color-darker: un
+  escalón más oscuro que el CTA final (--color-dark) que lo precede,
+  a propósito — el borde superior sutil + el padding-top extra marcan
+  la costura entre ambos bloques oscuros en vez de fundirse en uno solo.
+*/
+
+.site-footer {
+  background: var(--color-darker);
+  color: var(--color-text-on-dark);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.site-footer__top {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  gap: var(--space-6);
+  padding-top: var(--space-8);
+  padding-bottom: var(--space-7);
+  align-items: start;
+}
+
+/* Prevent any column from expanding beyond its fr allotment */
+.site-footer__brand-col,
+.site-footer__top > nav,
+.site-footer__top > div {
+  min-width: 0;
+}
+
+.site-footer__brand-col {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.site-footer__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.site-footer__desc {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: rgba(255, 255, 255, 0.6);
+  max-width: 30ch;
+  line-height: 1.6;
+}
+
+.site-footer__logo-icon {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+}
+
+.site-footer__wordmark {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.site-footer__brand-name {
+  font-family: var(--font-heading);
+  font-weight: var(--fw-bold);
+  font-size: var(--text-lg);
+  color: var(--color-text-on-dark);
+}
+
+.site-footer__tagline {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.site-footer__heading {
+  font-family: var(--font-body);
+  font-weight: var(--fw-bold);
+  font-size: var(--text-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-text-on-dark);
+}
+
+/* gap space-2 (no space-3): con --tap-min (44px) ya dándole aire a
+   cada link para el touch target, un gap más chico entre ellos
+   empareja mejor el ritmo vertical de esta columna contra la de
+   Contacto (que solo tiene un link + el botón de WhatsApp).
+   margin-top también en space-2: mismo motivo, la columna se siente
+   más compacta pegada a su título. */
+.site-footer__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-top: var(--space-3);
+}
+
+.site-footer__link {
+  display: inline-flex;
+  padding-block: 6px;
+  align-items: center;
+  font-family: var(--font-body);
+  font-weight: var(--fw-medium);
+  font-size: var(--text-sm);
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.8);
+  cursor: pointer;
+  text-decoration: none;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  transition: color var(--duration-micro) var(--ease-out);
+}
+
+.site-footer__link:hover {
+  color: var(--color-text-on-dark);
+}
+
+
+/* ---------- WhatsApp (footer) ----------
+   Botón propio del footer, distinto del flotante global: mismo enlace
+   y verde de marca de WhatsApp, para que siga siendo reconocible como
+   WhatsApp en vez de fundirse con el resto de los enlaces del footer. */
+.site-footer__whatsapp {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-5);
+  padding: var(--space-3) var(--space-5);
+  border-radius: var(--radius-pill);
+  background: #25d366;
+  color: #ffffff;
+  font-family: var(--font-body);
+  font-weight: var(--fw-semibold);
+  font-size: var(--text-base);
+  cursor: pointer;
+  transition: transform var(--duration-micro) var(--ease-out);
+}
+
+.site-footer__whatsapp:hover {
+  transform: translateY(-2px);
+}
+
+.site-footer__whatsapp svg {
+  width: 20px;
+  height: 20px;
+  fill: #ffffff;
+  flex-shrink: 0;
+}
+
+/* ---------- Redes sociales ---------- */
+.site-footer__social {
+  display: flex;
+  gap: var(--space-3);
+  margin-top: var(--space-5);
+}
+
+.site-footer__social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--tap-min);
+  height: var(--tap-min);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+  transition: background-color var(--duration-micro) var(--ease-out);
+}
+
+.site-footer__social-link:hover {
+  background: var(--color-primary);
+}
+
+.site-footer__social-link:hover svg {
+  fill: var(--color-text-on-primary);
+}
+
+.site-footer__social-link svg {
+  width: 18px;
+  height: 18px;
+  fill: var(--color-text-on-dark);
+  transition: fill var(--duration-micro) var(--ease-out);
+}
+
+.site-footer__bottom {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding-block: var(--space-5);
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--color-text-on-dark);
+}
+
+@media (max-width: 899px) {
+  .site-footer__top {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-7);
+  }
+
+  .site-footer__brand-col {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 479px) {
+  .site-footer__top {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-footer__link,
+  .site-footer__whatsapp,
+  .site-footer__social-link,
+  .site-footer__social-link svg {
+    transition: none;
+  }
+}

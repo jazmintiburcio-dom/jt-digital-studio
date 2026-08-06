@@ -1,0 +1,33 @@
+/*
+  JT Digital Studio — Banda de CTA final
+  Banda de cierre reutilizable al final de cualquier página (Home,
+  Servicios, Proyectos, Nosotros). Contacto no la usa: ya es la página
+  de conversión. Un solo CTA — WhatsApp queda cubierto por el flotante
+  global, nunca se duplica acá.
+*/
+
+.cta-band {
+  background: rgba(253, 101, 2, 0.08);
+  border-top: 1px solid rgba(253, 101, 2, 0.18);
+  text-align: center;
+}
+
+.cta-band__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-6);
+  max-width: 44rem;
+  margin-inline: auto;
+}
+
+.cta-band__title {
+  color: var(--color-text-heading);
+  font-size: var(--text-3xl);
+}
+
+.cta-band__badge {
+  margin-top: var(--space-2);
+  font-size: 0.85rem;
+  color: var(--color-text-tertiary);
+}

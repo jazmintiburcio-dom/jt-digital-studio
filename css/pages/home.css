@@ -1,0 +1,849 @@
+/*
+  JT Digital Studio — Home
+  Estilos exclusivos de index.html: Hero, franja de prueba social,
+  cards de arquetipo, preview de servicios y preview de portafolio.
+  No se importan en otras páginas.
+*/
+
+/* ============ 01. Hero ============ */
+
+/* margin-top negativo = alto del header: el Hero "sangra" por debajo
+   del header sticky en vez de quedar empujado después de él. Así el
+   header (transparente al tope de la página) tiene el video detrás
+   para mostrar, no el fondo de página. Sin este margen, un header
+   transparente no tendría nada de color contra qué contrastar: seguiría
+   viéndose como una franja lisa, porque el header ocupa su propio
+   espacio en el flujo normal en vez de superponerse al Hero. */
+.hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 100svh;
+  margin-top: calc(-1 * var(--header-height));
+  overflow: hidden;
+}
+
+/* scale + transform-origin sesgado arriba-izquierda: recorta el
+   watermark "KlingAI 3.0" de la esquina inferior-derecha del video
+   fuente. Un scale centrado agrandaría parejo por los 4 lados; con el
+   origen corrido, el excedente se "come" mucho más de esa esquina
+   que del resto del frame. */
+.hero__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.12);
+  transform-origin: 25% 25%;
+  pointer-events: none;
+}
+
+/* Un solo gradiente radial (no dos capas superpuestas): se ve como un
+   velo suave centrado en el borde izquierdo, sin bordes rectos, en vez
+   de la "sombra" con forma de caja que daba la versión anterior
+   (gradiente panorámico + parche angosto detrás del texto). Ancla en
+   0% (borde izquierdo real del hero) con radio en píxeles fijos, así
+   que la cobertura de la columna de texto (560px) no depende de
+   porcentajes que cambian según el viewport. Valores de opacidad
+   verificados por contraste real contra el frame más claro del video
+   (0 fallas en desktop ancho, caso límite ~3.3:1 solo en el borde
+   extremo del texto en escritorio angosto de 800px). */
+.hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 1050px 900px at 0% 50%,
+    rgba(20, 20, 20, 0.88) 0%,
+    rgba(20, 20, 20, 0.82) 42%,
+    rgba(20, 20, 20, 0.56) 62%,
+    rgba(20, 20, 20, 0.18) 82%,
+    rgba(20, 20, 20, 0) 100%
+  );
+}
+
+.hero__content {
+  position: relative;
+  /* padding-top compensa el margin-top negativo de .hero: sin esto, el
+     bloque de texto (centrado verticalmente por align-items:center en
+     .hero) quedaría corrido hacia arriba, por debajo del header. */
+  padding-top: calc(var(--header-height) + var(--space-6));
+  padding-bottom: var(--space-7);
+  /* Padding izquierdo mínimo, muy por debajo de --container-padding
+     (hasta 3rem/48px en el resto del sitio): el Hero es un tratamiento
+     full-bleed — solo el respiro justo para que el texto no toque el
+     borde real de la pantalla, no el gutter estándar del sitio. */
+  padding-left: var(--space-4);
+}
+
+/* Ancho del bloque de texto separado del .container que lo envuelve:
+   .container ya centra su caja de 1280px con margin-inline:auto: si el
+   max-width chico fuera directo sobre esa misma caja, quedaría
+   re-centrado en el medio del hero en vez de pegado al borde izquierdo
+   del padding del container. Pegado al borde del padding (sin
+   margin-left extra): hay aire de sobra antes de la pantalla del
+   iMac del video, así que el texto puede quedar más a la izquierda. */
+.hero__text {
+  max-width: 560px;
+}
+
+.hero__overline {
+  font-family: var(--font-body);
+  font-weight: var(--fw-semibold);
+  font-size: var(--text-sm);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+}
+
+.hero__title {
+  margin-top: var(--space-6);
+  color: var(--color-text-on-dark);
+  /* Tope de 2.625rem (42px), no 3.25rem: medido contra el ancho real
+     de .hero__text (560px) para que "Desarrollo web estratégico" (el
+     segmento más largo de los 3 <br> manuales de abajo) entre en una
+     sola línea sin volver a envolver — a 3.25rem necesitaba 654px,
+     más que el ancho disponible. */
+  font-size: clamp(2rem, 1.3rem + 3vw, 2.625rem);
+  /* Más liviano y compacto que el resto de los headings del sitio
+     (fw-semibold / leading-tight): a este tamaño, Bold + line-height
+     1.15 se sentía pesado sobre el video. Ajuste solo para el H1 del
+     Hero, no toca el resto de la tipografía. */
+  font-weight: var(--fw-medium);
+  line-height: 1.02;
+  letter-spacing: -0.015em;
+}
+
+.hero__subtitle {
+  margin-top: var(--space-6);
+  font-size: var(--text-md);
+  font-weight: var(--fw-regular);
+  line-height: var(--leading-relaxed);
+  /* Opacidad reducida (no --color-text-on-dark sólido): a propósito,
+     para que se lea claramente como secundario frente al H1. */
+  color: rgba(255, 255, 255, 0.75);
+  max-width: 55ch;
+}
+
+.hero__cta {
+  margin-top: var(--space-6);
+}
+
+.hero__cta-microcopy {
+  margin-top: var(--space-3);
+  font-size: var(--text-sm);
+  color: rgba(255, 255, 255, 0.72);
+}
+
+@media (max-width: 767px) {
+  .hero__overlay {
+    background: rgba(20, 20, 20, 0.82);
+  }
+
+  .hero__text {
+    max-width: none;
+  }
+}
+
+/* ============ 02. Prueba social ============ */
+
+/* El Hero ya no queda sticky/pineado: al vivir en flujo normal, el
+   scroll natural del documento ya lo retira de pantalla. El borde
+   redondeado superior es solo un remate visual (efecto "estante") de
+   la sección que le sigue — no depende de ningún posicionamiento
+   especial. Hairline necesario porque esta sección y la 03 (Para
+   quién) comparten el mismo --color-bg y quedarían sin separación
+   visible. */
+.social-proof {
+  position: relative;
+  /* padding-block a la mitad del --space-9 (96px) que trae .section:
+     esto es una franja de confianza compacta, no una sección de
+     contenido con el mismo peso que las de abajo. */
+  padding-block: var(--space-7);
+  background: var(--color-bg);
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+  border-bottom: 1px solid var(--color-border-hairline);
+}
+
+/* Badge de marca para "Trabajamos con" — ya no comparte estilo con el
+   overline de "Resultados..." (esa línea se sacó: la sección quedó
+   sin título redundante, directo a las 3 cifras). Pill naranja sólida,
+   mismo contraste que .btn--primary (texto oscuro sobre naranja). */
+.social-proof__badge {
+  width: fit-content;
+  margin-inline: auto;
+  padding: var(--space-1) var(--space-4);
+  border-radius: var(--radius-pill);
+  background: var(--color-primary);
+  color: var(--color-text-on-primary);
+  font-family: var(--font-body);
+  font-weight: var(--fw-semibold);
+  font-size: var(--text-xs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* ---------- Fila de estadísticas ---------- */
+.social-proof__stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-6);
+  max-width: 640px;
+  margin-inline: auto;
+  text-align: center;
+}
+
+/* Cada cifra es su propia card (antes: divs sueltos con un separador
+   vertical entre ellos) + reveal individual escalonado en 150ms por
+   caja — no el --stagger-step (100ms) genérico del resto del sitio,
+   por eso no usa [data-reveal] y define su propia transition-delay. */
+.social-proof__stats > div {
+  position: relative;
+  padding: var(--space-5);
+  background: var(--color-surface);
+  border-top: 3px solid var(--color-primary);
+  border-radius: var(--radius-md);
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity var(--duration-section) var(--ease-out),
+    transform var(--duration-section) var(--ease-out),
+    box-shadow var(--duration-micro) var(--ease-out);
+}
+
+.social-proof__stats > div::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: rgba(38, 42, 43, 0.04);
+  pointer-events: none;
+}
+
+.social-proof__stats > div:hover {
+  box-shadow: var(--shadow-md), 0 0 0 1px rgba(253, 101, 2, 0.15);
+}
+
+.social-proof__stats > div:nth-child(1) { transition-delay: 0ms; }
+.social-proof__stats > div:nth-child(2) { transition-delay: 150ms; }
+.social-proof__stats > div:nth-child(3) { transition-delay: 300ms; }
+
+.social-proof.is-in-view .social-proof__stats > div {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.social-proof__stat-value {
+  font-family: var(--font-heading);
+  font-weight: var(--fw-bold);
+  font-size: var(--text-3xl);
+  color: var(--color-dark);
+}
+
+.social-proof__stat-value--accent {
+  color: var(--color-primary);
+}
+
+.social-proof__stat-label {
+  margin-top: var(--space-1);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--color-text-body);
+}
+
+/* margin space-4 (16px, no space-8): la trust bar ahora es compacta —
+   ese espaciado grande quedaba fuera de lugar en una franja chica. */
+.social-proof__divider {
+  height: 1px;
+  background: var(--color-border-hairline);
+  max-width: 640px;
+  margin: var(--space-4) auto;
+}
+
+/* ---------- Marquee de herramientas ---------- */
+.social-proof__logo-cloud {
+  margin-top: var(--space-5);
+}
+
+@media (max-width: 599px) {
+  .social-proof__stats {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .social-proof__stats > div {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ============ 03. Para quién diseñamos ============ */
+
+/* Fila fija de 4: a diferencia del resto de las grillas del sitio, acá
+   no se usa auto-fit — las 4 cards deben quedar siempre alineadas en
+   una sola fila en desktop, nunca reacomodarse a 3+1 según el ancho. */
+.archetype-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-4);
+  margin-top: var(--space-7);
+  perspective: 1000px;
+}
+
+@media (max-width: 899px) {
+  .archetype-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 479px) {
+  .archetype-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Estilo "Cliento" (ref. dribbble.com/shots/27029480): cards claras con
+   la #2 destacada en naranja y elevada (--rest-y), reveal escalonado
+   al entrar en viewport (JS agrega .is-revealed, ver home.js) y hover
+   con rotación sutil. --rest-y es la posición vertical "de reposo" de
+   cada card una vez revelada — se reusa en el propio reveal y en el
+   hover (que resta 8px más sobre lo que sea que sea el reposo), en vez
+   de repetir transforms distintos por estado para cada card. */
+.archetype-card {
+  --rest-y: 0px;
+  position: relative;
+  overflow: hidden;
+  padding: var(--space-6);
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(calc(var(--rest-y) + 40px));
+  transition:
+    opacity var(--duration-section) var(--ease-out),
+    transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.4s var(--ease-out);
+}
+
+.archetype-card.is-revealed {
+  opacity: 1;
+  transform: translateY(var(--rest-y));
+}
+
+.archetype-card:nth-child(1) { transition-delay: 0ms; }
+
+.archetype-card:nth-child(2) {
+  --rest-y: -16px;
+  background: var(--color-primary);
+  transition-delay: 100ms;
+}
+
+.archetype-card:nth-child(3) { transition-delay: 200ms; }
+.archetype-card:nth-child(4) { transition-delay: 300ms; }
+
+.archetype-card:nth-child(2) .archetype-card__number,
+.archetype-card:nth-child(2) .archetype-card__title,
+.archetype-card:nth-child(2) .archetype-card__description {
+  color: var(--color-surface);
+}
+
+.archetype-card:hover {
+  transform: translateY(calc(var(--rest-y) - 8px)) rotate(-1deg);
+  box-shadow: 0 20px 40px rgba(253, 101, 2, 0.2);
+}
+
+.archetype-card:nth-child(2):hover {
+  transform: translateY(calc(var(--rest-y) - 8px)) rotate(1deg);
+  box-shadow: 0 24px 50px rgba(253, 101, 2, 0.4);
+}
+
+.archetype-card__number {
+  display: block;
+  margin-bottom: var(--space-4);
+  font-family: var(--font-heading);
+  font-weight: var(--fw-bold);
+  font-size: 4rem;
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  color: var(--color-primary);
+}
+
+.archetype-card__title {
+  margin-bottom: var(--space-3);
+  font-size: 1.15rem;
+  font-weight: var(--fw-bold);
+  color: var(--color-dark);
+}
+
+.archetype-card__description {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--color-text-body);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .archetype-card {
+    opacity: 1;
+    transform: translateY(var(--rest-y));
+    transition: none;
+  }
+}
+
+/* ============ 04. Servicios (preview) ============ */
+
+/* repeat(3, 1fr) fijo, no auto-fit: la card #2 destacada solo tiene
+   sentido si siempre cae en el medio de una fila de 3, no reacomodada
+   según el ancho disponible. */
+.service-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-4);
+  margin-top: var(--space-7);
+}
+
+@media (max-width: 767px) {
+  .service-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Estilo "Cliento" (ref. dribbble.com/shots/27029480): mismo patrón
+   que .archetype-card (--rest-y, reveal vía .is-revealed, hover con
+   rotación) pero con la #2 destacada en oscuro, no en naranja. */
+.service-preview-card {
+  --rest-y: 0px;
+  position: relative;
+  overflow: hidden;
+  padding: var(--space-6);
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(calc(var(--rest-y) + 40px));
+  transition:
+    opacity var(--duration-section) var(--ease-out),
+    transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.4s var(--ease-out);
+}
+
+.service-preview-card.is-revealed {
+  opacity: 1;
+  transform: translateY(var(--rest-y));
+}
+
+.service-preview-card:nth-child(1) { transition-delay: 0ms; }
+
+.service-preview-card:nth-child(2) {
+  --rest-y: -16px;
+  background: var(--color-dark);
+  transition-delay: 150ms;
+}
+
+.service-preview-card:nth-child(3) { transition-delay: 300ms; }
+
+.service-preview-card:nth-child(2) .service-preview-card__title,
+.service-preview-card:nth-child(2) .service-preview-card__description {
+  color: var(--color-surface);
+}
+
+.service-preview-card:nth-child(2) .service-preview-card__icon {
+  background: rgba(253, 101, 2, 0.2);
+}
+
+.service-preview-card:hover {
+  transform: translateY(calc(var(--rest-y) - 8px)) rotate(1deg);
+  box-shadow: 0 20px 40px rgba(38, 42, 43, 0.15);
+}
+
+.service-preview-card:hover .service-preview-card__icon {
+  transform: scale(1.1) rotate(-5deg);
+}
+
+.service-preview-card:nth-child(2):hover {
+  transform: translateY(calc(var(--rest-y) - 8px)) rotate(-1deg);
+  box-shadow: 0 24px 50px rgba(253, 101, 2, 0.3);
+}
+
+.service-preview-card__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  margin-bottom: var(--space-4);
+  border-radius: var(--radius-md);
+  background: rgba(253, 101, 2, 0.1);
+  color: var(--color-primary);
+  transition: transform 0.3s var(--ease-out);
+}
+
+.service-preview-card__icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.service-preview-card__title {
+  margin-top: var(--space-4);
+  margin-bottom: var(--space-3);
+  font-size: var(--text-lg);
+  font-weight: var(--fw-bold);
+  color: var(--color-dark);
+}
+
+.service-preview-card__description {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--color-text-body);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .service-preview-card {
+    opacity: 1;
+    transform: translateY(var(--rest-y));
+    transition: none;
+  }
+
+  .service-preview-card__icon {
+    transition: none;
+  }
+}
+
+/* ============ 05. Portafolio destacado (preview, sin expansión) ============ */
+
+.portfolio-preview-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: var(--space-6);
+  margin-top: var(--space-7);
+}
+
+.portfolio-preview-card {
+  display: block;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--color-surface);
+  box-shadow: var(--shadow-lg);
+  cursor: pointer;
+  transition: box-shadow var(--duration-micro) var(--ease-out);
+}
+
+.portfolio-preview-card:hover {
+  box-shadow: var(--shadow-orange);
+}
+
+.portfolio-preview-card__media {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: var(--color-bg-alt);
+}
+
+.portfolio-preview-card__media img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  transition: opacity var(--duration-micro) var(--ease-out);
+}
+
+.portfolio-preview-card:hover .portfolio-preview-card__media img {
+  opacity: 0.9;
+}
+
+.portfolio-preview-card__body {
+  padding: var(--space-5);
+}
+
+.portfolio-preview-card__title {
+  font-size: var(--text-lg);
+}
+
+.portfolio-preview-card__meta {
+  margin-top: var(--space-1);
+  font-size: var(--text-sm);
+  color: var(--color-text-tertiary);
+}
+
+/* ============ 05b. Fundadora ============ */
+
+.founder-block {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: var(--space-10);
+  align-items: center;
+}
+
+.founder-block__media {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  aspect-ratio: 3 / 4;
+  max-height: 380px;
+}
+
+.founder-block__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.founder-block__overline {
+  font-weight: var(--fw-semibold);
+  font-size: var(--text-sm);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  margin-bottom: var(--space-3);
+}
+
+.founder-block__content h2 {
+  margin-top: var(--space-2);
+  margin-bottom: 0;
+}
+
+.founder-block__text {
+  margin-top: var(--space-4);
+  margin-bottom: var(--space-5);
+  font-size: var(--text-base);
+  line-height: 1.6;
+  color: var(--color-text-body);
+}
+
+/* ============ 06. El proceso ============ */
+
+.process-overline {
+  text-align: center;
+  font-family: var(--font-body);
+  font-weight: var(--fw-semibold);
+  font-size: var(--text-sm);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+}
+
+.process-timeline {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--space-3);
+  position: relative;
+  margin-top: var(--space-8);
+}
+
+/* Línea conectora: primer tramo (hasta el paso 01) sólido en naranja,
+   el resto apagado — mismo lenguaje que "paso activo" del círculo. */
+.process-timeline__line {
+  position: absolute;
+  top: 30px;
+  left: 10%;
+  right: 10%;
+  height: 2px;
+  background: linear-gradient(
+    to right,
+    var(--color-primary) 0%,
+    var(--color-primary) 20%,
+    rgba(38, 42, 43, 0.15) 20%
+  );
+  z-index: 0;
+}
+
+.process-step {
+  position: relative;
+  z-index: 1;
+  padding-inline: var(--space-2);
+  text-align: center;
+  opacity: 0;
+  transform: translateY(30px);
+  transition:
+    opacity var(--duration-section) var(--ease-out),
+    transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.process-step.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.process-step:nth-child(1) { transition-delay: 0ms; }
+.process-step:nth-child(2) { transition-delay: 100ms; }
+.process-step:nth-child(3) { transition-delay: 200ms; }
+.process-step:nth-child(4) { transition-delay: 300ms; }
+.process-step:nth-child(5) { transition-delay: 400ms; }
+
+.process-step__circle {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto var(--space-4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--color-dark);
+  color: var(--color-text-on-dark);
+  font-family: var(--font-heading);
+  font-weight: var(--fw-bold);
+  font-size: 1.2rem;
+  transition:
+    transform 0.3s var(--ease-out),
+    background-color 0.3s var(--ease-out);
+}
+
+/* Paso activo (01): único destacado en naranja al cargar, sin esperar
+   al hover — marca "acá empieza". */
+.process-step--active .process-step__circle {
+  background: var(--color-primary);
+  box-shadow: 0 6px 20px rgba(253, 101, 2, 0.35);
+}
+
+.process-step:hover .process-step__circle {
+  transform: scale(1.1);
+  background: var(--color-primary);
+}
+
+.process-step__title {
+  margin-bottom: var(--space-2);
+  font-size: var(--text-base);
+  font-weight: var(--fw-bold);
+  color: var(--color-dark);
+}
+
+.process-step__desc {
+  margin-bottom: var(--space-3);
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--color-text-body);
+}
+
+.process-step__time {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  background: rgba(253, 101, 2, 0.1);
+  color: var(--color-primary);
+  font-size: 0.75rem;
+  font-weight: var(--fw-semibold);
+}
+
+.process-cta {
+  margin-top: var(--space-8);
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .founder-block {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+
+  .founder-block__media {
+    aspect-ratio: 4 / 3;
+    max-width: 400px;
+    margin-inline: auto;
+  }
+
+  .process-timeline {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+
+  .process-timeline__line {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .process-step {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .process-step__circle {
+    transition: none;
+  }
+}
+
+/* ============ 07. Testimonios ============ */
+
+.testimonial-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-6);
+  margin-top: var(--space-7);
+}
+
+/* ============ 08. FAQ ============ */
+
+/* Reveal por ítem del acordeón, disparado por IntersectionObserver (ver
+   initScrollReveal en home.js). Escapado como #faq .accordion__item
+   (no .accordion__item a secas en accordion.css): ese archivo es un
+   componente compartido por todo el sitio — si el opacity:0 inicial
+   viviera ahí, un acordeón en una página futura sin GSAP cargado
+   quedaría invisible para siempre. Acá, en home.css (que index.html es
+   la única página que importa), no hay ese riesgo. */
+#faq .accordion__item {
+  opacity: 0;
+  transform: translateY(30px);
+  transition:
+    opacity var(--duration-section) var(--ease-out),
+    transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+#faq .accordion__item.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#faq .accordion__item:nth-child(1) { transition-delay: 0ms; }
+#faq .accordion__item:nth-child(2) { transition-delay: 100ms; }
+#faq .accordion__item:nth-child(3) { transition-delay: 200ms; }
+#faq .accordion__item:nth-child(4) { transition-delay: 300ms; }
+#faq .accordion__item:nth-child(5) { transition-delay: 400ms; }
+#faq .accordion__item:nth-child(6) { transition-delay: 0ms; }
+#faq .accordion__item:nth-child(7) { transition-delay: 100ms; }
+#faq .accordion__item:nth-child(8) { transition-delay: 200ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  #faq .accordion__item {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ============ Genérico: encabezado de sección centrado ============ */
+
+.section-heading {
+  max-width: 44rem;
+}
+
+.section-heading--center {
+  margin-inline: auto;
+  text-align: center;
+}
+
+.section-heading__subtitle {
+  margin-top: var(--space-4);
+  font-size: var(--text-md);
+  color: var(--color-text-body);
+}
+
+.section__cta-row {
+  text-align: center;
+  margin-top: var(--space-8);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .service-preview-card,
+  .portfolio-preview-card,
+  .portfolio-preview-card__media img {
+    transition: none;
+  }
+}
