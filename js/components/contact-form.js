@@ -4,7 +4,7 @@
   y reemplazar "XXXXXXXX" con el ID de 8 caracteres que asigna Formspree.
 */
 
-const FORMSPREE_ENDPOINT = 'https://formspree.io/f/XXXXXXXX';
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xljrdqpz';
 
 export function initContactForm() {
   const form = document.querySelector('.contact-form');
