@@ -97,19 +97,10 @@
 }
 
 .client-band__logo {
-  height: 72px;
+  display: block;
+  height: 64px;
   width: auto;
-  max-width: 200px;
   object-fit: contain;
-  filter: grayscale(0.15);
-  opacity: 0.8;
-  transition: filter var(--duration-micro) var(--ease-out),
-              opacity var(--duration-micro) var(--ease-out);
-}
-
-.client-band__logo:hover {
-  filter: grayscale(0);
-  opacity: 1;
 }
 
 @media (max-width: 600px) {

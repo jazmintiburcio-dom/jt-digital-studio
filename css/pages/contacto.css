@@ -62,9 +62,17 @@
 
 .contact-form-grid {
   display: grid;
-  grid-template-columns: 1.3fr 1fr;
+  grid-template-columns: 1fr 1.3fr;
   gap: var(--space-9);
-  align-items: stretch;
+  align-items: start;
+}
+
+.contact-form-col {
+  order: 2;
+}
+
+.contact-channels-col {
+  order: 1;
 }
 
 .contact-form-col h2 {
@@ -136,8 +144,8 @@
 .contact-channels-col {
   display: flex;
   flex-direction: column;
-  gap: var(--space-3);
-  justify-content: space-between;
+  gap: var(--space-4);
+  justify-content: flex-start;
 }
 
 .contact-founder {
@@ -409,6 +417,14 @@
 @media (max-width: 900px) {
   .contact-form-grid {
     grid-template-columns: 1fr;
+  }
+
+  .contact-form-col {
+    order: 1;
+  }
+
+  .contact-channels-col {
+    order: 2;
   }
 
   .after-steps {
