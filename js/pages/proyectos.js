@@ -73,10 +73,20 @@ function initDotCarousel(root = document) {
   root.querySelectorAll('[data-dot-carousel]').forEach((carousel) => {
     const imgs = Array.from(carousel.querySelectorAll('.dot-carousel__img'));
     const dots = Array.from(carousel.querySelectorAll('.dot-carousel__dot'));
+    const slideLabel = carousel.querySelector('.dot-carousel__slide-label');
     if (!imgs.length) return;
 
     let current = 0;
     let timer;
+
+    const updateLabel = (idx) => {
+      if (!slideLabel) return;
+      const state = imgs[idx].dataset.label || null;
+      if (state) {
+        slideLabel.dataset.state = state;
+        slideLabel.textContent = state === 'after' ? 'Después' : 'Antes';
+      }
+    };
 
     const show = (idx) => {
       imgs[current].classList.remove('is-active');
@@ -84,6 +94,7 @@ function initDotCarousel(root = document) {
       current = idx;
       imgs[current].classList.add('is-active');
       dots[current]?.classList.add('is-active');
+      updateLabel(idx);
     };
 
     const next = () => show((current + 1) % imgs.length);
@@ -93,6 +104,7 @@ function initDotCarousel(root = document) {
     dots.forEach((dot, i) => dot.addEventListener('click', () => { stop(); show(i); start(); }));
     carousel.addEventListener('mouseenter', stop);
     carousel.addEventListener('mouseleave', start);
+    updateLabel(0);
     start();
   });
 }
