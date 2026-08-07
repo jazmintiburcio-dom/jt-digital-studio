@@ -98,8 +98,10 @@
 
 .client-band__logo {
   display: block;
-  height: 64px;
+  height: 100px;
   width: auto;
+  max-width: 220px;
+  object-fit: contain;
 }
 
 @media (max-width: 600px) {
@@ -108,7 +110,8 @@
   }
 
   .client-band__logo {
-    height: 52px;
+    height: 72px;
+    max-width: 160px;
   }
 }
 
