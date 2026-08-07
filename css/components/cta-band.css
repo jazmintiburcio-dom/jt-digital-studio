@@ -7,8 +7,9 @@
 */
 
 .cta-band {
-  background: rgba(253, 101, 2, 0.08);
-  border-top: 1px solid rgba(253, 101, 2, 0.18);
+  background: rgba(253, 101, 2, 0.1);
+  border-top: 1px solid rgba(253, 101, 2, 0.3);
+  border-bottom: 1px solid rgba(253, 101, 2, 0.3);
   text-align: center;
 }
 
@@ -29,5 +30,6 @@
 .cta-band__badge {
   margin-top: var(--space-2);
   font-size: 0.85rem;
-  color: var(--color-text-tertiary);
+  color: var(--color-primary-hover);
+  font-weight: var(--fw-medium);
 }

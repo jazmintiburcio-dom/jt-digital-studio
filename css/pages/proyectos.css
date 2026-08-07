@@ -92,13 +92,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: var(--space-12);
+  gap: var(--space-10);
   flex-wrap: wrap;
 }
 
 .client-band__logo {
-  height: 88px;
-  width: auto;
+  height: 52px;
+  width: 160px;
   object-fit: contain;
   filter: grayscale(0.15);
   opacity: 0.8;
@@ -113,11 +113,12 @@
 
 @media (max-width: 600px) {
   .client-band__logos {
-    gap: var(--space-8);
+    gap: var(--space-6);
   }
 
   .client-band__logo {
-    height: 64px;
+    height: 40px;
+    width: 120px;
   }
 }
 
@@ -202,13 +203,13 @@
 .case-study {
   position: relative;
   display: grid;
-  grid-template-columns: 1.2fr 1fr;
+  grid-template-columns: 1fr 1fr;
   min-height: 90vh;
   align-items: stretch;
 }
 
 .case-study--reverse {
-  grid-template-columns: 1fr 1.2fr;
+  grid-template-columns: 1fr 1fr;
 }
 
 .case-study--reverse .case-study__media {
@@ -225,7 +226,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: var(--space-8);
+  padding: var(--space-4);
   background: var(--color-bg-alt);
 }
 
@@ -355,6 +356,7 @@
 }
 
 .dot-carousel__track {
+  position: relative;
   display: grid;
   border-radius: var(--radius-md);
   overflow: hidden;
@@ -374,6 +376,26 @@
 
 .dot-carousel__img.is-active {
   opacity: 1;
+}
+
+.dot-carousel__slide-label {
+  position: absolute;
+  top: var(--space-4);
+  left: var(--space-4);
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
+  background: rgba(0, 0, 0, 0.65);
+  color: var(--color-text-on-dark);
+  font-size: 0.75rem;
+  font-weight: var(--fw-semibold);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.dot-carousel__slide-label[data-state="after"] {
+  background: var(--color-primary);
 }
 
 .dot-carousel__dots {
@@ -755,8 +777,8 @@
 }
 
 .project-card__scope-list {
-  flex-direction: row !important;
-  flex-wrap: wrap;
+  flex-direction: column !important;
+  align-items: flex-start;
   gap: var(--space-2) !important;
   list-style: none !important;
   padding-left: 0 !important;
