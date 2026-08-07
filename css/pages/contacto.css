@@ -62,17 +62,9 @@
 
 .contact-form-grid {
   display: grid;
-  grid-template-columns: 1fr 1.3fr;
+  grid-template-columns: 1.3fr 1fr;
   gap: var(--space-9);
   align-items: start;
-}
-
-.contact-form-col {
-  order: 2;
-}
-
-.contact-channels-col {
-  order: 1;
 }
 
 .contact-form-col h2 {
@@ -417,14 +409,6 @@
 @media (max-width: 900px) {
   .contact-form-grid {
     grid-template-columns: 1fr;
-  }
-
-  .contact-form-col {
-    order: 1;
-  }
-
-  .contact-channels-col {
-    order: 2;
   }
 
   .after-steps {
