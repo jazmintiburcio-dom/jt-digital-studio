@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Página no encontrada | JT Digital Studio</title>
+  <meta name="robots" content="noindex">
+
+  <link rel="canonical" href="https://jtdigitalstudio.com/">
+  <link rel="icon" href="assets/marca/favicon.svg" type="image/svg+xml">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/main.css">
+
+  <style>
+    .error-page {
+      min-height: calc(100vh - var(--header-height, 72px));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: var(--space-9) var(--space-5);
+    }
+
+    .error-page__inner {
+      max-width: 36rem;
+    }
+
+    .error-page__code {
+      font-family: var(--font-heading);
+      font-size: clamp(5rem, 15vw, 9rem);
+      font-weight: 700;
+      line-height: 1;
+      color: var(--color-primary);
+      letter-spacing: -0.04em;
+      margin-bottom: var(--space-4);
+    }
+
+    .error-page__title {
+      margin-bottom: var(--space-4);
+      font-size: var(--text-2xl);
+    }
+
+    .error-page__desc {
+      font-size: var(--text-md);
+      color: var(--color-text-body);
+      margin-bottom: var(--space-7);
+    }
+
+    .error-page__actions {
+      display: flex;
+      gap: var(--space-3);
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+  </style>
+</head>
+<body>
+
+  <a class="skip-link" href="#main-content">Saltar al contenido</a>
+
+  <header class="site-header">
+    <div class="site-header__inner container">
+      <a href="index.html" class="site-header__logo" aria-label="JT Digital Studio, Inicio">
+        <img src="assets/marca/icono-negro.svg" alt="" class="site-header__logo-icon" width="32" height="32">
+        <span class="site-header__wordmark">
+          <span class="site-header__brand">JT Digital Studio</span>
+          <span class="site-header__tagline">Diseño Web &amp; Sistemas Digitales</span>
+        </span>
+      </a>
+
+      <nav class="site-header__nav" aria-label="Navegación principal">
+        <ul class="site-header__nav-list">
+          <li><a href="index.html" class="site-header__nav-link">Home</a></li>
+          <li><a href="servicios.html" class="site-header__nav-link">Servicios</a></li>
+          <li><a href="proyectos.html" class="site-header__nav-link">Proyectos</a></li>
+          <li><a href="nosotros.html" class="site-header__nav-link">Nosotros</a></li>
+          <li><a href="contacto.html" class="site-header__nav-link">Contacto</a></li>
+        </ul>
+      </nav>
+
+      <a href="contacto.html" class="btn btn--primary site-header__cta">Diagnóstico gratis</a>
+
+      <button
+        type="button"
+        class="site-header__menu-toggle"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        aria-label="Abrir menú"
+        data-menu-toggle
+      >
+        <svg data-icon-menu viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="4" x2="20" y1="12" y2="12"/>
+          <line x1="4" x2="20" y1="6" y2="6"/>
+          <line x1="4" x2="20" y1="18" y2="18"/>
+        </svg>
+        <svg data-icon-close viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M18 6 6 18"/>
+          <path d="m6 6 12 12"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <div class="mobile-menu" id="mobile-menu" data-mobile-menu>
+    <div class="mobile-menu__overlay" data-mobile-menu-overlay></div>
+    <div class="mobile-menu__panel" data-mobile-menu-panel role="dialog" aria-modal="true" aria-label="Menú de navegación">
+      <div class="mobile-menu__header">
+        <button type="button" class="btn-icon mobile-menu__close" aria-label="Cerrar menú" data-mobile-menu-close>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M18 6 6 18"/>
+            <path d="m6 6 12 12"/>
+          </svg>
+        </button>
+      </div>
+      <nav aria-label="Navegación móvil">
+        <ul class="mobile-menu__list">
+          <li><a href="index.html" class="mobile-menu__link">Home</a></li>
+          <li><a href="servicios.html" class="mobile-menu__link">Servicios</a></li>
+          <li><a href="proyectos.html" class="mobile-menu__link">Proyectos</a></li>
+          <li><a href="nosotros.html" class="mobile-menu__link">Nosotros</a></li>
+          <li><a href="contacto.html" class="mobile-menu__link">Contacto</a></li>
+        </ul>
+      </nav>
+      <a href="contacto.html" class="btn btn--primary mobile-menu__cta">Diagnóstico gratis</a>
+    </div>
+  </div>
+
+  <main id="main-content">
+    <div class="error-page">
+      <div class="error-page__inner">
+        <p class="error-page__code" aria-hidden="true">404</p>
+        <h1 class="error-page__title">Esta página no existe</h1>
+        <p class="error-page__desc">El enlace que siguió puede estar desactualizado o la dirección fue escrita incorrectamente.</p>
+        <div class="error-page__actions">
+          <a href="index.html" class="btn btn--primary">Ir al inicio</a>
+          <a href="contacto.html" class="btn btn--ghost">Contactarnos</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,125 @@
+/*
+  JT Digital Studio — Sistema de animación al scroll
+  Reutilizable en cualquier sección de cualquier página. Cuatro piezas:
+
+  1. Fade-in escalonado    → [data-scroll-reveal] + [data-reveal]
+  2. Parallax sutil        → [data-parallax]
+  3. Sticky-hero opcional  → .sticky-hero-container / .sticky-hero / .sticky-hero-next
+  4. Hero fade-on-scroll   → [data-hero-fade]
+
+  Toda animación usa transform/opacity (nunca width/height/top/left) y
+  respeta prefers-reduced-motion — ver bloque final.
+*/
+
+/* ==========================================================
+   1. Fade-in escalonado
+   Marcado esperado:
+   <div data-scroll-reveal>
+     <p data-reveal>Label</p>          -> --reveal-index: 0 (lo pone JS)
+     <h2 data-reveal>Heading</h2>      -> --reveal-index: 1
+     <p data-reveal>Body</p>           -> --reveal-index: 2
+   </div>
+   Al agregar JS la clase .is-in-view al contenedor, cada [data-reveal]
+   aparece en orden con un delay de --stagger-step entre sí.
+   ========================================================== */
+
+[data-reveal] {
+  --reveal-index: 0;
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity var(--duration-section) var(--ease-out),
+    transform var(--duration-section) var(--ease-out);
+  transition-delay: calc(var(--stagger-step) * var(--reveal-index));
+}
+
+[data-scroll-reveal].is-in-view [data-reveal] {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ==========================================================
+   2. Parallax sutil
+   Marcado esperado:
+   <img data-parallax style="--parallax-intensity: 0.2" ...>
+   JS escribe --parallax-y (en px) en cada frame de scroll mientras el
+   elemento está en viewport; el intensity es solo un multiplicador,
+   ajustable por instancia via inline style o clase.
+   ========================================================== */
+
+[data-parallax] {
+  --parallax-y: 0px;
+  transform: translateY(var(--parallax-y));
+  will-change: transform;
+}
+
+/* ==========================================================
+   3. Sticky-hero opcional
+   Marcado esperado:
+   <div class="sticky-hero-container">
+     <section class="sticky-hero">...contenido del hero...</section>
+     <section class="sticky-hero-next">...siguiente sección...</section>
+   </div>
+   El hero queda fijo (position: sticky) ocupando el viewport mientras
+   la sección siguiente se desliza por encima, tapándolo progresivamente.
+   Puramente CSS, sin JS.
+   ========================================================== */
+
+.sticky-hero-container {
+  position: relative;
+}
+
+.sticky-hero {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-base);
+  height: 100svh;
+  overflow: hidden;
+}
+
+.sticky-hero-next {
+  position: relative;
+  z-index: var(--z-elevated);
+  background: var(--color-bg);
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+}
+
+/* ==========================================================
+   4. Hero fade-on-scroll
+   Marcado esperado:
+   <section data-hero-fade>...video + texto del hero...</section>
+   A diferencia del sticky-hero, esta sección NO queda fija: vive en el
+   flujo normal del documento y el scroll ya la retira de pantalla por
+   sí solo. JS (initHeroFade) escribe --hero-fade-opacity y
+   --hero-fade-y en cada frame de scroll mientras la sección atraviesa
+   el viewport, con una curva ease-out — sin transition CSS superpuesta,
+   para no pelear contra el valor que ya llega interpolado por frame.
+   ========================================================== */
+
+[data-hero-fade] {
+  --hero-fade-opacity: 1;
+  --hero-fade-y: 0px;
+  opacity: var(--hero-fade-opacity);
+  transform: translateY(var(--hero-fade-y));
+  will-change: opacity, transform;
+}
+
+/* ==========================================================
+   Reduced motion: todo el sistema se apaga y el contenido queda
+   visible/estático de inmediato, sin animación ni parallax.
+   ========================================================== */
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  [data-parallax] {
+    transform: none;
+  }
+
+  .sticky-hero {
+    position: relative;
+  }
+}
