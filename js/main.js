@@ -13,6 +13,7 @@ import { initAccordions } from './components/accordion.js';
 import { initExpandableCards } from './components/expandable-card.js';
 import { initFooter } from './components/footer.js';
 import { initScrollReveal, initParallax, initHeroFade } from './scroll-animations.js';
+import { initContactForm } from './components/contact-form.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   initHeader();
@@ -23,4 +24,5 @@ document.addEventListener('DOMContentLoaded', () => {
   initScrollReveal();
   initParallax();
   initHeroFade();
+  initContactForm();
 });
