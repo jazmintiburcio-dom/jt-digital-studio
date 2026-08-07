@@ -98,6 +98,11 @@
   list-style: none;
 }
 
+.site-footer__list li {
+  margin: 0;
+  padding: 0;
+}
+
 .site-footer__link {
   display: inline-flex;
   padding-block: 3px;
