@@ -92,34 +92,26 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: var(--space-10);
+  gap: var(--space-8);
   flex-wrap: wrap;
 }
 
 .client-band__logo {
-  height: 72px;
+  display: block;
+  height: 100px;
   width: auto;
-  max-width: 200px;
+  max-width: 220px;
   object-fit: contain;
-  filter: grayscale(0.15);
-  opacity: 0.8;
-  transition: filter var(--duration-micro) var(--ease-out),
-              opacity var(--duration-micro) var(--ease-out);
-}
-
-.client-band__logo:hover {
-  filter: grayscale(0);
-  opacity: 1;
 }
 
 @media (max-width: 600px) {
   .client-band__logos {
-    gap: var(--space-6);
+    gap: var(--space-5);
   }
 
   .client-band__logo {
-    height: 52px;
-    max-width: 150px;
+    height: 72px;
+    max-width: 160px;
   }
 }
 
