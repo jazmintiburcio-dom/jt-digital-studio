@@ -154,3 +154,21 @@ html,
 body {
   overflow-x: hidden;
 }
+
+@media (max-width: 767px) {
+  .section {
+    padding-block: var(--space-7);
+  }
+
+  h2 {
+    font-size: var(--text-2xl);
+  }
+
+  h3 {
+    font-size: var(--text-xl);
+  }
+
+  h4 {
+    font-size: var(--text-lg);
+  }
+}
