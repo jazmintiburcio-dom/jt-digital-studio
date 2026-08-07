@@ -51,7 +51,7 @@
    sin escala de grises — decisión explícita, no aplicar filtro acá. */
 .logo-cloud__logo {
   display: block;
-  height: 48px;
+  height: 64px;
   width: auto;
   object-fit: contain;
 }
