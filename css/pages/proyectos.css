@@ -382,7 +382,7 @@
 .dot-carousel__slide-label {
   position: absolute;
   top: var(--space-4);
-  left: var(--space-4);
+  right: var(--space-4);
   padding: 4px 12px;
   border-radius: var(--radius-pill);
   background: rgba(0, 0, 0, 0.65);
@@ -755,6 +755,15 @@
   margin-top: var(--space-6);
 }
 
+/* El Alcance del Proyecto es siempre el último .project-card__category
+   standalone (fuera de .detail-row) en el detalle expandido. Con un
+   border-top y padding-top se separa visualmente de la última fila. */
+.case-study__detail-categories > .project-card__category {
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--color-border-hairline);
+  margin-top: var(--space-4);
+}
+
 .project-card__category h4 {
   margin-bottom: var(--space-3);
   font-family: var(--font-heading);
@@ -778,8 +787,9 @@
 }
 
 .project-card__scope-list {
-  flex-direction: column !important;
-  align-items: flex-start;
+  flex-direction: row !important;
+  flex-wrap: wrap;
+  justify-content: flex-start;
   gap: var(--space-2) !important;
   list-style: none !important;
   padding-left: 0 !important;
@@ -827,5 +837,23 @@
 @media (max-width: 900px) {
   .projects-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 767px) {
+  .client-band {
+    padding-block: var(--space-6);
+  }
+
+  .client-band__logos {
+    gap: var(--space-5);
+  }
+
+  .case-study__detail-content {
+    padding: var(--space-6) var(--container-padding);
+  }
+
+  .section__cta-row {
+    margin-top: var(--space-6);
   }
 }
