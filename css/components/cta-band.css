@@ -33,3 +33,10 @@
   color: var(--color-text-body);
   font-weight: var(--fw-medium);
 }
+
+.cta-band__desc {
+  font-size: var(--text-base);
+  color: var(--color-text-body);
+  max-width: 40ch;
+  line-height: 1.6;
+}
