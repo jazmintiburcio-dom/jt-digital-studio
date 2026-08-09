@@ -601,10 +601,8 @@
     grid-template-columns: 1fr;
   }
 
-  /* Regla mobile obligatoria: el plan más elegido (Nivel 2) no puede
-     quedar enterrado en el scroll — se reordena primero visualmente. */
-  .plan-card--featured {
-    order: -1;
+  .price-strip {
+    display: none;
   }
 }
 
