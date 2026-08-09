@@ -35,7 +35,8 @@
     }
 
     /* ── SECTION BASE ── */
-    .lb-section { padding-block: var(--space-9); }
+    .lb-section { padding-block: var(--space-7); }
+    @media (min-width: 768px) { .lb-section { padding-block: var(--space-9); } }
     .lb-section--surface { background: var(--color-surface); }
 
     .lb-heading__overline {
@@ -191,8 +192,9 @@
     .lb-hero__content {
       position: relative;
       z-index: 1;
-      padding-block: var(--space-10);
+      padding-block: var(--space-8);
     }
+    @media (min-width: 768px) { .lb-hero__content { padding-block: var(--space-10); } }
     .lb-hero__overline {
       font-size: var(--text-sm);
       font-weight: var(--fw-semibold);
@@ -242,7 +244,7 @@
       box-sizing: border-box;
     }
     @media (min-width: 600px)  { .lb-carousel__slide { flex: 0 0 50%; } }
-    @media (min-width: 1024px) { .lb-carousel__slide { flex: 0 0 calc(100% / 3); } }
+    @media (min-width: 900px) { .lb-carousel__slide { flex: 0 0 calc(100% / 3); } }
 
     .lb-tcard {
       background: var(--color-bg);
@@ -368,7 +370,7 @@
       gap: var(--space-5);
     }
     @media (min-width: 600px) { .lb-planes__grid { grid-template-columns: 1fr 1fr; } }
-    @media (min-width: 1024px) { .lb-planes__grid { grid-template-columns: repeat(4, 1fr); } }
+    @media (min-width: 1200px) { .lb-planes__grid { grid-template-columns: repeat(4, 1fr); } }
 
     .lb-plan {
       background: var(--color-surface);
@@ -457,7 +459,7 @@
       gap: var(--space-5);
     }
     @media (min-width: 600px) { .lb-portfolio__grid { grid-template-columns: 1fr 1fr; } }
-    @media (min-width: 1024px) { .lb-portfolio__grid { grid-template-columns: repeat(4, 1fr); } }
+    @media (min-width: 1200px) { .lb-portfolio__grid { grid-template-columns: repeat(4, 1fr); } }
 
     .lb-pcard {
       background: var(--color-surface);
