@@ -236,35 +236,42 @@
       transition: transform .42s var(--ease-out);
       will-change: transform;
     }
-    .lb-carousel__slide { flex: 0 0 100%; padding: var(--space-2); }
+    .lb-carousel__slide {
+      flex: 0 0 100%;
+      padding: 0 var(--space-2);
+      box-sizing: border-box;
+    }
+    @media (min-width: 600px)  { .lb-carousel__slide { flex: 0 0 50%; } }
+    @media (min-width: 1024px) { .lb-carousel__slide { flex: 0 0 calc(100% / 3); } }
 
     .lb-tcard {
       background: var(--color-bg);
       border: 1px solid var(--color-border-hairline);
       border-radius: var(--radius-lg);
-      padding: var(--space-7) var(--space-6) var(--space-6);
+      padding: var(--space-5) var(--space-4) var(--space-4);
       position: relative;
+      height: 100%;
     }
     .lb-tcard__mark {
       font-family: var(--font-heading);
-      font-size: 5rem;
+      font-size: 3rem;
       color: var(--color-primary);
-      opacity: .22;
+      opacity: .18;
       line-height: 1;
       position: absolute;
-      top: var(--space-3);
-      left: var(--space-5);
+      top: var(--space-2);
+      left: var(--space-4);
       user-select: none;
     }
     .lb-tcard__quote {
-      font-size: var(--text-md);
+      font-size: var(--text-sm);
       line-height: var(--leading-relaxed);
-      margin-bottom: var(--space-6);
+      margin-bottom: var(--space-4);
       position: relative;
     }
-    .lb-tcard__author { display: flex; align-items: center; gap: var(--space-4); }
+    .lb-tcard__author { display: flex; align-items: center; gap: var(--space-3); }
     .lb-tcard__avatar {
-      width: 52px; height: 52px;
+      width: 40px; height: 40px;
       border-radius: 50%;
       overflow: hidden;
       flex-shrink: 0;
@@ -273,11 +280,11 @@
     .lb-tcard__avatar img { width: 100%; height: 100%; object-fit: cover; }
     .lb-tcard__name {
       font-family: var(--font-heading);
-      font-size: var(--text-base);
+      font-size: var(--text-sm);
       font-weight: var(--fw-semibold);
       color: var(--color-text-heading);
     }
-    .lb-tcard__role { font-size: var(--text-sm); color: var(--color-text-tertiary); }
+    .lb-tcard__role { font-size: var(--text-xs); color: var(--color-text-tertiary); }
 
     .lb-carousel__controls {
       display: flex;
@@ -1198,20 +1205,28 @@ document.getElementById('lb-year').textContent = new Date().getFullYear();
 
 /* ── CARRUSEL ── */
 (function () {
-  const track = document.getElementById('lb-track');
-  const dots  = document.querySelectorAll('.lb-carousel__dot');
-  const total = dots.length;
-  let cur = 0, timer;
+  var track = document.getElementById('lb-track');
+  var wrap  = track.parentElement;
+  var dots  = document.querySelectorAll('.lb-carousel__dot');
+  var total = dots.length;
+  var cur = 0, timer;
+
+  function visCount() {
+    return window.innerWidth >= 1024 ? 3 : window.innerWidth >= 600 ? 2 : 1;
+  }
 
   function goTo(n) {
-    cur = ((n % total) + total) % total;
-    track.style.transform = 'translateX(-' + cur * 100 + '%)';
+    var vis    = visCount();
+    var maxPos = Math.max(0, total - vis);
+    cur = n < 0 ? maxPos : n > maxPos ? 0 : n;
+    var slideW = wrap.offsetWidth / vis;
+    track.style.transform = 'translateX(-' + (cur * slideW) + 'px)';
     dots.forEach(function (d, i) {
       d.setAttribute('aria-selected', i === cur ? 'true' : 'false');
     });
   }
 
-  function arm() { timer = setInterval(function () { goTo(cur + 1); }, 5500); }
+  function arm()    { timer = setInterval(function () { goTo(cur + 1); }, 5500); }
   function disarm() { clearInterval(timer); }
 
   document.getElementById('lb-prev').addEventListener('click', function () { disarm(); goTo(cur - 1); arm(); });
@@ -1221,13 +1236,14 @@ document.getElementById('lb-year').textContent = new Date().getFullYear();
   });
 
   var sx = 0;
-  var wrap = track.parentElement;
   wrap.addEventListener('touchstart', function (e) { sx = e.touches[0].clientX; disarm(); }, { passive: true });
   wrap.addEventListener('touchend',   function (e) {
     var dx = sx - e.changedTouches[0].clientX;
     if (Math.abs(dx) > 45) goTo(dx > 0 ? cur + 1 : cur - 1);
     arm();
   });
+
+  window.addEventListener('resize', function () { goTo(cur); });
 
   goTo(0);
   arm();
