@@ -48,14 +48,14 @@
     }
     .lb-heading h2 {
       font-family: var(--font-heading);
-      font-size: clamp(var(--text-2xl), 4vw, var(--text-4xl));
+      font-size: clamp(var(--text-xl), 2.5vw, var(--text-3xl));
       font-weight: var(--fw-bold);
       color: var(--color-text-heading);
-      line-height: var(--leading-tight);
+      line-height: var(--leading-snug);
       margin-bottom: var(--space-4);
     }
     .lb-heading__sub {
-      font-size: var(--text-md);
+      font-size: var(--text-base);
       color: var(--color-text-body);
       max-width: 52ch;
     }
@@ -203,17 +203,17 @@
     }
     .lb-hero__title {
       font-family: var(--font-heading);
-      font-size: var(--text-display);
+      font-size: clamp(2rem, 1.2rem + 2.5vw, 3rem);
       font-weight: var(--fw-bold);
       color: var(--color-text-on-dark);
       line-height: var(--leading-tight);
-      max-width: 14ch;
+      max-width: 16ch;
       margin-bottom: var(--space-5);
     }
     .lb-hero__subtitle {
-      font-size: var(--text-lg);
+      font-size: var(--text-md);
       color: rgba(255,255,255,.78);
-      max-width: 40ch;
+      max-width: 44ch;
       margin-bottom: var(--space-6);
     }
     .lb-hero__cta-row {
@@ -340,7 +340,7 @@
     .lb-ps__col--solution { background: var(--color-primary); }
     .lb-ps__col-title {
       font-family: var(--font-heading);
-      font-size: var(--text-xl);
+      font-size: var(--text-lg);
       font-weight: var(--fw-bold);
       line-height: var(--leading-snug);
       margin-bottom: var(--space-5);
@@ -526,10 +526,10 @@
     }
     .lb-form__title {
       font-family: var(--font-heading);
-      font-size: var(--text-xl);
+      font-size: var(--text-lg);
       font-weight: var(--fw-bold);
       color: var(--color-text-heading);
-      margin-bottom: var(--space-6);
+      margin-bottom: var(--space-5);
     }
     .lb-form__field {
       display: flex;
@@ -606,7 +606,7 @@
     }
     .lb-form__success h3 {
       font-family: var(--font-heading);
-      font-size: var(--text-xl);
+      font-size: var(--text-lg);
       font-weight: var(--fw-bold);
       color: var(--color-text-heading);
       margin-bottom: var(--space-3);
