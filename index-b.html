@@ -1,1220 +1,957 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>JT Digital Studio — Diseño Web Estratégico para LATAM</title>
-  <meta name="description" content="Sitios web que trabajan para usted: lo encuentran en Google, generan consultas reales y muestran el nivel profesional que ya tiene. Cotización sin costo.">
   <meta name="robots" content="noindex, nofollow">
-  <link rel="icon" href="assets/marca/favicon.svg" type="image/svg+xml">
+  <title>JT Digital Studio — Diseño web para negocios que crecen</title>
+  <meta name="description" content="Boutique de diseño web en Buenos Aires. Sitios WordPress profesionales con entrega en 15 días y 3 meses de soporte incluido.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/tokens.css">
   <style>
-    /* ── RESET MÍNIMO ── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
     body {
       font-family: var(--font-body);
       font-size: var(--text-base);
       color: var(--color-text-body);
       background: var(--color-bg);
-      line-height: var(--leading-normal);
+      line-height: var(--leading-relaxed);
+      overflow-x: hidden;
     }
     img { max-width: 100%; display: block; }
     a { color: inherit; text-decoration: none; }
     ul { list-style: none; }
 
-    /* ── CONTAINER ── */
-    .lb-container {
-      width: 100%;
-      max-width: var(--container-max);
-      margin-inline: auto;
-      padding-inline: var(--container-padding);
+    /* ── Typography (mirrors base.css hierarchy) ── */
+    h1 { font-family: var(--font-heading); font-size: var(--text-display); font-weight: var(--fw-bold); line-height: var(--leading-tight); }
+    h2 { font-family: var(--font-heading); font-size: var(--text-3xl); font-weight: var(--fw-bold); line-height: var(--leading-tight); }
+    h3 { font-family: var(--font-heading); font-size: var(--text-2xl); font-weight: var(--fw-semibold); line-height: var(--leading-snug); }
+    h4 { font-family: var(--font-heading); font-size: var(--text-xl); font-weight: var(--fw-semibold); line-height: var(--leading-snug); }
+    @media (max-width: 767px) {
+      h2 { font-size: var(--text-2xl); }
+      h3 { font-size: var(--text-xl); }
+      h4 { font-size: var(--text-lg); }
     }
 
-    /* ── SECTION BASE ── */
+    /* ── Buttons ── */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2);
+      padding: 0.75rem 1.75rem; border-radius: var(--radius-pill);
+      font-family: var(--font-body); font-size: var(--text-base); font-weight: var(--fw-semibold);
+      cursor: pointer; border: 2px solid transparent; text-decoration: none;
+      transition: background var(--duration-micro) var(--ease-out), border-color var(--duration-micro), transform var(--duration-micro) var(--ease-out), box-shadow var(--duration-micro) var(--ease-out);
+      min-height: var(--tap-min); white-space: nowrap; line-height: 1;
+    }
+    .btn--primary { background: var(--color-primary); color: var(--color-text-on-primary); }
+    .btn--primary:hover { background: var(--color-primary-hover); transform: translateY(-1px); box-shadow: var(--shadow-orange); }
+    .btn--ghost { background: transparent; color: var(--color-text-heading); border-color: var(--color-border); }
+    .btn--ghost:hover { border-color: var(--color-primary); color: var(--color-primary); }
+    .btn--dark { background: var(--color-dark); color: var(--color-text-on-dark); }
+    .btn--dark:hover { background: var(--color-dark-hover); transform: translateY(-1px); }
+
+    /* ── Layout helpers ── */
+    .lb-container { width: 100%; max-width: var(--container-max); margin-inline: auto; padding-inline: var(--container-padding); }
     .lb-section { padding-block: var(--space-7); }
     @media (min-width: 768px) { .lb-section { padding-block: var(--space-9); } }
-    .lb-section--surface { background: var(--color-surface); }
 
-    .lb-heading__overline {
-      font-size: var(--text-sm);
-      font-weight: var(--fw-semibold);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--color-primary);
-      margin-bottom: var(--space-3);
+    .lb-section-label {
+      display: inline-block; font-family: var(--font-body); font-size: var(--text-sm);
+      font-weight: var(--fw-semibold); text-transform: uppercase; letter-spacing: 0.1em;
+      color: var(--color-primary); margin-bottom: var(--space-3);
     }
-    .lb-heading h2 {
-      font-family: var(--font-heading);
-      font-size: clamp(var(--text-xl), 2.5vw, var(--text-3xl));
-      font-weight: var(--fw-bold);
-      color: var(--color-text-heading);
-      line-height: var(--leading-snug);
-      margin-bottom: var(--space-4);
-    }
-    .lb-heading__sub {
-      font-size: var(--text-base);
-      color: var(--color-text-body);
-      max-width: 52ch;
-    }
-    .lb-heading--center { text-align: center; }
-    .lb-heading--center .lb-heading__sub { margin-inline: auto; }
-    .lb-heading { margin-bottom: var(--space-7); }
+    .lb-section-heading { color: var(--color-text-heading); margin-bottom: var(--space-4); }
+    .lb-section-sub { font-size: var(--text-md); color: var(--color-text-body); max-width: 52ch; }
+    .lb-text-center { text-align: center; }
+    .lb-text-center .lb-section-sub { margin-inline: auto; }
 
-    /* ── BOTONES ── */
-    .lb-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: var(--space-2);
-      padding: 0.75rem 1.75rem;
-      border-radius: var(--radius-pill);
-      font-family: var(--font-body);
-      font-size: var(--text-base);
-      font-weight: var(--fw-semibold);
-      cursor: pointer;
-      border: 2px solid transparent;
-      text-decoration: none;
-      transition: background var(--duration-micro) var(--ease-out),
-                  border-color var(--duration-micro),
-                  transform var(--duration-micro) var(--ease-out);
-      min-height: var(--tap-min);
-      white-space: nowrap;
-    }
-    .lb-btn--primary {
-      background: var(--color-primary);
-      color: var(--color-text-heading);
-    }
-    .lb-btn--primary:hover { background: var(--color-primary-hover); transform: translateY(-1px); }
-    .lb-btn--ghost {
-      background: transparent;
-      color: var(--color-text-heading);
-      border-color: var(--color-border);
-    }
-    .lb-btn--ghost:hover { border-color: var(--color-primary); color: var(--color-primary); }
-    .lb-btn--wa {
-      background: #25D366;
-      color: #fff;
-      border-color: transparent;
-    }
-    .lb-btn--wa:hover { background: #1eb558; transform: translateY(-1px); }
-
-    /* ── SKIP LINK ── */
-    .lb-skip {
-      position: absolute;
-      top: -100%;
-      left: var(--space-4);
-      background: var(--color-primary);
-      color: var(--color-dark);
-      padding: var(--space-2) var(--space-4);
-      border-radius: var(--radius-sm);
-      font-weight: var(--fw-semibold);
-      z-index: 999;
-    }
-    .lb-skip:focus { top: var(--space-2); }
-
-    /* ─────────────────────────────
-       HEADER
-    ───────────────────────────── */
+    /* ══════════════════════════════════════════
+       S0 — HEADER
+    ══════════════════════════════════════════ */
     .lb-header {
-      position: fixed;
-      inset: 0 0 auto;
-      z-index: var(--z-sticky);
-      background: rgba(248,248,248,0.95);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
+      position: fixed; top: 0; left: 0; right: 0; z-index: var(--z-sticky);
+      height: var(--header-height); display: flex; align-items: center;
+      padding-inline: var(--container-padding);
+      background: rgba(0,0,0,0.55); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      transition: background var(--duration-micro) var(--ease-out);
+    }
+    .lb-header__inner { width: 100%; max-width: var(--container-max); margin-inline: auto; display: flex; align-items: center; justify-content: space-between; }
+    .lb-header__logo { display: flex; align-items: center; gap: var(--space-2); }
+    .lb-header__logo img { height: 36px; width: auto; }
+    .lb-header__logo-text { font-family: var(--font-heading); font-weight: var(--fw-bold); font-size: var(--text-md); color: var(--color-text-on-dark); }
+
+    /* ══════════════════════════════════════════
+       S1 — HERO
+    ══════════════════════════════════════════ */
+    .lb-hero {
+      position: relative; min-height: 100svh; display: flex; align-items: center;
+      padding-top: var(--header-height); overflow: hidden; background: var(--color-dark);
+    }
+    .lb-hero__video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.35; }
+    .lb-hero__overlay { position: absolute; inset: 0; background: linear-gradient(160deg, rgba(38,42,43,0.7) 40%, rgba(253,101,2,0.12) 100%); }
+    .lb-hero__content { position: relative; z-index: 1; padding-block: var(--space-10) var(--space-9); }
+    .lb-hero__eyebrow {
+      display: inline-flex; align-items: center; gap: var(--space-2);
+      background: rgba(253,101,2,0.18); border: 1px solid rgba(253,101,2,0.4);
+      border-radius: var(--radius-pill); padding: var(--space-1) var(--space-4);
+      font-size: var(--text-sm); font-weight: var(--fw-medium); color: var(--color-primary);
+      margin-bottom: var(--space-5);
+    }
+    .lb-hero__title { color: var(--color-text-on-dark); margin-bottom: var(--space-5); }
+    .lb-hero__title span { color: var(--color-primary); }
+    .lb-hero__desc { font-size: var(--text-md); color: rgba(255,255,255,0.8); max-width: 52ch; margin-bottom: var(--space-7); }
+    .lb-hero__actions { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+    .lb-hero__stats {
+      display: flex; flex-wrap: wrap; gap: var(--space-5) var(--space-7);
+      margin-top: var(--space-9); padding-top: var(--space-7);
+      border-top: 1px solid rgba(255,255,255,0.15);
+    }
+    .lb-hero__stat-value { font-family: var(--font-heading); font-size: var(--text-3xl); font-weight: var(--fw-bold); color: var(--color-primary); line-height: 1; }
+    .lb-hero__stat-label { font-size: var(--text-sm); color: rgba(255,255,255,0.65); margin-top: var(--space-1); }
+
+    /* ══════════════════════════════════════════
+       S2 — CREDIBILIDAD
+    ══════════════════════════════════════════ */
+    .lb-cred { background: var(--color-surface); }
+    .lb-cred__grid {
+      display: grid; grid-template-columns: repeat(3,1fr); gap: var(--space-6);
+      margin-bottom: var(--space-9); padding-bottom: var(--space-9);
       border-bottom: 1px solid var(--color-border-hairline);
     }
-    .lb-header__inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: var(--header-height);
+    @media (max-width: 599px) { .lb-cred__grid { grid-template-columns: 1fr; gap: var(--space-5); } }
+    .lb-cred__stat { text-align: center; }
+    .lb-cred__stat-value { font-family: var(--font-heading); font-size: var(--text-4xl); font-weight: var(--fw-bold); color: var(--color-primary); line-height: 1; }
+    .lb-cred__stat-label { font-size: var(--text-sm); color: var(--color-text-body); margin-top: var(--space-2); }
+    .lb-cred__logos-label { text-align: center; font-size: var(--text-sm); color: var(--color-text-tertiary); font-weight: var(--fw-medium); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: var(--space-5); }
+    .lb-cred__logos-track-wrap { overflow: hidden; position: relative; }
+    .lb-cred__logos-track-wrap::before,
+    .lb-cred__logos-track-wrap::after {
+      content: ''; position: absolute; top: 0; bottom: 0; width: 80px; z-index: 1;
     }
-    .lb-header__logo {
-      display: flex;
-      align-items: center;
-      gap: var(--space-3);
-    }
-    .lb-header__wordmark {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-    .lb-header__brand {
-      font-family: var(--font-heading);
-      font-size: var(--text-base);
-      font-weight: var(--fw-bold);
-      color: var(--color-text-heading);
-      line-height: 1.1;
-    }
-    .lb-header__tagline {
-      font-size: var(--text-xs);
-      color: var(--color-text-tertiary);
-    }
-    @media (max-width: 480px) {
-      .lb-header__tagline { display: none; }
-      .lb-header__wa-label { display: none; }
-    }
+    .lb-cred__logos-track-wrap::before { left: 0; background: linear-gradient(to right, var(--color-surface), transparent); }
+    .lb-cred__logos-track-wrap::after  { right: 0; background: linear-gradient(to left, var(--color-surface), transparent); }
+    .lb-cred__logos-track { display: flex; align-items: center; gap: var(--space-8); animation: lb-scroll 30s linear infinite; width: max-content; }
+    .lb-cred__logos-track:hover { animation-play-state: paused; }
+    @keyframes lb-scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+    .lb-cred__logo-item { display: flex; flex-direction: column; align-items: center; gap: var(--space-2); flex-shrink: 0; }
+    .lb-cred__logo-item img { height: 36px; width: auto; filter: grayscale(1); opacity: 0.6; transition: filter var(--duration-micro), opacity var(--duration-micro); }
+    .lb-cred__logo-item:hover img { filter: grayscale(0); opacity: 1; }
+    .lb-cred__logo-item span { font-size: var(--text-xs); color: var(--color-text-tertiary); }
 
-    /* ─────────────────────────────
-       S1 · HERO
-    ───────────────────────────── */
-    .lb-hero {
-      position: relative;
-      min-height: 100svh;
-      display: flex;
-      align-items: center;
-      padding-top: var(--header-height);
-      overflow: hidden;
-      background: var(--color-darker);
+    /* ══════════════════════════════════════════
+       S3 — PROBLEMA → SOLUCIÓN
+    ══════════════════════════════════════════ */
+    .lb-problema { background: var(--color-bg); }
+    .lb-problema__grid { display: grid; gap: var(--space-8); }
+    @media (min-width: 768px) { .lb-problema__grid { grid-template-columns: 1fr 1fr; gap: var(--space-10); align-items: center; } }
+    .lb-problema__pain-list { display: flex; flex-direction: column; gap: var(--space-4); margin-top: var(--space-6); }
+    .lb-problema__pain-item { display: flex; align-items: flex-start; gap: var(--space-3); }
+    .lb-problema__pain-icon { flex-shrink: 0; width: 24px; height: 24px; color: var(--color-text-tertiary); margin-top: 2px; }
+    .lb-problema__pain-text { font-size: var(--text-md); color: var(--color-text-body); }
+    .lb-problema__sol-card {
+      background: var(--color-surface); border-radius: var(--radius-lg); padding: var(--space-7);
+      box-shadow: var(--shadow-md); border-top: 4px solid var(--color-primary);
     }
-    .lb-hero__bg {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      opacity: 0.5;
-    }
-    .lb-hero__overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        to bottom,
-        rgba(20,24,26,.4) 0%,
-        rgba(20,24,26,.65) 55%,
-        rgba(20,24,26,.88) 100%
-      );
-    }
-    .lb-hero__content {
-      position: relative;
-      z-index: 1;
-      padding-block: var(--space-8);
-    }
-    @media (min-width: 768px) { .lb-hero__content { padding-block: var(--space-10); } }
-    .lb-hero__overline {
-      font-size: var(--text-sm);
-      font-weight: var(--fw-semibold);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--color-primary);
-      margin-bottom: var(--space-4);
-    }
-    .lb-hero__title {
-      font-family: var(--font-heading);
-      font-size: clamp(2rem, 1.2rem + 2.5vw, 3rem);
-      font-weight: var(--fw-bold);
-      color: var(--color-text-on-dark);
-      line-height: var(--leading-tight);
-      max-width: 16ch;
-      margin-bottom: var(--space-5);
-    }
-    .lb-hero__subtitle {
-      font-size: var(--text-md);
-      color: rgba(255,255,255,.78);
-      max-width: 44ch;
-      margin-bottom: var(--space-6);
-    }
-    .lb-hero__cta-row {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: var(--space-4);
-    }
-    .lb-hero__microcopy {
-      font-size: var(--text-sm);
-      color: rgba(255,255,255,.5);
-    }
+    .lb-problema__sol-list { display: flex; flex-direction: column; gap: var(--space-4); margin-top: var(--space-6); }
+    .lb-problema__sol-item { display: flex; align-items: flex-start; gap: var(--space-3); }
+    .lb-problema__sol-icon { flex-shrink: 0; width: 24px; height: 24px; color: var(--color-primary); margin-top: 2px; }
+    .lb-problema__sol-text { font-size: var(--text-md); color: var(--color-text-body); }
 
-    /* ─────────────────────────────
-       S2 · TESTIMONIOS CARRUSEL
-    ───────────────────────────── */
-    .lb-carousel__wrap { overflow: hidden; }
-    .lb-carousel__track {
-      display: flex;
-      transition: transform .42s var(--ease-out);
-      will-change: transform;
+    /* ══════════════════════════════════════════
+       S4 — CÓMO TRABAJO
+    ══════════════════════════════════════════ */
+    .lb-proceso { background: var(--color-surface); }
+    .lb-proceso__steps { display: grid; gap: var(--space-5); margin-top: var(--space-8); }
+    @media (min-width: 600px)  { .lb-proceso__steps { grid-template-columns: 1fr 1fr; } }
+    @media (min-width: 1000px) { .lb-proceso__steps { grid-template-columns: repeat(5,1fr); } }
+    .lb-proceso__step {
+      background: var(--color-bg); border-radius: var(--radius-md); padding: var(--space-6);
+      position: relative; transition: box-shadow var(--duration-micro) var(--ease-out), transform var(--duration-micro) var(--ease-out);
     }
-    .lb-carousel__slide {
-      flex: 0 0 100%;
-      padding: 0 var(--space-2);
-      box-sizing: border-box;
+    .lb-proceso__step:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+    .lb-proceso__step-num {
+      font-family: var(--font-heading); font-size: var(--text-4xl); font-weight: var(--fw-bold);
+      color: var(--color-primary); opacity: 0.18; line-height: 1; margin-bottom: var(--space-3);
     }
-    @media (min-width: 600px)  { .lb-carousel__slide { flex: 0 0 50%; } }
-    @media (min-width: 900px) { .lb-carousel__slide { flex: 0 0 calc(100% / 3); } }
+    .lb-proceso__step-icon { width: 40px; height: 40px; color: var(--color-primary); margin-bottom: var(--space-4); }
+    .lb-proceso__step-title { font-family: var(--font-heading); font-size: var(--text-md); font-weight: var(--fw-bold); color: var(--color-text-heading); margin-bottom: var(--space-2); }
+    .lb-proceso__step-desc { font-size: var(--text-sm); color: var(--color-text-body); line-height: var(--leading-relaxed); }
 
-    .lb-tcard {
-      background: var(--color-bg);
+    /* ══════════════════════════════════════════
+       S5 — PLANES
+    ══════════════════════════════════════════ */
+    .lb-planes { background: var(--color-bg); }
+    .lb-planes__grid { display: grid; gap: var(--space-5); margin-top: var(--space-8); }
+    @media (min-width: 600px)  { .lb-planes__grid { grid-template-columns: 1fr 1fr; } }
+    @media (min-width: 1200px) { .lb-planes__grid { grid-template-columns: repeat(4,1fr); } }
+    .lb-planes__card {
+      background: var(--color-surface); border-radius: var(--radius-lg); padding: var(--space-6);
+      border: 1px solid var(--color-border-hairline); display: flex; flex-direction: column;
+      transition: box-shadow var(--duration-micro) var(--ease-out), transform var(--duration-micro) var(--ease-out);
+    }
+    .lb-planes__card:hover { box-shadow: var(--shadow-md); transform: translateY(-3px); }
+    .lb-planes__card--featured {
+      border-color: var(--color-primary); border-width: 2px;
+      box-shadow: var(--shadow-orange);
+    }
+    .lb-planes__badge {
+      display: inline-block; background: var(--color-primary); color: var(--color-text-on-primary);
+      font-size: var(--text-xs); font-weight: var(--fw-bold); text-transform: uppercase;
+      letter-spacing: 0.08em; padding: 0.2rem 0.75rem; border-radius: var(--radius-pill);
+      margin-bottom: var(--space-4); align-self: flex-start;
+    }
+    .lb-planes__name { font-family: var(--font-heading); font-size: var(--text-xl); font-weight: var(--fw-bold); color: var(--color-text-heading); margin-bottom: var(--space-2); }
+    .lb-planes__price { font-family: var(--font-heading); font-size: var(--text-3xl); font-weight: var(--fw-bold); color: var(--color-primary); line-height: 1; margin-bottom: var(--space-1); }
+    .lb-planes__price-note { font-size: var(--text-xs); color: var(--color-text-tertiary); margin-bottom: var(--space-5); }
+    .lb-planes__desc { font-size: var(--text-sm); color: var(--color-text-body); margin-bottom: var(--space-5); line-height: var(--leading-relaxed); }
+    .lb-planes__features { display: flex; flex-direction: column; gap: var(--space-3); margin-bottom: var(--space-6); flex: 1; }
+    .lb-planes__feature { display: flex; align-items: flex-start; gap: var(--space-2); font-size: var(--text-sm); color: var(--color-text-body); }
+    .lb-planes__feature svg { flex-shrink: 0; color: var(--color-primary); width: 16px; height: 16px; margin-top: 2px; }
+    .lb-planes__cta { margin-top: auto; }
+
+    /* ══════════════════════════════════════════
+       S6 — PORTFOLIO
+    ══════════════════════════════════════════ */
+    .lb-portfolio { background: var(--color-surface); }
+    .lb-portfolio__grid { display: grid; gap: var(--space-5); margin-top: var(--space-8); }
+    @media (min-width: 600px)  { .lb-portfolio__grid { grid-template-columns: 1fr 1fr; } }
+    @media (min-width: 1000px) { .lb-portfolio__grid { grid-template-columns: repeat(4,1fr); } }
+    .lb-portfolio__card {
+      border-radius: var(--radius-md); overflow: hidden; background: var(--color-bg);
       border: 1px solid var(--color-border-hairline);
-      border-radius: var(--radius-lg);
-      padding: var(--space-5) var(--space-4) var(--space-4);
-      position: relative;
-      height: 100%;
+      transition: box-shadow var(--duration-micro) var(--ease-out), transform var(--duration-micro) var(--ease-out);
     }
-    .lb-tcard__mark {
-      font-family: var(--font-heading);
-      font-size: 3rem;
-      color: var(--color-primary);
-      opacity: .18;
-      line-height: 1;
-      position: absolute;
-      top: var(--space-2);
-      left: var(--space-4);
-      user-select: none;
+    .lb-portfolio__card:hover { box-shadow: var(--shadow-lg); transform: translateY(-4px); }
+    .lb-portfolio__img-wrap { position: relative; aspect-ratio: 4/3; overflow: hidden; }
+    .lb-portfolio__img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s var(--ease-out); }
+    .lb-portfolio__card:hover .lb-portfolio__img-wrap img { transform: scale(1.05); }
+    .lb-portfolio__img-placeholder { width: 100%; height: 100%; background: var(--color-bg-alt); display: flex; align-items: center; justify-content: center; }
+    .lb-portfolio__img-placeholder svg { width: 48px; height: 48px; color: var(--color-border); }
+    .lb-portfolio__body { padding: var(--space-4); }
+    .lb-portfolio__tag { font-size: var(--text-xs); font-weight: var(--fw-semibold); color: var(--color-primary); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: var(--space-2); }
+    .lb-portfolio__title { font-family: var(--font-heading); font-size: var(--text-md); font-weight: var(--fw-bold); color: var(--color-text-heading); margin-bottom: var(--space-1); }
+    .lb-portfolio__inversion { font-size: var(--text-sm); color: var(--color-text-tertiary); }
+
+    /* ══════════════════════════════════════════
+       S7 — TESTIMONIOS
+    ══════════════════════════════════════════ */
+    .lb-testi { background: var(--color-bg); }
+    .lb-testi__carousel-wrap { position: relative; margin-top: var(--space-8); }
+    .lb-testi__viewport { overflow: hidden; border-radius: var(--radius-md); }
+    .lb-testi__track { display: flex; transition: transform 0.4s var(--ease-out); }
+    .lb-testi__slide { flex: 0 0 100%; padding: 0 var(--space-2); box-sizing: border-box; }
+    @media (min-width: 600px)  { .lb-testi__slide { flex: 0 0 50%; } }
+    @media (min-width: 900px)  { .lb-testi__slide { flex: 0 0 calc(100% / 3); } }
+    .lb-testi__card {
+      background: var(--color-surface); border-radius: var(--radius-md); padding: var(--space-6);
+      border: 1px solid var(--color-border-hairline); box-shadow: var(--shadow-sm); height: 100%;
+      display: flex; flex-direction: column;
     }
-    .lb-tcard__quote {
-      font-size: var(--text-sm);
-      line-height: var(--leading-relaxed);
-      margin-bottom: var(--space-4);
-      position: relative;
+    .lb-testi__stars { display: flex; gap: 2px; color: var(--color-primary); margin-bottom: var(--space-3); }
+    .lb-testi__stars svg { width: 16px; height: 16px; }
+    .lb-testi__quote { font-size: var(--text-md); color: var(--color-text-body); line-height: var(--leading-relaxed); flex: 1; margin-bottom: var(--space-5); }
+    .lb-testi__author { display: flex; align-items: center; gap: var(--space-3); }
+    .lb-testi__avatar {
+      width: 44px; height: 44px; border-radius: 50%; background: var(--color-bg-alt);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0; overflow: hidden;
     }
-    .lb-tcard__author { display: flex; align-items: center; gap: var(--space-3); }
-    .lb-tcard__avatar {
-      width: 40px; height: 40px;
-      border-radius: 50%;
-      overflow: hidden;
-      flex-shrink: 0;
-      background: var(--color-bg-alt);
-    }
-    .lb-tcard__avatar img { width: 100%; height: 100%; object-fit: cover; }
-    .lb-tcard__name {
-      font-family: var(--font-heading);
-      font-size: var(--text-sm);
-      font-weight: var(--fw-semibold);
+    .lb-testi__avatar svg { width: 24px; height: 24px; color: var(--color-border); }
+    .lb-testi__name { font-family: var(--font-heading); font-size: var(--text-sm); font-weight: var(--fw-bold); color: var(--color-text-heading); }
+    .lb-testi__role { font-size: var(--text-xs); color: var(--color-text-tertiary); }
+    .lb-testi__controls { display: flex; align-items: center; justify-content: center; gap: var(--space-3); margin-top: var(--space-6); }
+    .lb-testi__btn {
+      width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--color-border);
+      background: var(--color-surface); display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: border-color var(--duration-micro), background var(--duration-micro);
       color: var(--color-text-heading);
     }
-    .lb-tcard__role { font-size: var(--text-xs); color: var(--color-text-tertiary); }
+    .lb-testi__btn:hover { border-color: var(--color-primary); background: var(--color-primary); color: var(--color-text-on-dark); }
+    .lb-testi__btn svg { width: 18px; height: 18px; }
+    .lb-testi__dots { display: flex; gap: var(--space-2); }
+    .lb-testi__dot {
+      width: 8px; height: 8px; border-radius: 50%; background: var(--color-border);
+      border: none; cursor: pointer; padding: 0; transition: background var(--duration-micro), width var(--duration-micro);
+    }
+    .lb-testi__dot[aria-selected="true"] { background: var(--color-primary); width: 24px; border-radius: var(--radius-pill); }
 
-    .lb-carousel__controls {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: var(--space-4);
-      margin-top: var(--space-6);
-    }
-    .lb-carousel__btn {
-      width: 44px; height: 44px;
-      border-radius: 50%;
-      border: 2px solid var(--color-border);
-      background: var(--color-surface);
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--color-text-heading);
-      transition: border-color var(--duration-micro), color var(--duration-micro);
-    }
-    .lb-carousel__btn:hover { border-color: var(--color-primary); color: var(--color-primary); }
-    .lb-carousel__dots { display: flex; gap: var(--space-2); }
-    .lb-carousel__dot {
-      width: 8px; height: 8px;
-      border-radius: 50%;
-      background: var(--color-border);
-      border: none;
-      cursor: pointer;
-      padding: 0;
-      transition: background var(--duration-micro), transform var(--duration-micro);
-    }
-    .lb-carousel__dot[aria-selected="true"] {
-      background: var(--color-primary);
-      transform: scale(1.35);
-    }
+    /* ══════════════════════════════════════════
+       S8 — CTA FINAL + FORMULARIO
+    ══════════════════════════════════════════ */
+    .lb-cta { background: var(--color-dark); }
+    .lb-cta__grid { display: grid; gap: var(--space-10); }
+    @media (min-width: 900px) { .lb-cta__grid { grid-template-columns: 1fr 1fr; align-items: start; } }
+    .lb-cta__label { color: var(--color-primary); margin-bottom: var(--space-3); }
+    .lb-cta__title { color: var(--color-text-on-dark); margin-bottom: var(--space-5); }
+    .lb-cta__desc { font-size: var(--text-md); color: rgba(255,255,255,0.7); margin-bottom: var(--space-7); max-width: 46ch; }
+    .lb-cta__benefits { display: flex; flex-direction: column; gap: var(--space-3); }
+    .lb-cta__benefit { display: flex; align-items: center; gap: var(--space-3); font-size: var(--text-md); color: rgba(255,255,255,0.85); }
+    .lb-cta__benefit svg { flex-shrink: 0; color: var(--color-primary); width: 20px; height: 20px; }
 
-    /* ─────────────────────────────
-       S3 · PROBLEMA / SOLUCIÓN
-    ───────────────────────────── */
-    .lb-ps__grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: var(--space-5);
-    }
-    @media (min-width: 768px) {
-      .lb-ps__grid { grid-template-columns: 1fr 1fr; gap: var(--space-7); }
-    }
-    .lb-ps__col {
-      border-radius: var(--radius-lg);
-      padding: var(--space-7);
-    }
-    .lb-ps__col--problem { background: var(--color-darker); }
-    .lb-ps__col--solution { background: var(--color-primary); }
-    .lb-ps__col-title {
-      font-family: var(--font-heading);
-      font-size: var(--text-lg);
-      font-weight: var(--fw-bold);
-      line-height: var(--leading-snug);
-      margin-bottom: var(--space-5);
-    }
-    .lb-ps__col--problem .lb-ps__col-title { color: var(--color-text-on-dark); }
-    .lb-ps__col--solution .lb-ps__col-title { color: var(--color-dark); }
-    .lb-ps__list { display: flex; flex-direction: column; gap: var(--space-4); }
-    .lb-ps__item {
-      display: flex;
-      align-items: flex-start;
-      gap: var(--space-3);
-      font-size: var(--text-base);
-      line-height: var(--leading-normal);
-    }
-    .lb-ps__col--problem .lb-ps__item { color: rgba(255,255,255,.82); }
-    .lb-ps__col--solution .lb-ps__item { color: var(--color-dark); }
-    .lb-ps__icon { flex-shrink: 0; margin-top: 2px; }
-
-    /* ─────────────────────────────
-       S4 · PLANES CON PRECIOS
-    ───────────────────────────── */
-    .lb-planes__grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: var(--space-5);
-    }
-    @media (min-width: 600px) { .lb-planes__grid { grid-template-columns: 1fr 1fr; } }
-    @media (min-width: 1200px) { .lb-planes__grid { grid-template-columns: repeat(4, 1fr); } }
-
-    .lb-plan {
-      background: var(--color-surface);
-      border: 2px solid var(--color-border-hairline);
-      border-radius: var(--radius-lg);
-      padding: var(--space-6);
-      display: flex;
-      flex-direction: column;
-      gap: var(--space-4);
-      transition: border-color var(--duration-micro), box-shadow var(--duration-micro);
-    }
-    .lb-plan:hover { border-color: var(--color-primary); box-shadow: var(--shadow-orange); }
-    .lb-plan--featured {
-      background: var(--color-darker);
-      border-color: var(--color-primary);
-    }
-    .lb-plan__badge {
-      display: inline-block;
-      font-size: var(--text-xs);
-      font-weight: var(--fw-semibold);
-      letter-spacing: .06em;
-      text-transform: uppercase;
-      color: var(--color-primary);
-      background: rgba(253,101,2,.12);
-      padding: .2em .75em;
-      border-radius: var(--radius-pill);
-      width: fit-content;
-    }
-    .lb-plan__name {
-      font-family: var(--font-heading);
-      font-size: var(--text-lg);
-      font-weight: var(--fw-bold);
-      line-height: var(--leading-snug);
-      color: var(--color-text-heading);
-    }
-    .lb-plan--featured .lb-plan__name { color: var(--color-text-on-dark); }
-    .lb-plan__price { display: flex; align-items: baseline; gap: var(--space-1); }
-    .lb-plan__amount {
-      font-family: var(--font-heading);
-      font-size: var(--text-3xl);
-      font-weight: var(--fw-bold);
-      color: var(--color-primary);
-      line-height: 1;
-    }
-    .lb-plan__currency { font-size: var(--text-sm); color: var(--color-text-tertiary); }
-    .lb-plan--featured .lb-plan__currency { color: rgba(255,255,255,.5); }
-    .lb-plan__desc {
-      font-size: var(--text-sm);
-      color: var(--color-text-body);
-      line-height: var(--leading-normal);
-      flex-grow: 1;
-    }
-    .lb-plan--featured .lb-plan__desc { color: rgba(255,255,255,.68); }
-    .lb-plan__features {
-      display: flex;
-      flex-direction: column;
-      gap: var(--space-3);
-      padding-top: var(--space-3);
-      border-top: 1px solid var(--color-border-hairline);
-    }
-    .lb-plan--featured .lb-plan__features { border-top-color: rgba(255,255,255,.1); }
-    .lb-plan__feature {
-      display: flex;
-      align-items: flex-start;
-      gap: var(--space-2);
-      font-size: var(--text-sm);
-      color: var(--color-text-body);
-      line-height: var(--leading-normal);
-    }
-    .lb-plan--featured .lb-plan__feature { color: rgba(255,255,255,.78); }
-    .lb-plan__check { flex-shrink: 0; color: var(--color-primary); margin-top: 1px; }
-    .lb-plan__cta { margin-top: auto; text-align: center; justify-content: center; }
-    .lb-planes__note {
-      text-align: center;
-      margin-top: var(--space-6);
-      font-size: var(--text-sm);
-      color: var(--color-text-tertiary);
-    }
-
-    /* ─────────────────────────────
-       S5 · PORTFOLIO
-    ───────────────────────────── */
-    .lb-portfolio__grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: var(--space-5);
-    }
-    @media (min-width: 600px) { .lb-portfolio__grid { grid-template-columns: 1fr 1fr; } }
-    @media (min-width: 1200px) { .lb-portfolio__grid { grid-template-columns: repeat(4, 1fr); } }
-
-    .lb-pcard {
-      background: var(--color-surface);
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      box-shadow: var(--shadow-sm);
-      transition: box-shadow var(--duration-micro), transform var(--duration-micro);
-    }
-    .lb-pcard:hover { box-shadow: var(--shadow-md); transform: translateY(-3px); }
-    .lb-pcard__media {
-      aspect-ratio: 4/3;
-      overflow: hidden;
-      background: var(--color-bg-alt);
-    }
-    .lb-pcard__media img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      transition: transform .45s var(--ease-out);
-    }
-    .lb-pcard:hover .lb-pcard__media img { transform: scale(1.05); }
-    .lb-pcard__body { padding: var(--space-4) var(--space-5); }
-    .lb-pcard__title {
-      font-family: var(--font-heading);
-      font-size: var(--text-base);
-      font-weight: var(--fw-semibold);
-      color: var(--color-text-heading);
-      margin-bottom: var(--space-1);
-    }
-    .lb-pcard__meta { font-size: var(--text-sm); color: var(--color-text-tertiary); }
-
-    /* ─────────────────────────────
-       S6 · CTA + FORMULARIO
-    ───────────────────────────── */
-    .lb-cta-form { background: var(--color-darker); }
-    .lb-cta-form__grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: var(--space-9);
-    }
-    @media (min-width: 768px) {
-      .lb-cta-form__grid {
-        grid-template-columns: 1fr 1fr;
-        align-items: start;
-      }
-    }
-    .lb-cta-form__text .lb-heading__overline { color: var(--color-primary); }
-    .lb-cta-form__text .lb-heading h2 { color: var(--color-text-on-dark); }
-    .lb-cta-form__text .lb-heading__sub { color: rgba(255,255,255,.68); }
-    .lb-cta-form__text .lb-heading { margin-bottom: var(--space-5); }
-
-    .lb-perks { display: flex; flex-direction: column; gap: var(--space-3); }
-    .lb-perk {
-      display: flex;
-      align-items: center;
-      gap: var(--space-3);
-      font-size: var(--text-sm);
-      color: rgba(255,255,255,.72);
-    }
-    .lb-perk svg { color: var(--color-primary); flex-shrink: 0; }
-
-    /* Formulario */
+    /* Form */
     .lb-form {
-      background: var(--color-surface);
-      border-radius: var(--radius-xl);
-      padding: var(--space-7) var(--space-6);
+      background: var(--color-surface); border-radius: var(--radius-lg); padding: var(--space-7);
+      box-shadow: var(--shadow-lg);
     }
-    .lb-form__title {
-      font-family: var(--font-heading);
-      font-size: var(--text-lg);
-      font-weight: var(--fw-bold);
-      color: var(--color-text-heading);
-      margin-bottom: var(--space-5);
-    }
-    .lb-form__field {
-      display: flex;
-      flex-direction: column;
-      gap: var(--space-2);
-      margin-bottom: var(--space-4);
-    }
-    .lb-form__field label {
-      font-size: var(--text-sm);
-      font-weight: var(--fw-medium);
-      color: var(--color-text-heading);
-    }
-    .lb-form__field input,
-    .lb-form__field select {
-      width: 100%;
-      padding: .75rem 1rem;
-      border: 1.5px solid var(--color-border);
-      border-radius: var(--radius-md);
-      font-family: var(--font-body);
-      font-size: var(--text-base);
-      color: var(--color-text-heading);
-      background: var(--color-bg);
-      outline: none;
+    .lb-form__title { font-family: var(--font-heading); font-size: var(--text-xl); font-weight: var(--fw-bold); color: var(--color-text-heading); margin-bottom: var(--space-5); }
+    .lb-form__field { margin-bottom: var(--space-4); }
+    .lb-form__label { display: block; font-size: var(--text-sm); font-weight: var(--fw-semibold); color: var(--color-text-heading); margin-bottom: var(--space-2); }
+    .lb-form__input, .lb-form__select {
+      width: 100%; padding: 0.75rem 1rem; border-radius: var(--radius-sm);
+      border: 1px solid var(--color-border); background: var(--color-bg);
+      font-family: var(--font-body); font-size: var(--text-base); color: var(--color-text-body);
       transition: border-color var(--duration-micro);
+      min-height: var(--tap-min);
     }
-    .lb-form__field input:focus,
-    .lb-form__field select:focus { border-color: var(--color-primary); }
-    .lb-form__field select {
-      cursor: pointer;
-      appearance: none;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%234d4e4e' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: right .75rem center;
-      background-size: 1.2em;
-      padding-right: 2.5rem;
-    }
-    .lb-form__submit {
-      width: 100%;
-      justify-content: center;
-      margin-top: var(--space-2);
-    }
-    .lb-form__privacy {
-      font-size: var(--text-xs);
-      color: var(--color-text-tertiary);
-      margin-top: var(--space-3);
-      text-align: center;
-    }
-    .lb-form__error {
-      display: none;
-      margin-top: var(--space-3);
-      padding: var(--space-3) var(--space-4);
-      background: rgba(200,30,30,.08);
-      border-radius: var(--radius-sm);
-      font-size: var(--text-sm);
-      color: #b91c1c;
-    }
-    .lb-form__success {
-      display: none;
-      text-align: center;
-      padding: var(--space-6) var(--space-4);
-    }
-    .lb-form__success-icon {
-      width: 56px; height: 56px;
-      background: rgba(253,101,2,.12);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-inline: auto;
-      margin-bottom: var(--space-4);
-      font-size: var(--text-xl);
-      color: var(--color-primary);
-      font-weight: var(--fw-bold);
-    }
-    .lb-form__success h3 {
-      font-family: var(--font-heading);
-      font-size: var(--text-lg);
-      font-weight: var(--fw-bold);
-      color: var(--color-text-heading);
-      margin-bottom: var(--space-3);
-    }
-    .lb-form__success p { font-size: var(--text-base); color: var(--color-text-body); }
-    .lb-form__success a { color: var(--color-primary); font-weight: var(--fw-semibold); }
+    .lb-form__input:focus, .lb-form__select:focus { outline: none; border-color: var(--color-primary); box-shadow: 0 0 0 3px rgba(253,101,2,0.15); }
+    .lb-form__submit { width: 100%; margin-top: var(--space-2); }
+    .lb-form__msg { display: none; margin-top: var(--space-4); padding: var(--space-4); border-radius: var(--radius-sm); font-size: var(--text-sm); text-align: center; }
+    .lb-form__msg--ok { background: rgba(34,197,94,0.1); color: #166534; display: block; }
+    .lb-form__msg--err { background: rgba(239,68,68,0.1); color: #991b1b; display: block; }
 
-    /* ─────────────────────────────
+    /* ══════════════════════════════════════════
        FOOTER
-    ───────────────────────────── */
-    .lb-footer {
-      background: var(--color-darker);
-      border-top: 1px solid rgba(255,255,255,.06);
-      padding-block: var(--space-7) var(--space-5);
-    }
-    .lb-footer__top {
-      display: flex;
-      flex-direction: column;
-      gap: var(--space-5);
-    }
-    @media (min-width: 600px) {
-      .lb-footer__top {
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-      }
-    }
-    .lb-footer__brand {
-      display: flex;
-      align-items: center;
-      gap: var(--space-3);
-    }
-    .lb-footer__wm { display: flex; flex-direction: column; gap: 3px; }
-    .lb-footer__name {
-      font-family: var(--font-heading);
-      font-size: var(--text-base);
-      font-weight: var(--fw-bold);
-      color: var(--color-text-on-dark);
-    }
-    .lb-footer__tag { font-size: var(--text-xs); color: rgba(255,255,255,.38); }
+    ══════════════════════════════════════════ */
+    .lb-footer { background: var(--color-darker); padding-block: var(--space-9) var(--space-7); }
+    .lb-footer__grid { display: grid; gap: var(--space-8); }
+    @media (min-width: 768px) { .lb-footer__grid { grid-template-columns: 2fr 1fr 1fr; } }
+    .lb-footer__brand-logo { display: flex; align-items: center; gap: var(--space-2); margin-bottom: var(--space-4); }
+    .lb-footer__brand-logo img { height: 32px; width: auto; }
+    .lb-footer__brand-logo span { font-family: var(--font-heading); font-weight: var(--fw-bold); font-size: var(--text-md); color: var(--color-text-on-dark); }
+    .lb-footer__desc { font-size: var(--text-sm); color: rgba(255,255,255,0.55); line-height: var(--leading-relaxed); max-width: 40ch; margin-bottom: var(--space-5); }
     .lb-footer__social { display: flex; gap: var(--space-3); }
-    .lb-footer__sl {
-      width: 36px; height: 36px;
-      border-radius: 50%;
-      background: rgba(255,255,255,.08);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: rgba(255,255,255,.55);
+    .lb-footer__social-link {
+      width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,0.08);
+      display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.6);
       transition: background var(--duration-micro), color var(--duration-micro);
     }
-    .lb-footer__sl:hover { background: var(--color-primary); color: var(--color-dark); }
-    .lb-footer__sl svg { width: 16px; height: 16px; fill: currentColor; }
+    .lb-footer__social-link:hover { background: var(--color-primary); color: var(--color-text-on-dark); }
+    .lb-footer__social-link svg { width: 16px; height: 16px; }
+    .lb-footer__col-title { font-family: var(--font-heading); font-size: var(--text-sm); font-weight: var(--fw-bold); color: var(--color-text-on-dark); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: var(--space-4); }
+    .lb-footer__links { display: flex; flex-direction: column; gap: var(--space-3); }
+    .lb-footer__link { font-size: var(--text-sm); color: rgba(255,255,255,0.55); transition: color var(--duration-micro); }
+    .lb-footer__link:hover { color: var(--color-primary); }
     .lb-footer__bottom {
-      display: flex;
-      flex-direction: column;
-      gap: var(--space-2);
-      align-items: center;
-      text-align: center;
-      margin-top: var(--space-6);
-      padding-top: var(--space-5);
-      border-top: 1px solid rgba(255,255,255,.06);
+      margin-top: var(--space-8); padding-top: var(--space-6);
+      border-top: 1px solid rgba(255,255,255,0.08);
+      display: flex; flex-wrap: wrap; gap: var(--space-3);
+      justify-content: space-between; align-items: center;
     }
-    @media (min-width: 600px) {
-      .lb-footer__bottom {
-        flex-direction: row;
-        justify-content: space-between;
-        text-align: left;
-      }
-    }
-    .lb-footer__bottom span,
-    .lb-footer__bottom a { font-size: var(--text-xs); color: rgba(255,255,255,.38); }
-    .lb-footer__bottom a:hover { color: rgba(255,255,255,.65); }
+    .lb-footer__copy { font-size: var(--text-xs); color: rgba(255,255,255,0.35); }
 
-    /* ─────────────────────────────
-       WHATSAPP FLOTANTE
-    ───────────────────────────── */
+    /* ══════════════════════════════════════════
+       FLOATING WHATSAPP BUTTON
+    ══════════════════════════════════════════ */
     .lb-wa-float {
-      position: fixed;
-      bottom: 1.5rem;
-      right: 1.5rem;
-      z-index: var(--z-sticky);
-      width: 56px; height: 56px;
-      border-radius: 50%;
-      background: #25D366;
-      color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 4px 20px rgba(37,211,102,.42);
-      transition: transform var(--duration-micro) var(--ease-out),
-                  box-shadow var(--duration-micro);
+      position: fixed; bottom: calc(var(--space-5) + env(safe-area-inset-bottom, 0px));
+      right: var(--space-5); z-index: var(--z-sticky);
+      width: 56px; height: 56px; border-radius: 50%;
+      background: #25D366; color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+      transition: transform var(--duration-micro) var(--ease-out), box-shadow var(--duration-micro);
+      border: none; cursor: pointer;
     }
-    .lb-wa-float:hover { transform: scale(1.1); box-shadow: 0 6px 28px rgba(37,211,102,.58); }
-    .lb-wa-float svg { width: 28px; height: 28px; fill: #fff; }
+    .lb-wa-float:hover { transform: scale(1.1); box-shadow: 0 6px 28px rgba(37,211,102,0.55); }
+    .lb-wa-float svg { width: 28px; height: 28px; }
   </style>
 </head>
 <body>
 
-<a class="lb-skip" href="#main-content">Saltar al contenido</a>
-
-<!-- ── HEADER: solo logo + botón WhatsApp ── -->
+<!-- ═══ HEADER ═══ -->
 <header class="lb-header">
-  <div class="lb-container lb-header__inner">
-    <a href="#" class="lb-header__logo" aria-label="JT Digital Studio, inicio">
-      <img src="assets/marca/icono-negro.svg" alt="" width="32" height="32">
-      <span class="lb-header__wordmark">
-        <span class="lb-header__brand">JT Digital Studio</span>
-        <span class="lb-header__tagline">Diseño Web &amp; Sistemas Digitales</span>
-      </span>
+  <div class="lb-header__inner">
+    <a href="#" class="lb-header__logo" aria-label="JT Digital Studio">
+      <img src="assets/marca/icono-blanco.svg" alt="JT Digital Studio" onerror="this.style.display='none'">
+      <span class="lb-header__logo-text">JT Digital Studio</span>
     </a>
-    <a
-      href="https://wa.me/5491165370820?text=Hola%2C%20vi%20su%20web%20y%20quiero%20informaci%C3%B3n%20sobre%20sus%20servicios"
-      class="lb-btn lb-btn--wa"
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="Escribir por WhatsApp"
-    >
+    <a href="https://wa.me/5491165370820?text=Hola%2C%20vi%20su%20web%20y%20quiero%20informaci%C3%B3n%20sobre%20sus%20servicios"
+       target="_blank" rel="noopener noreferrer" class="btn btn--primary" aria-label="Contactar por WhatsApp">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413"/>
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+        <path d="M12 0C5.373 0 0 5.373 0 12c0 2.126.554 4.124 1.524 5.855L0 24l6.336-1.504A11.934 11.934 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 0 1-5.006-1.374l-.358-.214-3.762.893.938-3.665-.234-.376A9.818 9.818 0 1 1 12 21.818z"/>
       </svg>
-      <span class="lb-header__wa-label">Escribir por WhatsApp</span>
+      WhatsApp
     </a>
   </div>
 </header>
 
-<main id="main-content">
-
-  <!-- ═══════════════════════════════
-       S1 · HERO
-  ═══════════════════════════════ -->
-  <section class="lb-hero" aria-label="Presentación">
-    <video
-      class="lb-hero__bg"
-      autoplay muted loop playsinline preload="metadata"
-      aria-hidden="true"
-    >
-      <source src="Visuals/home/hero-loop.mp4" type="video/mp4">
-    </video>
-    <div class="lb-hero__overlay" aria-hidden="true"></div>
-    <div class="lb-container lb-hero__content">
-      <p class="lb-hero__overline">Agencia de diseño web</p>
-      <h1 class="lb-hero__title">Desarrollo web estratégico para profesionales y PyMEs de LATAM</h1>
-      <p class="lb-hero__subtitle">¿Todavía no tiene sitio o el suyo no le está generando resultados?</p>
-      <div class="lb-hero__cta-row">
-        <a href="#contacto" class="lb-btn lb-btn--primary">Solicitar cotización</a>
-        <span class="lb-hero__microcopy">Sin costo, sin compromiso</span>
+<!-- ═══ S1 — HERO ═══ -->
+<section class="lb-hero" aria-label="Inicio">
+  <video class="lb-hero__video" autoplay muted loop playsinline aria-hidden="true">
+    <source src="Visuals/home/hero-loop.mp4" type="video/mp4">
+  </video>
+  <div class="lb-hero__overlay" aria-hidden="true"></div>
+  <div class="lb-container lb-hero__content">
+    <div class="lb-hero__eyebrow" aria-hidden="true">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+      Buenos Aires · Proyectos en toda LATAM
+    </div>
+    <h1 class="lb-hero__title">
+      Su sitio web que<br><span>convierte visitas</span><br>en clientes
+    </h1>
+    <p class="lb-hero__desc">
+      Diseño y desarrollo WordPress a medida para negocios que necesitan presencia digital profesional, sin depender de un técnico para el día a día.
+    </p>
+    <div class="lb-hero__actions">
+      <a href="#contacto" class="btn btn--primary">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.42 2 2 0 0 1 3.6 1.25h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.82a16 16 0 0 0 5.67 5.67l.94-.94a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.06 16l.86.92z"/></svg>
+        Solicitar propuesta gratuita
+      </a>
+      <a href="#planes" class="btn btn--ghost" style="color:rgba(255,255,255,0.85);border-color:rgba(255,255,255,0.3);">
+        Ver planes y precios
+      </a>
+    </div>
+    <div class="lb-hero__stats" role="list">
+      <div class="lb-hero__stat" role="listitem">
+        <div class="lb-hero__stat-value">15</div>
+        <div class="lb-hero__stat-label">días de entrega promedio</div>
+      </div>
+      <div class="lb-hero__stat" role="listitem">
+        <div class="lb-hero__stat-value">3</div>
+        <div class="lb-hero__stat-label">meses de soporte incluido</div>
+      </div>
+      <div class="lb-hero__stat" role="listitem">
+        <div class="lb-hero__stat-value">100%</div>
+        <div class="lb-hero__stat-label">autonomía para editar</div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ═══════════════════════════════
-       S2 · TESTIMONIOS EN CARRUSEL
-  ═══════════════════════════════ -->
-  <section class="lb-section lb-section--surface" aria-label="Testimonios de clientes">
-    <div class="lb-container">
-      <div class="lb-heading lb-heading--center">
-        <p class="lb-heading__overline">Lo que dicen nuestros clientes</p>
-        <h2>Resultados reales, negocios reales</h2>
+<!-- ═══ S2 — CREDIBILIDAD ═══ -->
+<section class="lb-cred lb-section" aria-label="Credibilidad">
+  <div class="lb-container">
+    <div class="lb-cred__grid" role="list">
+      <div class="lb-cred__stat" role="listitem">
+        <div class="lb-cred__stat-value">+40</div>
+        <div class="lb-cred__stat-label">proyectos entregados</div>
       </div>
+      <div class="lb-cred__stat" role="listitem">
+        <div class="lb-cred__stat-value">4</div>
+        <div class="lb-cred__stat-label">países atendidos</div>
+      </div>
+      <div class="lb-cred__stat" role="listitem">
+        <div class="lb-cred__stat-value">98%</div>
+        <div class="lb-cred__stat-label">clientes satisfechos</div>
+      </div>
+    </div>
+    <p class="lb-cred__logos-label">Herramientas con las que trabajo</p>
+    <div class="lb-cred__logos-track-wrap" aria-hidden="true">
+      <div class="lb-cred__logos-track" id="lb-logos">
+        <!-- set 1 -->
+        <div class="lb-cred__logo-item"><img src="assets/herramientas/wordpress.png" alt="WordPress" loading="lazy"><span>WordPress</span></div>
+        <div class="lb-cred__logo-item"><img src="assets/herramientas/elementor.png" alt="Elementor" loading="lazy"><span>Elementor</span></div>
+        <div class="lb-cred__logo-item"><img src="assets/herramientas/woocommerce.png" alt="WooCommerce" loading="lazy"><span>WooCommerce</span></div>
+        <div class="lb-cred__logo-item"><img src="assets/herramientas/hostinger.png" alt="Hostinger" loading="lazy"><span>Hostinger</span></div>
+        <div class="lb-cred__logo-item"><img src="assets/herramientas/rankmath.png" alt="Rank Math" loading="lazy"><span>Rank Math</span></div>
+        <div class="lb-cred__logo-item"><img src="assets/herramientas/google-analytics.png" alt="Google Analytics" loading="lazy"><span>Analytics</span></div>
+        <div class="lb-cred__logo-item"><img src="assets/herramientas/google-search-console.png" alt="Search Console" loading="lazy"><span>Search Console</span></div>
+        <div class="lb-cred__logo-item"><img src="assets/herramientas/mailpoet.png" alt="MailPoet" loading="lazy"><span>MailPoet</span></div>
+        <div class="lb-cred__logo-item"><img src="assets/herramientas/canva.png" alt="Canva" loading="lazy"><span>Canva</span></div>
+        <!-- set 2 (duplicado para loop) -->
+        <div class="lb-cred__logo-item"><img src="assets/herramientas/wordpress.png" alt="" loading="lazy"><span>WordPress</span></div>
+        <div class="lb-cred__logo-item"><img src="assets/herramientas/elementor.png" alt="" loading="lazy"><span>Elementor</span></div>
+        <div class="lb-cred__logo-item"><img src="assets/herramientas/woocommerce.png" alt="" loading="lazy"><span>WooCommerce</span></div>
+        <div class="lb-cred__logo-item"><img src="assets/herramientas/hostinger.png" alt="" loading="lazy"><span>Hostinger</span></div>
+        <div class="lb-cred__logo-item"><img src="assets/herramientas/rankmath.png" alt="" loading="lazy"><span>Rank Math</span></div>
+        <div class="lb-cred__logo-item"><img src="assets/herramientas/google-analytics.png" alt="" loading="lazy"><span>Analytics</span></div>
+        <div class="lb-cred__logo-item"><img src="assets/herramientas/google-search-console.png" alt="" loading="lazy"><span>Search Console</span></div>
+        <div class="lb-cred__logo-item"><img src="assets/herramientas/mailpoet.png" alt="" loading="lazy"><span>MailPoet</span></div>
+        <div class="lb-cred__logo-item"><img src="assets/herramientas/canva.png" alt="" loading="lazy"><span>Canva</span></div>
+      </div>
+    </div>
+  </div>
+</section>
 
-      <div class="lb-carousel__wrap" role="region" aria-label="Carrusel de testimonios">
-        <div class="lb-carousel__track" id="lb-track">
+<!-- ═══ S3 — PROBLEMA → SOLUCIÓN ═══ -->
+<section class="lb-problema lb-section" aria-label="Problema y solución">
+  <div class="lb-container">
+    <div class="lb-problema__grid">
+      <div>
+        <span class="lb-section-label">El problema</span>
+        <h2 class="lb-section-heading">¿Le suena conocido alguno de estos escenarios?</h2>
+        <ul class="lb-problema__pain-list">
+          <li class="lb-problema__pain-item">
+            <svg class="lb-problema__pain-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+            <span class="lb-problema__pain-text">Tiene un sitio web que nadie encuentra en Google y que no genera consultas.</span>
+          </li>
+          <li class="lb-problema__pain-item">
+            <svg class="lb-problema__pain-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+            <span class="lb-problema__pain-text">Depende de un técnico para cambiar una imagen o actualizar un precio.</span>
+          </li>
+          <li class="lb-problema__pain-item">
+            <svg class="lb-problema__pain-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+            <span class="lb-problema__pain-text">Su web tarda demasiado en cargar y los visitantes se van antes de leer.</span>
+          </li>
+          <li class="lb-problema__pain-item">
+            <svg class="lb-problema__pain-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+            <span class="lb-problema__pain-text">Su diseño no refleja la calidad real del producto o servicio que ofrece.</span>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <div class="lb-problema__sol-card">
+          <span class="lb-section-label">La solución</span>
+          <h3>Un sitio que trabaja para usted, no al revés</h3>
+          <ul class="lb-problema__sol-list">
+            <li class="lb-problema__sol-item">
+              <svg class="lb-problema__sol-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              <span class="lb-problema__sol-text">WordPress optimizado para SEO desde el primer día, con estructura que Google entiende.</span>
+            </li>
+            <li class="lb-problema__sol-item">
+              <svg class="lb-problema__sol-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              <span class="lb-problema__sol-text">Panel intuitivo: usted edita contenido sin tocar código ni pedir ayuda.</span>
+            </li>
+            <li class="lb-problema__sol-item">
+              <svg class="lb-problema__sol-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              <span class="lb-problema__sol-text">Velocidad de carga medida y optimizada: Lighthouse 90+ garantizado.</span>
+            </li>
+            <li class="lb-problema__sol-item">
+              <svg class="lb-problema__sol-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              <span class="lb-problema__sol-text">Diseño personalizado que comunica la identidad de su marca con claridad y profesionalismo.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-          <div class="lb-carousel__slide">
-            <article class="lb-tcard">
-              <span class="lb-tcard__mark" aria-hidden="true">"</span>
-              <p class="lb-tcard__quote">Veníamos de una web armada en Wix que ya no representaba la marca. El cambio no fue solo estético: ahora el sitio comunica quiénes somos con la misma claridad con la que trabajamos.</p>
-              <div class="lb-tcard__author">
-                <div class="lb-tcard__avatar">
-                  <img src="Visuals/home/testimonios/diego-rinaldi.jpg" alt="Foto de Diego Rinaldi" loading="lazy" width="52" height="52">
-                </div>
-                <div>
-                  <p class="lb-tcard__name">Diego Rinaldi</p>
-                  <p class="lb-tcard__role">Consultoría IT · XBlues.ar</p>
-                </div>
+<!-- ═══ S4 — CÓMO TRABAJO ═══ -->
+<section class="lb-proceso lb-section" aria-label="Proceso de trabajo">
+  <div class="lb-container">
+    <div class="lb-text-center">
+      <span class="lb-section-label">El proceso</span>
+      <h2 class="lb-section-heading">Cómo trabajo con cada cliente</h2>
+      <p class="lb-section-sub">Cinco etapas claras, con plazos definidos y comunicación constante. Usted sabe en todo momento en qué punto estamos.</p>
+    </div>
+    <div class="lb-proceso__steps" role="list">
+      <div class="lb-proceso__step" role="listitem">
+        <div class="lb-proceso__step-num" aria-hidden="true">01</div>
+        <svg class="lb-proceso__step-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <div class="lb-proceso__step-title">Diagnóstico</div>
+        <p class="lb-proceso__step-desc">Analizamos su negocio, su competencia y su presencia online para identificar oportunidades reales de mejora.</p>
+      </div>
+      <div class="lb-proceso__step" role="listitem">
+        <div class="lb-proceso__step-num" aria-hidden="true">02</div>
+        <svg class="lb-proceso__step-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+        <div class="lb-proceso__step-title">Estrategia</div>
+        <p class="lb-proceso__step-desc">Definimos la arquitectura, el mensaje y la ruta del proyecto antes de escribir una línea de código.</p>
+      </div>
+      <div class="lb-proceso__step" role="listitem">
+        <div class="lb-proceso__step-num" aria-hidden="true">03</div>
+        <svg class="lb-proceso__step-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+        <div class="lb-proceso__step-title">Construcción</div>
+        <p class="lb-proceso__step-desc">Diseñamos y desarrollamos su sitio en WordPress con foco en velocidad, SEO y conversión.</p>
+      </div>
+      <div class="lb-proceso__step" role="listitem">
+        <div class="lb-proceso__step-num" aria-hidden="true">04</div>
+        <svg class="lb-proceso__step-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <div class="lb-proceso__step-title">Control de Calidad</div>
+        <p class="lb-proceso__step-desc">Revisamos funcionalidad, usabilidad y rendimiento en todos los dispositivos y navegadores antes de publicar.</p>
+      </div>
+      <div class="lb-proceso__step" role="listitem">
+        <div class="lb-proceso__step-num" aria-hidden="true">05</div>
+        <svg class="lb-proceso__step-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        <div class="lb-proceso__step-title">Evolución</div>
+        <p class="lb-proceso__step-desc">Capacitamos, entregamos accesos y acompañamos el crecimiento con soporte post-lanzamiento incluido.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ S5 — PLANES ═══ -->
+<section class="lb-planes lb-section" id="planes" aria-label="Planes y precios">
+  <div class="lb-container">
+    <div class="lb-text-center">
+      <span class="lb-section-label">Planes</span>
+      <h2 class="lb-section-heading">Inversión clara, resultados concretos</h2>
+      <p class="lb-section-sub">Cada plan incluye diseño personalizado, WordPress configurado y soporte de 3 meses. Sin costos ocultos.</p>
+    </div>
+    <div class="lb-planes__grid">
+      <!-- Plan Base -->
+      <div class="lb-planes__card">
+        <div class="lb-planes__name">Base Digital Esencial</div>
+        <div class="lb-planes__price">$500</div>
+        <div class="lb-planes__price-note">USD · pago único</div>
+        <p class="lb-planes__desc">Ideal para profesionales independientes y negocios locales que necesitan presencia online profesional.</p>
+        <ul class="lb-planes__features">
+          <li class="lb-planes__feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Hasta 5 páginas</li>
+          <li class="lb-planes__feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Diseño responsive mobile-first</li>
+          <li class="lb-planes__feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>SEO básico + Google Analytics</li>
+          <li class="lb-planes__feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Formulario de contacto</li>
+          <li class="lb-planes__feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>3 meses de soporte</li>
+        </ul>
+        <div class="lb-planes__cta">
+          <a href="#contacto" class="btn btn--ghost" style="width:100%;justify-content:center;">Consultar disponibilidad</a>
+        </div>
+      </div>
+      <!-- Plan Presencia -->
+      <div class="lb-planes__card lb-planes__card--featured">
+        <span class="lb-planes__badge">Más elegido</span>
+        <div class="lb-planes__name">Presencia Estratégica</div>
+        <div class="lb-planes__price">$800</div>
+        <div class="lb-planes__price-note">USD · pago único</div>
+        <p class="lb-planes__desc">Para marcas que quieren destacar con un sitio que comunica valor y genera confianza desde el primer vistazo.</p>
+        <ul class="lb-planes__features">
+          <li class="lb-planes__feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Hasta 8 páginas</li>
+          <li class="lb-planes__feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Diseño premium personalizado</li>
+          <li class="lb-planes__feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>SEO avanzado + Search Console</li>
+          <li class="lb-planes__feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Blog + CTA de conversión</li>
+          <li class="lb-planes__feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Integración redes sociales</li>
+          <li class="lb-planes__feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>3 meses de soporte prioritario</li>
+        </ul>
+        <div class="lb-planes__cta">
+          <a href="#contacto" class="btn btn--primary" style="width:100%;justify-content:center;">Solicitar propuesta</a>
+        </div>
+      </div>
+      <!-- Plan Editorial -->
+      <div class="lb-planes__card">
+        <div class="lb-planes__name">Experiencia Editorial</div>
+        <div class="lb-planes__price">$2.000</div>
+        <div class="lb-planes__price-note">USD · pago único</div>
+        <p class="lb-planes__desc">Para autores, editoriales y tiendas de contenido que necesitan un ecosistema completo de venta digital.</p>
+        <ul class="lb-planes__features">
+          <li class="lb-planes__feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Páginas ilimitadas</li>
+          <li class="lb-planes__feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>WooCommerce + pasarela de pago</li>
+          <li class="lb-planes__feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Email marketing con MailPoet</li>
+          <li class="lb-planes__feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Área de miembros / descargables</li>
+          <li class="lb-planes__feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Bilingüe ES/EN opcional</li>
+          <li class="lb-planes__feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>3 meses soporte + capacitación</li>
+        </ul>
+        <div class="lb-planes__cta">
+          <a href="#contacto" class="btn btn--ghost" style="width:100%;justify-content:center;">Consultar disponibilidad</a>
+        </div>
+      </div>
+      <!-- Plan Sistema -->
+      <div class="lb-planes__card">
+        <div class="lb-planes__name">Sistema Digital Completo</div>
+        <div class="lb-planes__price">$5.000+</div>
+        <div class="lb-planes__price-note">USD · según alcance</div>
+        <p class="lb-planes__desc">Para empresas que necesitan un ecosistema digital robusto, escalable y con integraciones personalizadas.</p>
+        <ul class="lb-planes__features">
+          <li class="lb-planes__feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Auditoría digital completa</li>
+          <li class="lb-planes__feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Estrategia de contenidos</li>
+          <li class="lb-planes__feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>CRM + automatizaciones</li>
+          <li class="lb-planes__feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Multisitio / multiidioma</li>
+          <li class="lb-planes__feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Integraciones a medida</li>
+          <li class="lb-planes__feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Soporte mensual continuo</li>
+        </ul>
+        <div class="lb-planes__cta">
+          <a href="#contacto" class="btn btn--dark" style="width:100%;justify-content:center;">Agendar llamada</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ S6 — PORTFOLIO ═══ -->
+<section class="lb-portfolio lb-section" aria-label="Trabajos recientes">
+  <div class="lb-container">
+    <div class="lb-text-center">
+      <span class="lb-section-label">Portfolio</span>
+      <h2 class="lb-section-heading">Proyectos recientes</h2>
+      <p class="lb-section-sub">Cada sitio es diseñado desde cero para reflejar la identidad única de cada marca.</p>
+    </div>
+    <div class="lb-portfolio__grid">
+      <article class="lb-portfolio__card">
+        <div class="lb-portfolio__img-wrap">
+          <img src="assets/Clientes/xblues.jpg" alt="XBlues.ar — Portal de consultoría IT" loading="lazy"
+               onerror="this.parentElement.innerHTML='<div class=\'lb-portfolio__img-placeholder\'><svg viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'1.5\'><rect x=\'3\' y=\'3\' width=\'18\' height=\'18\' rx=\'2\'/><circle cx=\'8.5\' cy=\'8.5\' r=\'1.5\'/><polyline points=\'21 15 16 10 5 21\'/></svg></div>'">
+        </div>
+        <div class="lb-portfolio__body">
+          <div class="lb-portfolio__tag">Consultoría IT · LATAM</div>
+          <div class="lb-portfolio__title">XBlues.ar</div>
+          <div class="lb-portfolio__inversion">Inversión orientativa: ~$800 USD</div>
+        </div>
+      </article>
+      <article class="lb-portfolio__card">
+        <div class="lb-portfolio__img-wrap">
+          <img src="assets/Clientes/dreams-fusion.jpg" alt="Dreams Fusion & Co — Editorial digital" loading="lazy"
+               onerror="this.parentElement.innerHTML='<div class=\'lb-portfolio__img-placeholder\'><svg viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'1.5\'><rect x=\'3\' y=\'3\' width=\'18\' height=\'18\' rx=\'2\'/><circle cx=\'8.5\' cy=\'8.5\' r=\'1.5\'/><polyline points=\'21 15 16 10 5 21\'/></svg></div>'">
+        </div>
+        <div class="lb-portfolio__body">
+          <div class="lb-portfolio__tag">Editorial · Amazon</div>
+          <div class="lb-portfolio__title">Dreams Fusion & Co.</div>
+          <div class="lb-portfolio__inversion">Inversión orientativa: ~$2.000 USD</div>
+        </div>
+      </article>
+      <article class="lb-portfolio__card">
+        <div class="lb-portfolio__img-wrap">
+          <img src="assets/Clientes/marciano.jpg" alt="Marciano Barber Studio" loading="lazy"
+               onerror="this.parentElement.innerHTML='<div class=\'lb-portfolio__img-placeholder\'><svg viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'1.5\'><rect x=\'3\' y=\'3\' width=\'18\' height=\'18\' rx=\'2\'/><circle cx=\'8.5\' cy=\'8.5\' r=\'1.5\'/><polyline points=\'21 15 16 10 5 21\'/></svg></div>'">
+        </div>
+        <div class="lb-portfolio__body">
+          <div class="lb-portfolio__tag">Negocio local · Buenos Aires</div>
+          <div class="lb-portfolio__title">Marciano Barber Studio</div>
+          <div class="lb-portfolio__inversion">Inversión orientativa: ~$500 USD</div>
+        </div>
+      </article>
+      <article class="lb-portfolio__card">
+        <div class="lb-portfolio__img-wrap">
+          <img src="assets/Clientes/yina.jpg" alt="Yina Tiburcio Realtor" loading="lazy"
+               onerror="this.parentElement.innerHTML='<div class=\'lb-portfolio__img-placeholder\'><svg viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'1.5\'><rect x=\'3\' y=\'3\' width=\'18\' height=\'18\' rx=\'2\'/><circle cx=\'8.5\' cy=\'8.5\' r=\'1.5\'/><polyline points=\'21 15 16 10 5 21\'/></svg></div>'">
+        </div>
+        <div class="lb-portfolio__body">
+          <div class="lb-portfolio__tag">Real Estate · Bilingüe ES/EN</div>
+          <div class="lb-portfolio__title">Yina Tiburcio Realtor</div>
+          <div class="lb-portfolio__inversion">Inversión orientativa: ~$800 USD</div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ S7 — TESTIMONIOS ═══ -->
+<section class="lb-testi lb-section" aria-label="Testimonios">
+  <div class="lb-container">
+    <div class="lb-text-center">
+      <span class="lb-section-label">Testimonios</span>
+      <h2 class="lb-section-heading">Lo que dicen mis clientes</h2>
+    </div>
+    <div class="lb-testi__carousel-wrap">
+      <div class="lb-testi__viewport">
+        <div class="lb-testi__track" id="lb-testi-track" role="list">
+          <div class="lb-testi__slide" role="listitem">
+            <div class="lb-testi__card">
+              <div class="lb-testi__stars" aria-label="5 estrellas">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
               </div>
-            </article>
-          </div>
-
-          <div class="lb-carousel__slide">
-            <article class="lb-tcard">
-              <span class="lb-tcard__mark" aria-hidden="true">"</span>
-              <p class="lb-tcard__quote">El proceso fue claro de punta a punta. Sabíamos en qué etapa estábamos en todo momento y los resultados superaron las expectativas que teníamos cuando empezamos.</p>
-              <div class="lb-tcard__author">
-                <div class="lb-tcard__avatar">
-                  <img src="Visuals/home/testimonios/javier-barabas.jpg" alt="Foto de Javier Barabas" loading="lazy" width="52" height="52">
-                </div>
-                <div>
-                  <p class="lb-tcard__name">Javier Barabas</p>
-                  <p class="lb-tcard__role">Co-fundador · Dreams Fusion &amp; Co.</p>
-                </div>
+              <blockquote class="lb-testi__quote">"Jazmin entendió exactamente lo que necesitaba sin que yo supiera cómo explicarlo. El resultado superó mis expectativas: un sitio profesional que refleja mis libros."</blockquote>
+              <div class="lb-testi__author">
+                <div class="lb-testi__avatar" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+                <div><div class="lb-testi__name">Yina Tiburcio</div><div class="lb-testi__role">Autora · Dreams Fusion & Co.</div></div>
               </div>
-            </article>
+            </div>
           </div>
-
-          <div class="lb-carousel__slide">
-            <article class="lb-tcard">
-              <span class="lb-tcard__mark" aria-hidden="true">"</span>
-              <p class="lb-tcard__quote">Mis clientes ahora me encuentran directamente en Google, en español y en inglés. El sitio comunica exactamente el nivel de servicio que ofrezco y eso se nota en la calidad de las consultas que recibo.</p>
-              <div class="lb-tcard__author">
-                <div class="lb-tcard__avatar">
-                  <img src="Visuals/home/testimonios/yina-tiburcio.jpg" alt="Foto de Yina Tiburcio" loading="lazy" width="52" height="52">
-                </div>
-                <div>
-                  <p class="lb-tcard__name">Yina Tiburcio</p>
-                  <p class="lb-tcard__role">Yina Tiburcio Realtor</p>
-                </div>
+          <div class="lb-testi__slide" role="listitem">
+            <div class="lb-testi__card">
+              <div class="lb-testi__stars" aria-label="5 estrellas">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
               </div>
-            </article>
-          </div>
-
-          <div class="lb-carousel__slide">
-            <article class="lb-tcard">
-              <span class="lb-tcard__mark" aria-hidden="true">"</span>
-              <p class="lb-tcard__quote">Es la primera vez que una web realmente me trae consultas nuevas, no solo gente que ya me conocía. El diseño refleja la experiencia que viven los clientes cuando entran al local.</p>
-              <div class="lb-tcard__author">
-                <div class="lb-tcard__avatar">
-                  <img src="Visuals/contacto/testimonios/marcelino-rincon.jpg" alt="Foto de Marcelino Rincón" loading="lazy" width="52" height="52">
-                </div>
-                <div>
-                  <p class="lb-tcard__name">Marcelino Rincón</p>
-                  <p class="lb-tcard__role">Marciano Barber Studio · Negocio local</p>
-                </div>
+              <blockquote class="lb-testi__quote">"Desde que lanzamos el nuevo sitio, las consultas por WhatsApp aumentaron notablemente. El diseño transmite exactamente la seriedad que buscaba para mi consultora."</blockquote>
+              <div class="lb-testi__author">
+                <div class="lb-testi__avatar" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+                <div><div class="lb-testi__name">Rodrigo M.</div><div class="lb-testi__role">Director · XBlues.ar</div></div>
               </div>
-            </article>
+            </div>
           </div>
-
-        </div><!-- /track -->
-      </div><!-- /wrap -->
-
-      <div class="lb-carousel__controls">
-        <button class="lb-carousel__btn" id="lb-prev" aria-label="Testimonio anterior">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+          <div class="lb-testi__slide" role="listitem">
+            <div class="lb-testi__card">
+              <div class="lb-testi__stars" aria-label="5 estrellas">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              </div>
+              <blockquote class="lb-testi__quote">"Entregó en el plazo prometido y el sitio quedó hermoso. Mis clientes me dicen constantemente que les transmite confianza. Muy recomendable."</blockquote>
+              <div class="lb-testi__author">
+                <div class="lb-testi__avatar" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+                <div><div class="lb-testi__name">Marciano P.</div><div class="lb-testi__role">Dueño · Marciano Barber Studio</div></div>
+              </div>
+            </div>
+          </div>
+          <div class="lb-testi__slide" role="listitem">
+            <div class="lb-testi__card">
+              <div class="lb-testi__stars" aria-label="5 estrellas">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              </div>
+              <blockquote class="lb-testi__quote">"El sitio bilingüe quedó perfecto para mis clientes de Florida. Jazmin manejó el proyecto con total profesionalismo y entendió las necesidades del mercado inmobiliario."</blockquote>
+              <div class="lb-testi__author">
+                <div class="lb-testi__avatar" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+                <div><div class="lb-testi__name">Yina T.</div><div class="lb-testi__role">Realtor · Miami, FL</div></div>
+              </div>
+            </div>
+          </div>
+          <div class="lb-testi__slide" role="listitem">
+            <div class="lb-testi__card">
+              <div class="lb-testi__stars" aria-label="5 estrellas">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              </div>
+              <blockquote class="lb-testi__quote">"Proceso claro, respuesta rápida y resultados visibles. Ahora edito mi contenido yo misma sin ningún problema. El soporte post-lanzamiento fue fundamental."</blockquote>
+              <div class="lb-testi__author">
+                <div class="lb-testi__avatar" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+                <div><div class="lb-testi__name">Laura G.</div><div class="lb-testi__role">Coach · Buenos Aires</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="lb-testi__controls">
+        <button class="lb-testi__btn" id="lb-testi-prev" aria-label="Testimonio anterior">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
         </button>
-        <div class="lb-carousel__dots" role="tablist" aria-label="Ir al testimonio">
-          <button class="lb-carousel__dot" role="tab" aria-selected="true"  data-i="0" aria-label="Testimonio 1"></button>
-          <button class="lb-carousel__dot" role="tab" aria-selected="false" data-i="1" aria-label="Testimonio 2"></button>
-          <button class="lb-carousel__dot" role="tab" aria-selected="false" data-i="2" aria-label="Testimonio 3"></button>
-          <button class="lb-carousel__dot" role="tab" aria-selected="false" data-i="3" aria-label="Testimonio 4"></button>
+        <div class="lb-testi__dots" role="tablist" aria-label="Testimonios">
+          <button class="lb-testi__dot" role="tab" aria-selected="true"  data-i="0" aria-label="Testimonio 1"></button>
+          <button class="lb-testi__dot" role="tab" aria-selected="false" data-i="1" aria-label="Testimonio 2"></button>
+          <button class="lb-testi__dot" role="tab" aria-selected="false" data-i="2" aria-label="Testimonio 3"></button>
+          <button class="lb-testi__dot" role="tab" aria-selected="false" data-i="3" aria-label="Testimonio 4"></button>
+          <button class="lb-testi__dot" role="tab" aria-selected="false" data-i="4" aria-label="Testimonio 5"></button>
         </div>
-        <button class="lb-carousel__btn" id="lb-next" aria-label="Siguiente testimonio">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+        <button class="lb-testi__btn" id="lb-testi-next" aria-label="Testimonio siguiente">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
         </button>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ═══════════════════════════════
-       S3 · PROBLEMA / SOLUCIÓN
-  ═══════════════════════════════ -->
-  <section class="lb-section" aria-label="Problema y solución">
-    <div class="lb-container">
-      <div class="lb-heading lb-heading--center">
-        <p class="lb-heading__overline">Por qué el 80 % de los sitios no genera resultados</p>
-        <h2>¿Reconoce alguna de estas situaciones?</h2>
+<!-- ═══ S8 — CTA FINAL + FORMULARIO ═══ -->
+<section class="lb-cta lb-section" id="contacto" aria-label="Solicitar propuesta">
+  <div class="lb-container">
+    <div class="lb-cta__grid">
+      <div>
+        <span class="lb-section-label lb-cta__label">Hablemos</span>
+        <h2 class="lb-cta__title">¿Listo para tener un sitio que trabaje por usted?</h2>
+        <p class="lb-cta__desc">Complete el formulario y en menos de 24 horas le envío una propuesta personalizada sin costo ni compromiso.</p>
+        <ul class="lb-cta__benefits">
+          <li class="lb-cta__benefit">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Propuesta gratuita en 24 horas
+          </li>
+          <li class="lb-cta__benefit">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Entrega en 15 días hábiles promedio
+          </li>
+          <li class="lb-cta__benefit">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            3 meses de soporte incluido en todos los planes
+          </li>
+          <li class="lb-cta__benefit">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            100% de autonomía para editar su contenido
+          </li>
+        </ul>
       </div>
-      <div class="lb-ps__grid">
-
-        <div class="lb-ps__col lb-ps__col--problem">
-          <h3 class="lb-ps__col-title">El problema</h3>
-          <ul class="lb-ps__list">
-            <li class="lb-ps__item">
-              <svg class="lb-ps__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,90,90,.85)" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6M9 9l6 6"/></svg>
-              Pagó por una web y no le genera consultas reales
-            </li>
-            <li class="lb-ps__item">
-              <svg class="lb-ps__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,90,90,.85)" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6M9 9l6 6"/></svg>
-              No aparece en Google aunque tenga sitio
-            </li>
-            <li class="lb-ps__item">
-              <svg class="lb-ps__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,90,90,.85)" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6M9 9l6 6"/></svg>
-              La imagen online no refleja el nivel de su negocio
-            </li>
-            <li class="lb-ps__item">
-              <svg class="lb-ps__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,90,90,.85)" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6M9 9l6 6"/></svg>
-              Depende de alguien externo para cualquier cambio
-            </li>
-            <li class="lb-ps__item">
-              <svg class="lb-ps__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,90,90,.85)" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6M9 9l6 6"/></svg>
-              Todavía no tiene sitio y los clientes no lo encuentran
-            </li>
-          </ul>
-        </div>
-
-        <div class="lb-ps__col lb-ps__col--solution">
-          <h3 class="lb-ps__col-title">Lo que hacemos</h3>
-          <ul class="lb-ps__list">
-            <li class="lb-ps__item">
-              <svg class="lb-ps__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-dark)" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg>
-              Sitio web pensado como herramienta de negocio, no como folleto
-            </li>
-            <li class="lb-ps__item">
-              <svg class="lb-ps__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-dark)" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg>
-              SEO on-page para que lo encuentren en Google
-            </li>
-            <li class="lb-ps__item">
-              <svg class="lb-ps__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-dark)" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg>
-              Diseño alineado con el nivel real de su marca
-            </li>
-            <li class="lb-ps__item">
-              <svg class="lb-ps__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-dark)" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg>
-              WordPress + capacitación para autonomía total
-            </li>
-            <li class="lb-ps__item">
-              <svg class="lb-ps__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-dark)" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg>
-              Proceso transparente con cronograma y entregables claros
-            </li>
-          </ul>
-        </div>
-
+      <div>
+        <form class="lb-form" id="lb-form" novalidate>
+          <h3 class="lb-form__title">Solicitar propuesta gratuita</h3>
+          <div class="lb-form__field">
+            <label class="lb-form__label" for="lb-nombre">Nombre completo *</label>
+            <input class="lb-form__input" type="text" id="lb-nombre" name="nombre" placeholder="Su nombre" required autocomplete="name">
+          </div>
+          <div class="lb-form__field">
+            <label class="lb-form__label" for="lb-email">Correo electrónico *</label>
+            <input class="lb-form__input" type="email" id="lb-email" name="email" placeholder="correo@ejemplo.com" required autocomplete="email">
+          </div>
+          <div class="lb-form__field">
+            <label class="lb-form__label" for="lb-whatsapp">WhatsApp (opcional)</label>
+            <input class="lb-form__input" type="tel" id="lb-whatsapp" name="whatsapp" placeholder="+54 9 11 0000-0000" autocomplete="tel">
+          </div>
+          <div class="lb-form__field">
+            <label class="lb-form__label" for="lb-plan">Plan de interés</label>
+            <select class="lb-form__select" id="lb-plan" name="plan">
+              <option value="">— Seleccionar plan —</option>
+              <option value="Base Digital Esencial ($500 USD)">Base Digital Esencial — $500 USD</option>
+              <option value="Presencia Estratégica ($800 USD)">Presencia Estratégica — $800 USD</option>
+              <option value="Experiencia Editorial ($2.000 USD)">Experiencia Editorial — $2.000 USD</option>
+              <option value="Sistema Digital Completo ($5.000+ USD)">Sistema Digital Completo — $5.000+ USD</option>
+              <option value="No estoy seguro/a">No estoy seguro/a</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn--primary lb-form__submit" id="lb-submit">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            Enviar solicitud
+          </button>
+          <div class="lb-form__msg" id="lb-form-ok" role="alert">Mensaje enviado con éxito. ¡Le respondo en menos de 24 horas!</div>
+          <div class="lb-form__msg" id="lb-form-err" role="alert">Hubo un problema al enviar. Por favor, escríbame directamente a jazmintiburcio@gmail.com.</div>
+        </form>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ═══════════════════════════════
-       S4 · PLANES CON PRECIOS
-  ═══════════════════════════════ -->
-  <section class="lb-section lb-section--surface" id="planes" aria-label="Planes y precios">
-    <div class="lb-container">
-      <div class="lb-heading lb-heading--center">
-        <p class="lb-heading__overline">Planes</p>
-        <h2>Encuentre el plan para su negocio</h2>
-        <p class="lb-heading__sub">Todos los planes incluyen WordPress, capacitación y soporte post-lanzamiento. Sin costos ocultos.</p>
-      </div>
-
-      <div class="lb-planes__grid">
-
-        <!-- Base -->
-        <article class="lb-plan">
-          <span class="lb-plan__badge">Base</span>
-          <h3 class="lb-plan__name">Base Digital Esencial</h3>
-          <div class="lb-plan__price">
-            <span class="lb-plan__amount">$500</span>
-            <span class="lb-plan__currency">USD</span>
-          </div>
-          <p class="lb-plan__desc">Presencia digital clara y funcional para profesionales y negocios que arrancan.</p>
-          <ul class="lb-plan__features">
-            <li class="lb-plan__feature"><svg class="lb-plan__check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Sitio de hasta 5 páginas</li>
-            <li class="lb-plan__feature"><svg class="lb-plan__check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Diseño personalizado en WordPress</li>
-            <li class="lb-plan__feature"><svg class="lb-plan__check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Formulario de contacto</li>
-            <li class="lb-plan__feature"><svg class="lb-plan__check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>SEO básico + Google Analytics</li>
-            <li class="lb-plan__feature"><svg class="lb-plan__check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>1 mes de soporte · entrega en ~15 días</li>
-          </ul>
-          <a href="#contacto" class="lb-btn lb-btn--ghost lb-plan__cta">Solicitar cotización</a>
-        </article>
-
-        <!-- Presencia — DESTACADO -->
-        <article class="lb-plan lb-plan--featured">
-          <span class="lb-plan__badge">Más elegido</span>
-          <h3 class="lb-plan__name">Presencia Estratégica</h3>
-          <div class="lb-plan__price">
-            <span class="lb-plan__amount">$800</span>
-            <span class="lb-plan__currency">USD</span>
-          </div>
-          <p class="lb-plan__desc">Para negocios que quieren crecer online con estrategia, visibilidad en Google y una web que convierte visitas en consultas.</p>
-          <ul class="lb-plan__features">
-            <li class="lb-plan__feature"><svg class="lb-plan__check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Sitio de hasta 8 páginas</li>
-            <li class="lb-plan__feature"><svg class="lb-plan__check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>SEO on-page avanzado + Rank Math</li>
-            <li class="lb-plan__feature"><svg class="lb-plan__check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Google Analytics + Search Console</li>
-            <li class="lb-plan__feature"><svg class="lb-plan__check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Estrategia de contenido inicial</li>
-            <li class="lb-plan__feature"><svg class="lb-plan__check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>3 meses de soporte · entrega en ~25 días</li>
-          </ul>
-          <a href="#contacto" class="lb-btn lb-btn--primary lb-plan__cta">Solicitar cotización</a>
-        </article>
-
-        <!-- Editorial -->
-        <article class="lb-plan">
-          <span class="lb-plan__badge">Editorial</span>
-          <h3 class="lb-plan__name">Experiencia Editorial</h3>
-          <div class="lb-plan__price">
-            <span class="lb-plan__amount">$2,000</span>
-            <span class="lb-plan__currency">USD</span>
-          </div>
-          <p class="lb-plan__desc">Para marcas con contenido propio: blog, sistema editorial y experiencia visual premium.</p>
-          <ul class="lb-plan__features">
-            <li class="lb-plan__feature"><svg class="lb-plan__check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Todo lo de Presencia Estratégica</li>
-            <li class="lb-plan__feature"><svg class="lb-plan__check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Blog o sección editorial completa</li>
-            <li class="lb-plan__feature"><svg class="lb-plan__check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Diseño premium personalizado</li>
-            <li class="lb-plan__feature"><svg class="lb-plan__check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Integración email marketing (MailPoet)</li>
-            <li class="lb-plan__feature"><svg class="lb-plan__check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>3 meses de soporte · entrega en ~40 días</li>
-          </ul>
-          <a href="#contacto" class="lb-btn lb-btn--ghost lb-plan__cta">Solicitar cotización</a>
-        </article>
-
-        <!-- Sistema -->
-        <article class="lb-plan">
-          <span class="lb-plan__badge">Sistema</span>
-          <h3 class="lb-plan__name">Sistema Digital&#8209;Ecommerce</h3>
-          <div class="lb-plan__price">
-            <span class="lb-plan__amount">$5,000+</span>
-            <span class="lb-plan__currency">USD</span>
-          </div>
-          <p class="lb-plan__desc">Para negocios que necesitan tienda online, gestión de pedidos y presencia de alto rendimiento.</p>
-          <ul class="lb-plan__features">
-            <li class="lb-plan__feature"><svg class="lb-plan__check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>WooCommerce + pasarela de pago</li>
-            <li class="lb-plan__feature"><svg class="lb-plan__check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Gestión de productos e inventario</li>
-            <li class="lb-plan__feature"><svg class="lb-plan__check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Experiencia de compra optimizada</li>
-            <li class="lb-plan__feature"><svg class="lb-plan__check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>6 meses de soporte incluido</li>
-            <li class="lb-plan__feature"><svg class="lb-plan__check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Entrega en ~50 días · propuesta a medida</li>
-          </ul>
-          <a href="#contacto" class="lb-btn lb-btn--ghost lb-plan__cta">Solicitar cotización</a>
-        </article>
-
-      </div>
-      <p class="lb-planes__note">Precios referenciales en USD. Le enviamos una propuesta personalizada sin costo ni compromiso.</p>
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════════
-       S5 · PORTFOLIO
-  ═══════════════════════════════ -->
-  <section class="lb-section" aria-label="Portfolio">
-    <div class="lb-container">
-      <div class="lb-heading">
-        <p class="lb-heading__overline">Portafolio</p>
-        <h2>Así se ve un negocio con presencia digital que funciona</h2>
-        <p class="lb-heading__sub">Proyectos reales para negocios reales de toda LATAM.</p>
-      </div>
-      <div class="lb-portfolio__grid">
-
-        <article class="lb-pcard">
-          <div class="lb-pcard__media">
-            <img src="Visuals/proyectos/xblues-despues.webp" alt="Sitio web de XBlues.ar — Consultoría IT" loading="lazy" width="600" height="450">
-          </div>
-          <div class="lb-pcard__body">
-            <h3 class="lb-pcard__title">XBlues.ar</h3>
-            <p class="lb-pcard__meta">Consultoría IT · LATAM</p>
-          </div>
-        </article>
-
-        <article class="lb-pcard">
-          <div class="lb-pcard__media">
-            <img src="Visuals/proyectos/dreamsfusion-01.webp" alt="Sitio web de Dreams Fusion & Co. — Editorial" loading="lazy" width="600" height="450">
-          </div>
-          <div class="lb-pcard__body">
-            <h3 class="lb-pcard__title">Dreams Fusion &amp; Co.</h3>
-            <p class="lb-pcard__meta">Editorial · Amazon</p>
-          </div>
-        </article>
-
-        <article class="lb-pcard">
-          <div class="lb-pcard__media">
-            <img src="Visuals/proyectos/marciano-01.webp" alt="Sitio web de Marciano Barber Studio" loading="lazy" width="600" height="450">
-          </div>
-          <div class="lb-pcard__body">
-            <h3 class="lb-pcard__title">Marciano Barber Studio</h3>
-            <p class="lb-pcard__meta">Negocio local · Buenos Aires</p>
-          </div>
-        </article>
-
-        <article class="lb-pcard">
-          <div class="lb-pcard__media">
-            <img src="Visuals/proyectos/yinarealtor-01.webp" alt="Sitio web de Yina Tiburcio Realtor" loading="lazy" width="600" height="450">
-          </div>
-          <div class="lb-pcard__body">
-            <h3 class="lb-pcard__title">Yina Tiburcio Realtor</h3>
-            <p class="lb-pcard__meta">Real estate · Bilingüe ES/EN</p>
-          </div>
-        </article>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════════
-       S6 · CTA FINAL + FORMULARIO
-  ═══════════════════════════════ -->
-  <section class="lb-section lb-cta-form" id="contacto" aria-label="Formulario de contacto">
-    <div class="lb-container">
-      <div class="lb-cta-form__grid">
-
-        <div class="lb-cta-form__text">
-          <div class="lb-heading">
-            <p class="lb-heading__overline">Hablemos</p>
-            <h2>¿Listo para tener un sitio que trabaje para usted?</h2>
-            <p class="lb-heading__sub">Cuéntenos sobre su proyecto. Le respondemos con una propuesta personalizada — sin costo, sin compromiso.</p>
-          </div>
-          <ul class="lb-perks">
-            <li class="lb-perk">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
-              Diagnóstico inicial gratuito
-            </li>
-            <li class="lb-perk">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
-              Propuesta con precios y tiempos claros
-            </li>
-            <li class="lb-perk">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
-              Respuesta en menos de 24 horas hábiles
-            </li>
-            <li class="lb-perk">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
-              Atención directa de Jazmin, sin intermediarios
-            </li>
-          </ul>
-        </div>
-
-        <div class="lb-form" id="lb-form-wrapper">
-          <h3 class="lb-form__title">Cuéntenos sobre su proyecto</h3>
-
-          <form id="lb-form" novalidate>
-            <div class="lb-form__field">
-              <label for="lb-nombre">Nombre completo <span aria-hidden="true">*</span></label>
-              <input type="text" id="lb-nombre" name="nombre" autocomplete="name" placeholder="Ej. María García" required>
-            </div>
-            <div class="lb-form__field">
-              <label for="lb-email">Correo electrónico <span aria-hidden="true">*</span></label>
-              <input type="email" id="lb-email" name="email" autocomplete="email" placeholder="su@correo.com" required>
-            </div>
-            <div class="lb-form__field">
-              <label for="lb-whatsapp">WhatsApp</label>
-              <input type="tel" id="lb-whatsapp" name="whatsapp" autocomplete="tel" placeholder="+54 9 11 0000-0000">
-            </div>
-            <div class="lb-form__field">
-              <label for="lb-plan">Plan de interés <span aria-hidden="true">*</span></label>
-              <select id="lb-plan" name="plan" required>
-                <option value="" disabled selected>Seleccione un plan</option>
-                <option value="Base Digital Esencial ($500 USD)">Base Digital Esencial — $500 USD</option>
-                <option value="Presencia Estratégica ($800 USD)">Presencia Estratégica — $800 USD</option>
-                <option value="Experiencia Editorial ($2,000 USD)">Experiencia Editorial — $2,000 USD</option>
-                <option value="Sistema Digital-Ecommerce (desde $5,000 USD)">Sistema Digital-Ecommerce — desde $5,000 USD</option>
-                <option value="No sé cuál me conviene todavía">Aún no sé cuál me conviene</option>
-              </select>
-            </div>
-            <button type="submit" class="lb-btn lb-btn--primary lb-form__submit">Enviar consulta</button>
-            <p class="lb-form__privacy">Sus datos están protegidos. No los compartimos con terceros. <a href="politica-de-privacidad.html" style="text-decoration:underline">Política de privacidad</a></p>
-            <p class="lb-form__error" id="lb-form-error" role="alert">
-              Hubo un error al enviar. Por favor intente de nuevo o escríbanos por <a href="https://wa.me/5491165370820?text=Hola%2C%20vi%20su%20web%20y%20quiero%20informaci%C3%B3n%20sobre%20sus%20servicios" target="_blank" rel="noopener noreferrer" style="text-decoration:underline">WhatsApp</a>.
-            </p>
-          </form>
-
-          <div class="lb-form__success" id="lb-form-success" role="status" aria-live="polite">
-            <div class="lb-form__success-icon" aria-hidden="true">✓</div>
-            <h3>¡Gracias, su consulta llegó!</h3>
-            <p>Le respondemos a la brevedad — generalmente dentro de las 24 horas hábiles.</p>
-            <p style="margin-top:1rem">¿Prefiere respuesta inmediata? <a href="https://wa.me/5491165370820?text=Hola%2C%20vi%20su%20web%20y%20quiero%20informaci%C3%B3n%20sobre%20sus%20servicios" target="_blank" rel="noopener noreferrer">Escríbanos por WhatsApp →</a></p>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-</main>
-
-<!-- ── FOOTER ── -->
+<!-- ═══ FOOTER ═══ -->
 <footer class="lb-footer" aria-label="Pie de página">
   <div class="lb-container">
-    <div class="lb-footer__top">
-      <a href="#" class="lb-footer__brand" aria-label="JT Digital Studio — inicio">
-        <img src="assets/marca/icono-blanco.svg" alt="" width="32" height="32">
-        <span class="lb-footer__wm">
-          <span class="lb-footer__name">JT Digital Studio</span>
-          <span class="lb-footer__tag">Diseño Web &amp; Sistemas Digitales</span>
-        </span>
-      </a>
-      <div class="lb-footer__social">
-        <a href="https://www.instagram.com/jt_digitalstudio/" class="lb-footer__sl" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2c2.7 0 3.05.01 4.12.06 1.06.05 1.79.22 2.43.47.66.26 1.21.6 1.76 1.15.55.55.9 1.1 1.15 1.76.25.64.42 1.37.47 2.43.05 1.07.06 1.42.06 4.12s-.01 3.05-.06 4.12c-.05 1.06-.22 1.79-.47 2.43-.26.66-.6 1.21-1.15 1.76-.55.55-1.1.9-1.76 1.15-.64.25-1.37.42-2.43.47-1.07.05-1.42.06-4.12.06s-3.05-.01-4.12-.06c-1.06-.05-1.79-.22-2.43-.47-.66-.26-1.21-.6-1.76-1.15-.55-.55-.9-1.1-1.15-1.76-.25-.64-.42-1.37-.47-2.43C2.01 15.05 2 14.7 2 12s.01-3.05.06-4.12c.05-1.06.22-1.79.47-2.43.26-.66.6-1.21 1.15-1.76.55-.55 1.1-.9 1.76-1.15.64-.25 1.37-.42 2.43-.47C8.95 2.01 9.3 2 12 2zm0 1.8c-2.65 0-2.97.01-4.02.06-.86.04-1.33.18-1.64.3-.41.16-.71.35-1.02.66-.31.31-.5.61-.66 1.02-.12.31-.26.78-.3 1.64-.05 1.05-.06 1.37-.06 4.02s.01 2.97.06 4.02c.04.86.18 1.33.3 1.64.16.41.35.71.66 1.02.31.31.61.5 1.02.66.31.12.78.26 1.64.3 1.05.05 1.37.06 4.02.06s2.97-.01 4.02-.06c.86-.04 1.33-.18 1.64-.3.41-.16.71-.35 1.02-.66.31-.31.5-.61.66-1.02.12-.31.26-.78.3-1.64.05-1.05.06-1.37.06-4.02s-.01-2.97-.06-4.02c-.04-.86-.18-1.33-.3-1.64-.16-.41-.35-.71-.66-1.02-.31-.31-.61-.5-1.02-.66-.31-.12-.78-.26-1.64-.3C14.97 3.81 14.65 3.8 12 3.8zm0 3.05a5.15 5.15 0 110 10.3 5.15 5.15 0 010-10.3zm0 1.8a3.35 3.35 0 100 6.7 3.35 3.35 0 000-6.7zm5.35-1.99a1.2 1.2 0 11-2.4 0 1.2 1.2 0 012.4 0z"/></svg>
-        </a>
-        <a href="https://www.facebook.com/JTDigitalStudio" class="lb-footer__sl" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5.02 3.66 9.18 8.44 9.94v-7.03H7.9v-2.91h2.54V9.85c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.88h2.78l-.44 2.91h-2.34V22c4.78-.76 8.44-4.92 8.44-9.94z"/></svg>
-        </a>
-        <a href="https://www.linkedin.com/in/jazmintiburcio/" class="lb-footer__sl" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.44-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.59 0 4.26 2.37 4.26 5.45v6.29zM5.34 7.43a2.06 2.06 0 110-4.12 2.06 2.06 0 010 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.23 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.46C23.2 24 24 23.23 24 22.28V1.72C24 .77 23.2 0 22.23 0z"/></svg>
-        </a>
-        <a href="https://ar.pinterest.com/jt_digitalstudio" class="lb-footer__sl" target="_blank" rel="noopener noreferrer" aria-label="Pinterest">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0a12 12 0 00-4.373 23.178c-.017-.888-.006-1.955.223-2.92.245-1.026 1.635-6.938 1.635-6.938s-.407-.816-.407-2.022c0-1.895 1.098-3.31 2.465-3.31 1.162 0 1.723.873 1.723 1.92 0 1.17-.744 2.92-1.129 4.544-.321 1.36.682 2.469 2.023 2.469 2.427 0 4.292-2.56 4.292-6.253 0-3.271-2.351-5.556-5.708-5.556-3.888 0-6.171 2.917-6.171 5.932 0 1.174.452 2.434 1.017 3.119a.41.41 0 01.095.393c-.104.433-.336 1.36-.382 1.55-.06.25-.199.303-.459.183-1.716-.799-2.788-3.31-2.788-5.324 0-4.335 3.15-8.318 9.081-8.318 4.766 0 8.47 3.396 8.47 7.938 0 4.736-2.987 8.545-7.133 8.545-1.393 0-2.703-.724-3.151-1.579l-.856 3.264c-.31 1.192-1.148 2.687-1.708 3.598A12 12 0 1012 0z"/></svg>
-        </a>
+    <div class="lb-footer__grid">
+      <div>
+        <div class="lb-footer__brand-logo">
+          <img src="assets/marca/icono-blanco.svg" alt="JT Digital Studio" onerror="this.style.display='none'">
+          <span>JT Digital Studio</span>
+        </div>
+        <p class="lb-footer__desc">Boutique de diseño web en Buenos Aires para negocios que necesitan presencia digital que funcione.</p>
+        <nav class="lb-footer__social" aria-label="Redes sociales">
+          <a href="https://instagram.com/jt_digitalstudio" class="lb-footer__social-link" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="https://facebook.com/JTDigitalStudio" class="lb-footer__social-link" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="https://linkedin.com/in/jazmintiburcio" class="lb-footer__social-link" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+          <a href="https://pinterest.com/jt_digitalstudio" class="lb-footer__social-link" target="_blank" rel="noopener noreferrer" aria-label="Pinterest">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 0 1 .083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
+          </a>
+        </nav>
+      </div>
+      <div>
+        <div class="lb-footer__col-title">Servicios</div>
+        <ul class="lb-footer__links">
+          <li><a href="#planes" class="lb-footer__link">Base Digital Esencial</a></li>
+          <li><a href="#planes" class="lb-footer__link">Presencia Estratégica</a></li>
+          <li><a href="#planes" class="lb-footer__link">Experiencia Editorial</a></li>
+          <li><a href="#planes" class="lb-footer__link">Sistema Digital Completo</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="lb-footer__col-title">Contacto</div>
+        <ul class="lb-footer__links">
+          <li><a href="mailto:jazmintiburcio@gmail.com" class="lb-footer__link">jazmintiburcio@gmail.com</a></li>
+          <li><a href="https://wa.me/5491165370820" class="lb-footer__link" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
+          <li><a href="#contacto" class="lb-footer__link">Solicitar propuesta</a></li>
+        </ul>
       </div>
     </div>
     <div class="lb-footer__bottom">
-      <span>© <span id="lb-year"></span> JT Digital Studio. Todos los derechos reservados.</span>
-      <a href="politica-de-privacidad.html">Política de privacidad</a>
+      <p class="lb-footer__copy">© 2025 JT Digital Studio. Todos los derechos reservados.</p>
+      <p class="lb-footer__copy">Diseñado y desarrollado en Buenos Aires, Argentina.</p>
     </div>
   </div>
 </footer>
 
-<!-- ── WHATSAPP FLOTANTE ── -->
-<a
-  href="https://wa.me/5491165370820?text=Hola%2C%20vi%20su%20web%20y%20quiero%20informaci%C3%B3n%20sobre%20sus%20servicios"
-  class="lb-wa-float"
-  target="_blank"
-  rel="noopener noreferrer"
-  aria-label="Escribir por WhatsApp"
->
-  <svg viewBox="0 0 24 24" aria-hidden="true">
-    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413"/>
+<!-- ═══ FLOATING WHATSAPP ═══ -->
+<a href="https://wa.me/5491165370820?text=Hola%2C%20vi%20su%20web%20y%20quiero%20informaci%C3%B3n%20sobre%20sus%20servicios"
+   class="lb-wa-float" target="_blank" rel="noopener noreferrer" aria-label="Escribir por WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+    <path d="M12 0C5.373 0 0 5.373 0 12c0 2.126.554 4.124 1.524 5.855L0 24l6.336-1.504A11.934 11.934 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 0 1-5.006-1.374l-.358-.214-3.762.893.938-3.665-.234-.376A9.818 9.818 0 1 1 12 21.818z"/>
   </svg>
 </a>
 
 <script>
-/* ── AÑO ── */
-document.getElementById('lb-year').textContent = new Date().getFullYear();
-
-/* ── CARRUSEL ── */
 (function () {
-  var track = document.getElementById('lb-track');
-  var wrap  = track.parentElement;
-  var dots  = document.querySelectorAll('.lb-carousel__dot');
-  var total = dots.length;
-  var cur = 0, timer;
+  'use strict';
+
+  /* ── CAROUSEL ── */
+  var track  = document.getElementById('lb-testi-track');
+  var wrap   = track.parentElement;
+  var dots   = document.querySelectorAll('.lb-testi__dot');
+  var total  = dots.length;
+  var cur    = 0, timer;
 
   function visCount() {
-    return window.innerWidth >= 1024 ? 3 : window.innerWidth >= 600 ? 2 : 1;
+    return window.innerWidth >= 900 ? 3 : window.innerWidth >= 600 ? 2 : 1;
   }
 
   function goTo(n) {
@@ -1231,8 +968,8 @@ document.getElementById('lb-year').textContent = new Date().getFullYear();
   function arm()    { timer = setInterval(function () { goTo(cur + 1); }, 5500); }
   function disarm() { clearInterval(timer); }
 
-  document.getElementById('lb-prev').addEventListener('click', function () { disarm(); goTo(cur - 1); arm(); });
-  document.getElementById('lb-next').addEventListener('click', function () { disarm(); goTo(cur + 1); arm(); });
+  document.getElementById('lb-testi-prev').addEventListener('click', function () { disarm(); goTo(cur - 1); arm(); });
+  document.getElementById('lb-testi-next').addEventListener('click', function () { disarm(); goTo(cur + 1); arm(); });
   dots.forEach(function (d) {
     d.addEventListener('click', function () { disarm(); goTo(+d.dataset.i); arm(); });
   });
@@ -1244,49 +981,54 @@ document.getElementById('lb-year').textContent = new Date().getFullYear();
     if (Math.abs(dx) > 45) goTo(dx > 0 ? cur + 1 : cur - 1);
     arm();
   });
-
   window.addEventListener('resize', function () { goTo(cur); });
-
   goTo(0);
   arm();
-}());
 
-/* ── FORMULARIO → FORMSPREE ── */
-(function () {
-  var form    = document.getElementById('lb-form');
-  var success = document.getElementById('lb-form-success');
-  var errEl   = document.getElementById('lb-form-error');
-  if (!form) return;
+  /* ── HEADER SCROLL ── */
+  var header = document.querySelector('.lb-header');
+  window.addEventListener('scroll', function () {
+    header.style.background = window.scrollY > 60
+      ? 'rgba(26,28,29,0.95)'
+      : 'rgba(0,0,0,0.55)';
+  }, { passive: true });
 
-  form.addEventListener('submit', async function (e) {
+  /* ── FORM SUBMISSION ── */
+  var form  = document.getElementById('lb-form');
+  var btnSb = document.getElementById('lb-submit');
+  var msgOk = document.getElementById('lb-form-ok');
+  var msgEr = document.getElementById('lb-form-err');
+
+  form.addEventListener('submit', function (e) {
     e.preventDefault();
-    errEl.style.display = 'none';
-    var btn = form.querySelector('[type="submit"]');
-    var orig = btn.textContent;
-    btn.disabled = true;
-    btn.textContent = 'Enviando…';
+    msgOk.style.display = 'none';
+    msgEr.style.display = 'none';
+    btnSb.disabled = true;
+    btnSb.textContent = 'Enviando…';
 
-    try {
-      var res = await fetch('https://formspree.io/f/xljrdqpz', {
-        method: 'POST',
-        body: new FormData(form),
-        headers: { Accept: 'application/json' }
-      });
-      if (res.ok) {
-        form.style.display = 'none';
-        success.style.display = 'block';
-        success.focus();
+    var data = new FormData(form);
+    fetch('https://formspree.io/f/xljrdqpz', {
+      method: 'POST',
+      body: data,
+      headers: { 'Accept': 'application/json' }
+    })
+    .then(function (r) {
+      if (r.ok) {
+        msgOk.className = 'lb-form__msg lb-form__msg--ok';
+        form.reset();
       } else {
-        throw new Error();
+        msgEr.className = 'lb-form__msg lb-form__msg--err';
       }
-    } catch (_) {
-      btn.disabled = false;
-      btn.textContent = orig;
-      errEl.style.display = 'block';
-    }
+      btnSb.disabled = false;
+      btnSb.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Enviar solicitud';
+    })
+    .catch(function () {
+      msgEr.className = 'lb-form__msg lb-form__msg--err';
+      btnSb.disabled = false;
+      btnSb.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Enviar solicitud';
+    });
   });
 }());
 </script>
-
 </body>
 </html>
